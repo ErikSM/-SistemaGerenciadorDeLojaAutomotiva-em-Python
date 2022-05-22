@@ -4,12 +4,18 @@ from entrada_de_dados.lista_de_lojas_criadas import lojas_registradas
 from apps_de_funcionamento.AppLojaAberta import abrir_registro_de_loja, AppLojaAberta
 
 
+def start():
+    LojaStart("Crie ou Abra um loja para iniciar")
+
+
 def exibir_loja_selecionada(loja_select):
     return AppLojaAberta(loja_select)
 
 
 class LojaStart():
     def __init__(self, title):
+
+        self.opcoes_de_loja = None
 
         # \\\_ APP
         self.window = tkinter.Tk()
@@ -42,9 +48,8 @@ class LojaStart():
     def abrir_opcoes_de_loja(self):
         self.texto_mensagem.config(text="Selecione uma das opcoes de loja para abri-la:")
         for i in lojas_registradas:
-            self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_sem_pular_linha()}', width=50, height=2, bg="grey")
+            self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_sem_pular_linha()}', width=50,
+                                                 height=2, bg="grey")
             self.opcoes_de_loja.config(command=lambda loja_select=i: exibir_loja_selecionada(loja_select))
             self.opcoes_de_loja.pack()
 
-
-start = LojaStart("Crie ou Abra um loja para iniciar")

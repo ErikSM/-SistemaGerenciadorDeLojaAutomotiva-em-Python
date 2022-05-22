@@ -1,5 +1,6 @@
 import tkinter
 
+from entrada_de_dados.criar_e_adicionar_clientes_em_lista import salvar_cliente_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
 
@@ -83,34 +84,7 @@ class AppCliente(AppBase):
         email = self.entrada_do_email.get()
 
         cliente = Cliente(nome, cpf, telefone, email)
+
+        salvar_cliente_em_lista_do_main(cliente)
+
         self.cliente = cliente
-
-        self._adicionar_em_lista_do_main(cliente.nome, cliente.cpf, cliente.telefone, cliente.email)
-
-    def _adicionar_em_lista_do_main(self, primeira_variavel, segunda_variavel, terceira_variavel, quarta_variavel):
-        super()._adicionar_em_lista_do_main(primeira_variavel, segunda_variavel, terceira_variavel, quarta_variavel)
-        file = open("../entrada_de_dados/lista_de_clientes_registrados.py", "r")
-        texto_lido = file.read()
-        self.texto_temporario.insert(1.0, texto_lido)
-
-        self.texto_temporario.insert("end", f"\n"
-                                            f'nome = "{primeira_variavel}"\n'
-                                            f'cpf = "{self.segunda_variavel_sem_espaco}"\n'
-                                            f'telefone = "{self.terceira_variavel_sem_espaco}"\n'
-                                            f'email = "{self.quarta_variavel_sem_espaco}"'
-                                            f'\n'
-                                            f'cliente_{self.primeira_variavel_sem_espaco}'
-                                            f'{self.segunda_variavel_sem_espaco} = Cliente(nome, cpf, telefone, email)'
-                                            f'\n' 
-                                            f'add_cliente_na_lista_do_main(cliente_{self.primeira_variavel_sem_espaco}'
-                                            f'{self.segunda_variavel_sem_espaco}, variavel_contador_de_posicao_na_lista)'
-                                            f'\n'
-                                            f'variavel_contador_de_posicao_na_lista += 1'
-                                            f'\n'
-                                     )
-
-        texto_reescrito = self.texto_temporario.get(1.0, "end")
-        self.texto_temporario.delete(1.0, "end")
-        file = open("../entrada_de_dados/lista_de_clientes_registrados.py", "w")
-        file.write(texto_reescrito)
-        file.close()

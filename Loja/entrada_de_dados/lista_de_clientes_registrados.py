@@ -6,7 +6,7 @@ variavel_contador_de_posicao_na_lista = 0
 
 
 def add_cliente_na_lista_do_main(cliente: Cliente, posicao):
-    cliente.posicao_na_lista = variavel_contador_de_posicao_na_lista
+    cliente.posicao_na_lista = posicao
     clientes_registrados.append(cliente)
 
 
@@ -61,38 +61,12 @@ cliente_Ayumi_Barbara8768687 = Cliente(nome, cpf, telefone, email)
 add_cliente_na_lista_do_main(cliente_Ayumi_Barbara8768687, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 
-nome = "Ayumi yuka"
-cpf = "2342342"
-telefone = "09032424"
-email = "fjwo@.com"
-cliente_Ayumi_yuka2342342 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_Ayumi_yuka2342342,variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
 
-
-nome = "Astrogildo Souza"
-cpf = "3453453"
-telefone = "0907657657"
-email = "sdfsf@.com"
-cliente_Astrogildo_Souza3453453 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_Astrogildo_Souza3453453, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-nome = "Judas Sembotas"
-cpf = "23423423524"
-telefone = "0902352545"
-email = "fhw@.com"
-cliente_Judas_Sembotas23423423524 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_Judas_Sembotas23423423524, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-nome = "Carlos Silva"
-cpf = "3241431"
-telefone = "32414314"
-email = "fsjs@sfs"
-cliente_Carlos_Silva3241431 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_Carlos_Silva3241431, variavel_contador_de_posicao_na_lista)
+nome = "Gloria da Silva"
+cpf = "25452"
+telefone = "235242"
+email = "dfssf@com"
+cliente_gloria_da_silva25452 = Cliente(nome, cpf, telefone, email)
+add_cliente_na_lista_do_main(cliente_gloria_da_silva25452, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 

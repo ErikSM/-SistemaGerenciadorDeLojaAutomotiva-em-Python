@@ -76,20 +76,11 @@ add_carro_na_lista_do_main(carro_Toyota_MarkII100, variavel_contador_de_posicao_
 variavel_contador_de_posicao_na_lista += 1
 
 
-montadora = "Mazda"
-nome = "AZWagon"
-ano = "22"
-preco = "300000"
-carro_Mazda_AZWagon = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Mazda_AZWagon, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-montadora = "Suzuki"
-nome = "Works"
-ano = "19"
-preco = "290000"
-carro_Suzuki_Works = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Suzuki_Works, variavel_contador_de_posicao_na_lista)
+montadora = "WolksWagen"
+nome = "Fuska"
+ano = "2"
+preco = "50 000"
+carro_wolkswagen_fuska = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_wolkswagen_fuska, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 

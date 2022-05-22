@@ -1,13 +1,13 @@
 import tkinter
 
-
+from entrada_de_dados.salvar_dados_adicionados_no_programa import atualizar_informacoes
 from estrutura.Venda import Venda
 
 
 def _escrever_relatorio_em_lista_do_main(codigo):
     return f'\n' \
            f'from relatorios_de_venda.venda_codigo_{codigo} import venda_{codigo}\n' \
-           f'add_venda_na_lista_do_main(venda_{codigo})\n' \
+           f'add_venda_na_lista_do_main(venda_{codigo})' \
            f'\n'
 
 
@@ -23,8 +23,8 @@ def criar_relatorio_de_venda_em_arquivo_de_texto(venda: Venda, codigo):
     venda = venda
     texto_temporario = tkinter.Text()
 
-    file = open(f"../relatorios_de_venda/venda_codigo_{codigo}.py", "r")
-    arquivo_lido = file.read()
+    arquivo = open(f"../relatorios_de_venda/venda_codigo_{codigo}.py", "r")
+    arquivo_lido = arquivo.read()
     texto_temporario.insert(1.0, arquivo_lido)
 
     arquivo_escrito = _escrever_relatorio_de_venda_em_texto(venda)
@@ -33,16 +33,17 @@ def criar_relatorio_de_venda_em_arquivo_de_texto(venda: Venda, codigo):
     texto_temporario.insert("end", arquivo_escrito)
     file.write(texto_temporario.get(1.0, "end"))
 
+    atualizar_informacoes(arquivo, file)
+
     texto_temporario.delete(1.0, "end")
     file.close()
 
 
 def adicionar_relatorio_de_venda_em_lista_do_main(codigo):
-
     texto_temporario = tkinter.Text()
 
-    file = open("../entrada_de_dados/lista_de_vendas_efetuadas.py", "r")
-    arquivo_lido = file.read()
+    arquivo = open("../entrada_de_dados/lista_de_vendas_efetuadas.py", "r")
+    arquivo_lido = arquivo.read()
     texto_temporario.insert(1.0, arquivo_lido)
 
     arquivo_escrito = _escrever_relatorio_em_lista_do_main(codigo)
@@ -51,8 +52,8 @@ def adicionar_relatorio_de_venda_em_lista_do_main(codigo):
     texto_temporario.insert("end", arquivo_escrito)
     file.write(texto_temporario.get(1.0, "end"))
 
+    atualizar_informacoes(arquivo, file)
+
     texto_temporario.delete(1.0, "end")
+    arquivo.close()
     file.close()
-
-
-

@@ -74,32 +74,6 @@ class AppCriarLoja(AppBase):
 
         loja = Loja(nome, cnpj, telefone)
 
-        self.loja = loja
-
         salvar_loja_em_lista_do_main(nome, cnpj, telefone)
 
-        #self._adicionar_em_lista_do_main(loja.nome, loja.cnpj, loja.telefone, None)
-
-    def _adicionar_em_lista_do_main(self, primeira_variavel, segunda_variavel, terceira_variavel, quarta_variavel):
-        super()._adicionar_em_lista_do_main(primeira_variavel, segunda_variavel, terceira_variavel, quarta_variavel)
-        file = open("../entrada_de_dados/lista_de_lojas_criadas.py", "r")
-        texto_lido = file.read()
-        self.texto_temporario.insert(1.0, texto_lido)
-
-        self.texto_temporario.insert("end", f'\n'
-                                            f'nome = "{primeira_variavel}"\n'
-                                            f'cnpj = "{self.segunda_variavel_sem_espaco}"\n'
-                                            f'telefone = "{self.terceira_variavel_sem_espaco}"\n'
-                                            f'loja_{self.primeira_variavel_sem_espaco} = Loja(nome, cnpj, telefone)\n'
-                                            f'add_loja_na_lista_do_main(loja_{self.primeira_variavel_sem_espaco}, '
-                                            f'variavel_contador_de_posicao_na_lista)\n'
-                                            f'variavel_contador_de_posicao_na_lista += 1\n'
-                                            f''
-                                     )
-
-        texto_reescrito = self.texto_temporario.get(1.0, "end")
-        self.texto_temporario.delete(1.0, "end")
-        file = open("../entrada_de_dados/lista_de_lojas_criadas.py", "w")
-        file.write(texto_reescrito)
-        file.close()
-
+        self.loja = loja

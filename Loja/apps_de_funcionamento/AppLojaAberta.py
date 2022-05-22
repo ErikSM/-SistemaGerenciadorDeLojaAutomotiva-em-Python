@@ -3,17 +3,17 @@ import datetime
 
 from random import sample
 
-from estrutura.AppBase import AppBase
 from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
     criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main
-from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
+from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
+from estrutura.AppBase import AppBase
+from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from estrutura.Loja import Loja
 from estrutura.Venda import Venda
 from apps_de_funcionamento.AppCriarLoja import AppCriarLoja
 from apps_de_funcionamento.AppCarro import AppCarro
 from apps_de_funcionamento.AppCliente import AppCliente
-from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
 
 
 def abrir_registro_de_loja():
@@ -71,7 +71,8 @@ class AppLojaAberta(AppBase):
         self.menu_relatorio_de_vendas = tkinter.Menu(self.menu_relatorios, tearoff=0)
         for i in vendas_registradas:
             self.menu_relatorio_de_vendas.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
-                                                      command=lambda venda_select=i: self.exibir_relatorio_de_vendas(
+                                                      command=lambda
+                                                          venda_select=i: self.exibir_relatorio_de_vendas_existente(
                                                           venda_select))
         self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
         self.window.config(menu=self.menu_relatorios)
@@ -111,7 +112,8 @@ class AppLojaAberta(AppBase):
 
         # Spin de opcoes de clientes
         self.lista_clientes_da_loja = clientes_registrados
-        self.opcoes_de_clientes = tkinter.Spinbox(self.frame_dados, values=self.lista_clientes_da_loja, from_=0, to=len(clientes_registrados)- 1, width=110)
+        self.opcoes_de_clientes = tkinter.Spinbox(self.frame_dados, values=self.lista_clientes_da_loja,
+                                                  from_=0, to=len(clientes_registrados) - 1, width=110)
         self.opcoes_de_clientes.grid(row=2, column=1, columnspan=5)
 
         # Botao Venda (reescrevendo AppBase)
@@ -125,16 +127,19 @@ class AppLojaAberta(AppBase):
 
         self._criar_venda()
 
-        self.texto_relatorio.insert(1.0, f"codigo:{self.venda.codigo}   "
-                                         f"data:{self.venda.data}"
-                                         f"\n"
-                                         f"{self.venda.loja}"
-                                         f"{self.venda.cliente}"
-                                         f"{self.venda.veiculo}"
-                                         f"\n"
-                                         f"Valor Negociado: ${self.venda.preco}")
+        self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_venda_criada())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def _escrever_relatorio_de_venda_criada(self):
+        return f"codigo:{self.venda.codigo}   " \
+               f"data:{self.venda.data}" \
+               f"\n" \
+               f"{self.venda.loja}" \
+               f"{self.venda.cliente}" \
+               f"{self.venda.veiculo}" \
+               f"\n" \
+               f"Valor Negociado: ${self.venda.preco}"
 
     def _criar_venda(self):
         self.carro_escolhido = self.opcoes_de_carros.get()
@@ -151,17 +156,17 @@ class AppLojaAberta(AppBase):
 
         venda = Venda(data, codigo, loja, cliente, veiculo, preco)
 
-        self.venda = venda
-
         criar_relatorio_de_venda_em_arquivo_de_texto(venda, codigo)
         adicionar_relatorio_de_venda_em_lista_do_main(codigo)
+
+        self.venda = venda
 
         self.valor_de_venda_digitado.delete(0, "end")
 
     def retornar_appstart(self):
         self.window.quit()
 
-    def exibir_relatorio_de_vendas(self, venda_select):
+    def exibir_relatorio_de_vendas_existente(self, venda_select):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
@@ -171,5 +176,3 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
-
-
