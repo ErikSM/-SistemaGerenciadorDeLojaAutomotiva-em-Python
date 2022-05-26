@@ -31,35 +31,3 @@ class Loja:
     @telefone.setter
     def telefone(self, telefone):
         self.__telefone = telefone
-
-    @property
-    def veiculos(self):
-        return self.__veiculos
-
-    @veiculos.setter
-    def veiculos(self, veiculos):
-        self.__veiculos.append(veiculos)
-
-    def veiculos_registrados(self):
-        print("\nVeiculos da loja:")
-        cont = 0
-        for i in self.__veiculos:
-            print(f'codigo:{cont} ', self.__veiculos[cont])
-            cont += 1
-
-    @property
-    def clientes(self):
-        return self.__clientes
-
-    @clientes.setter
-    def clientes(self, clientes):
-        self.__clientes.append(clientes)
-
-    def clientes_registrados(self):
-        print("\nClientes cadastrados:")
-        cont = 0
-        for i in self.__clientes:
-            if self.__clientes == None:
-                break
-            print(f'codigo:{cont} ', self.__clientes[cont])
-            cont += 1

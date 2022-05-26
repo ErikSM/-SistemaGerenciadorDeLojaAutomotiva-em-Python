@@ -21,7 +21,6 @@ class Veiculo(ABC):  # Classe Abstrata
     def abstractmethod(self):
         pass
 
-
     @property
     def montadora(self):
         return self.__montadora
@@ -39,6 +38,5 @@ class Veiculo(ABC):  # Classe Abstrata
         return self.__valor_avaliado
 
     @valor_avaliado.setter
-    def preco(self, valor_avaliado):
+    def valor_avaliado(self, valor_avaliado):
         self.__valor_avaliado = valor_avaliado
-
