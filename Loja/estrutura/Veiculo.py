@@ -9,22 +9,18 @@ class Veiculo(ABC):  # Classe Abstrata
         self.__ano = ano
         self.__valor_avaliado = valor_avaliado
         self.posicao_na_lista = " "
+        self.nome_da_variavel = " "
 
-    @abstractmethod
-    def abstractmethod(self):
-        pass
-
-    def __str__(self):
+    def mostrar_dados_do_veiculo(self):
         return f'\nmontadora = "{self.__montadora}"    \n' \
                f'nome = "{self.__nome}"    \n' \
                f'ano = "{self.__ano}"    \n' \
                f'valor_avaliado = "{self.__valor_avaliado}"    \n'
 
-    def mostrar_sem_pular_linha(self):
-        return f'\nMontadora:{self.__montadora}   ' \
-               f'Nome:{self.__nome}   ' \
-               f'Ano:{self.__ano}   ' \
-               f'Avaliado:{self.__valor_avaliado}   '
+    @abstractmethod
+    def abstractmethod(self):
+        pass
+
 
     @property
     def montadora(self):

@@ -61,7 +61,6 @@ cliente_Ayumi_Barbara8768687 = Cliente(nome, cpf, telefone, email)
 add_cliente_na_lista_do_main(cliente_Ayumi_Barbara8768687, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 
-
 nome = "Gloria da Silva"
 cpf = "25452"
 telefone = "235242"

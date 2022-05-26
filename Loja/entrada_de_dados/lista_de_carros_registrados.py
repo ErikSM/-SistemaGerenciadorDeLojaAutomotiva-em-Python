@@ -1,86 +1,62 @@
 from estrutura.Carro import Carro
 
-
 carros_registrados = list()
 
-variavel_contador_de_posicao_na_lista = 0
 
-
-def add_carro_na_lista_do_main(carro: Carro, posicao):
-    carro.posicao_na_lista = posicao
+def add_carro_na_lista_do_main(carro: Carro, variavel):
+    carro.nome_da_variavel = str(variavel)
     carros_registrados.append(carro)
+    _atualizar_contador_da_lista()
+
+
+def remover_carro_da_lista(carro: Carro):
+    carros_registrados.remove(carro)
+    _atualizar_contador_da_lista()
+
+
+def _atualizar_contador_da_lista():
+    variavel_contador_de_posicao_na_lista = 0
+    for i in carros_registrados:
+        i.posicao_na_lista = " "
+        i.posicao_na_lista = variavel_contador_de_posicao_na_lista
+        variavel_contador_de_posicao_na_lista += 1
+
 
 # --------------------  -----------------   ------------   ------------   ----
 
+
 montadora = "Toyota"
 nome = "Prius"
-ano = "22"
-preco = "1000000"
-carro_Toyota_Prius = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Toyota_Prius, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-montadora = "Nissan"
-nome = "Skyline"
-ano = "19"
-preco = "900000"
-carro_Nissan_Skyline = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Nissan_Skyline, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-montadora = "Subaru"
-nome = "WRX"
-ano = "15"
-preco = "500000"
-carro_Subaru_WRX = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Subaru_WRX, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-
-montadora = "Wolks Wagen"
-nome = "Golf"
 ano = "25"
-preco = "2000000"
-carro_Wolks_Wagen_Golf = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Wolks_Wagen_Golf, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
-montadora = "Toyota"
-nome = "Alphard"
-ano = "22"
-preco = "300000"
-carro_Toyota_Alphard = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Toyota_Alphard, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
+preco = "700 000"
+carro_toyota_prius_533530 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_toyota_prius_533530, "carro_toyota_prius_533530")
+_atualizar_contador_da_lista()
 
 
 montadora = "Ferrari"
-nome = "FerrariX"
-ano = "26"
-preco = "4000000"
-carro_Ferrari_FerrariX = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Ferrari_FerrariX, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
+nome = "Ferrari GP X"
+ano = "19"
+preco = "5 000 000"
+carro_ferrari_ferrari_gp_x_459192 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_ferrari_ferrari_gp_x_459192, "carro_ferrari_ferrari_gp_x_459192")
+_atualizar_contador_da_lista()
 
 
-montadora = "Toyota"
-nome = "MarkII100"
-ano = "12"
-preco = "500000"
-carro_Toyota_MarkII100 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_Toyota_MarkII100, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
+montadora = "Nissan"
+nome = "Skyline 35"
+ano = "22"
+preco = "3 000 000"
+carro_nissan_skyline_35_31825 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_nissan_skyline_35_31825, "carro_nissan_skyline_35_31825")
+_atualizar_contador_da_lista()
 
 
 montadora = "WolksWagen"
 nome = "Fuska"
 ano = "2"
-preco = "50 000"
-carro_wolkswagen_fuska = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_wolkswagen_fuska, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
+preco = "100 000"
+carro_wolkswagen_fuska_908466 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_wolkswagen_fuska_908466, "carro_wolkswagen_fuska_908466")
+_atualizar_contador_da_lista()
 

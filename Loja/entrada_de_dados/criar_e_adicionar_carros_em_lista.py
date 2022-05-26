@@ -1,10 +1,14 @@
 import tkinter
+from random import sample
 
 from entrada_de_dados.salvar_dados_adicionados_no_programa import atualizar_informacoes
 from estrutura.Carro import Carro
 
 
 def _escrever_objeto_carro(carro: Carro):
+    codigo_do_veiculo = sample(range(0, 1000000), 1)
+    codigo = codigo_do_veiculo[0]
+
     montadora_espalhado = carro.montadora.split()
     montadora_sem_espaco = "_".join(montadora_espalhado)
     montadora_da_variavel_do_carro = montadora_sem_espaco.lower()
@@ -19,12 +23,13 @@ def _escrever_objeto_carro(carro: Carro):
            f'preco = "{carro.preco}"' \
            f'\n' \
            f'carro_{montadora_da_variavel_do_carro}_' \
-           f'{nome_da_variavel_do_carro} = Carro(montadora, nome, ano, preco)' \
+           f'{nome_da_variavel_do_carro}_{codigo} = Carro(montadora, nome, ano, preco)' \
            f'\n' \
            f'add_carro_na_lista_do_main(carro_{montadora_da_variavel_do_carro}_' \
-           f'{nome_da_variavel_do_carro}, variavel_contador_de_posicao_na_lista)' \
+           f'{nome_da_variavel_do_carro}_{codigo}, "carro_{montadora_da_variavel_do_carro}_' \
+           f'{nome_da_variavel_do_carro}_{codigo}")' \
            f'\n' \
-           f'variavel_contador_de_posicao_na_lista += 1' \
+           f'_atualizar_contador_da_lista()' \
            f'\n'
 
 

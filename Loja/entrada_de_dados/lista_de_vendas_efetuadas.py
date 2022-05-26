@@ -10,18 +10,22 @@ def add_venda_na_lista_do_main(venda: Venda):
 #  --------------  -----------   --------------   ------------- -----
 
 
-from relatorios_de_venda.venda_codigo_67103 import venda_67103
-add_venda_na_lista_do_main(venda_67103)
+from relatorios_de_venda.venda_codigo_99863 import venda_99863
+add_venda_na_lista_do_main(venda_99863)
 
 
-from relatorios_de_venda.venda_codigo_294497 import venda_294497
-add_venda_na_lista_do_main(venda_294497)
+from relatorios_de_venda.venda_codigo_912296 import venda_912296
+add_venda_na_lista_do_main(venda_912296)
 
 
-from relatorios_de_venda.venda_codigo_943684 import venda_943684
-add_venda_na_lista_do_main(venda_943684)
+from relatorios_de_venda.venda_codigo_109880 import venda_109880
+add_venda_na_lista_do_main(venda_109880)
 
 
-from relatorios_de_venda.venda_codigo_249414 import venda_249414
-add_venda_na_lista_do_main(venda_249414)
+from relatorios_de_venda.venda_codigo_112245 import venda_112245
+add_venda_na_lista_do_main(venda_112245)
+
+
+from relatorios_de_venda.venda_codigo_255173 import venda_255173
+add_venda_na_lista_do_main(venda_255173)
 

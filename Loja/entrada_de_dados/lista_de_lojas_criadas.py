@@ -10,14 +10,6 @@ def add_loja_na_lista_do_main(loja: Loja, posicao):
     lojas_registradas.append(loja)
 
 
-nome = "haha"
-cnpj = "sjfaoj"
-telefone = "23424"
-loja_haha = Loja(nome, cnpj, telefone)
-add_loja_na_lista_do_main(loja_haha, variavel_contador_de_posicao_na_lista)
-variavel_contador_de_posicao_na_lista += 1
-
-
 nome = "Test Store"
 cnpj = "675"
 telefone = "76565465"
@@ -32,8 +24,6 @@ telefone = "987987"
 loja_secound_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_secound_test_store, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
-
-
 
 
 nome = "Store Test 3"
@@ -58,4 +48,3 @@ telefone = "3414"
 loja_five_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_five_test_store, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
-

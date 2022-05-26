@@ -25,15 +25,15 @@ class Venda:
                f'\n\n' \
                f'# ((Dados da Venda)):\n\n' \
                f'data = "{self.data}"\n\n' \
-               f'codigo = "{self.codigo}"\n' \
-               f'#(loja)\n' \
-               f'{self.__loja}\n\n' \
-               f'loja = Loja(loja, cnpj, contato)\n' \
-               f'# (cliente)\n' \
-               f'{self.__cliente}\n\n' \
-               f'cliente = Cliente(nome, cpf, telefone, email)\n' \
-               f'# (veiculo)\n' \
-               f'{self.__veiculo}\n\n' \
+               f'codigo = "{self.codigo}"\n\n' \
+               f'# (loja)' \
+               f'{self.__loja}\n' \
+               f'loja = Loja(loja, cnpj, contato)\n\n' \
+               f'# (cliente)' \
+               f'{self.__cliente.mostrar_dados_do_cliente()}\n' \
+               f'cliente = Cliente(nome, cpf, telefone, email)\n\n' \
+               f'# (veiculo)' \
+               f'{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
                f'carro = Carro(montadora, nome, ano, valor_avaliado)\n' \
                f'\n' \
                f'valor_negociado = "{self.__preco}"\n' \
@@ -47,7 +47,7 @@ class Venda:
                f'((Dados da Venda)):\n' \
                f'Loja:{self.__loja.nome}     cnpj:{self.__loja.cnpj}  \n' \
                f'Cliente:{self.__cliente.nome}     contato:{self.__cliente.telefone}   \n\n' \
-               f'((Veiculo)):{self.__veiculo}\n' \
+               f'((Veiculo)):{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
                f'PrecoY$: "{self.__preco}"\n' \

@@ -1,5 +1,3 @@
-
-
 class Cliente:
 
     def __init__(self, nome, cpf, telefone, email):
@@ -9,17 +7,11 @@ class Cliente:
         self.__email = email
         self.posicao_na_lista = " "
 
-    def __str__(self):
+    def mostrar_dados_do_cliente(self):
         return f'\nnome = "{self.__nome}"    \n' \
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
-               f'email = "{self.__email} "   \n'
-
-    def mostrar_sem_pular_linha(self):
-        return f'\nnome:{self.__nome}   ' \
-               f'cpf:{self.__cpf}   ' \
-               f'telefone:{self.__telefone}   ' \
-               f'email:{self.__email}   '
+               f'email = "{self.__email}"    \n'
 
     @property
     def nome(self):
@@ -44,9 +36,3 @@ class Cliente:
     @email.setter
     def email(self, email):
         self.__email = email
-
-
-
-
-
-
