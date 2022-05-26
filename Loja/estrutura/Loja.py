@@ -7,9 +7,9 @@ class Loja:
         self.posicao_na_lista = None
 
     def __str__(self):
-        return f'\nloja = "{self.__nome}"\n' \
-               f'cnpj = "{self.__cnpj}"\n' \
-               f'contato = "{self.__telefone}"\n'
+        return f'\nloja = "{self.__nome}   "\n' \
+               f'cnpj = "{self.__cnpj}"   \n' \
+               f'contato = "{self.__telefone}   "\n'
 
     def mostrar_sem_pular_linha(self):
         return f'loja:{self.__nome}   ' \

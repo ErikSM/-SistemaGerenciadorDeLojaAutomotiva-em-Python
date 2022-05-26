@@ -4,15 +4,13 @@ import datetime
 from random import sample
 
 from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
-    criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main, \
-    remover_carro_vendido_da_lista_de_carros_registrados
+    criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
 from estrutura.AppBase import AppBase
 from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from estrutura.Loja import Loja
 from estrutura.Venda import Venda
-from estrutura.Carro import Carro
 from apps_de_funcionamento.AppCriarLoja import AppCriarLoja
 from apps_de_funcionamento.AppCarro import AppCarro
 from apps_de_funcionamento.AppCliente import AppCliente
@@ -46,6 +44,8 @@ class AppLojaAberta(AppBase):
         self.cliente_comprador = None
         self.carro_escolhido = None
         self.loja_de_transacao = loja
+
+        self.valor_negociado = None
 
         self.window.resizable(2, 2)
         self.texto_relatorio.config(width=70, height=20)
@@ -144,13 +144,27 @@ class AppLojaAberta(AppBase):
         self.botao_adicionar.grid(row=0, column=3)
 
     def criar_relatorio(self):
-        self.texto_relatorio.config(state=tkinter.NORMAL)
+        if self.carro_escolhido == None or self.cliente_comprador == None or self.valor_negociado == None:
+            self.texto_relatorio.config(state=tkinter.NORMAL)
 
-        self._apagar_relatorio()
-        self._criar_venda()
-        self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_venda_criada())
+            self._apagar_relatorio()
+            self.texto_relatorio.insert(7.0, "\n\n\n\n   "
+                                             " $E##$&//$  !![ERRO] Selecione o veiculo e o cliente da venda no Menu !! "
+                                             "   $E##$&//$ ---"
+                                             "\n\n\n\n"
+                                        )
 
-        self.texto_relatorio.config(state=tkinter.DISABLED)
+            self.texto_relatorio.config(state=tkinter.DISABLED)
+        else:
+            self.texto_relatorio.config(state=tkinter.NORMAL)
+
+            self._apagar_relatorio()
+            self._criar_venda()
+            self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_venda_criada())
+
+            self.texto_relatorio.config(state=tkinter.DISABLED)
+
+            self.venda = None
 
     def _criar_venda(self):
         self.valor_negociado = self.valor_de_venda_digitado.get()
@@ -170,6 +184,10 @@ class AppLojaAberta(AppBase):
 
         self.venda = venda
 
+        self.cliente_comprador = None
+        self.carro_escolhido = None
+        self.valor_negociado = None
+        self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.delete(0, "end")
 
     def _escrever_relatorio_de_venda_criada(self):
@@ -190,6 +208,8 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
+
+        self.relatorio_de_venda_selecionado = None
 
     def selecionar_cliente(self, cliente_select):
         self.opcoes_de_clientes.config(state=tkinter.NORMAL)
