@@ -58,5 +58,5 @@ def remover_carro_vendido_da_lista_de_carros_registrados(carro: Carro, codigo):
 
 def _escrever_remocao_de_carro_vendido(carro: Carro, codigo):
     return f'\n' \
-           f'remover_carro_da_lista({carro}, {codigo})' \
+           f'remover_carro_da_lista({carro}, "{codigo}")' \
            f'\n'
