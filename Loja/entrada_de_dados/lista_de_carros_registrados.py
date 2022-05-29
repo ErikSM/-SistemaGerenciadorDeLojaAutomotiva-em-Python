@@ -115,3 +115,18 @@ _atualizar_contador_da_lista()
 
 remover_carro_da_lista(carro_wolkswagen_hilux_916235, 614330)
 
+
+remover_carro_da_lista(carro_mazda_rx7_765597, 458314)
+
+
+montadora = "Toyota"
+nome = "Prius"
+ano = "2007"
+preco = "320 000"
+carro_toyota_prius_774811 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_toyota_prius_774811, "carro_toyota_prius_774811")
+_atualizar_contador_da_lista()
+
+
+remover_carro_da_lista(carro_toyota_prius_774811, 698138)
+

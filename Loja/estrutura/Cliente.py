@@ -6,6 +6,7 @@ class Cliente:
         self.__telefone = telefone
         self.__email = email
         self.posicao_na_lista = " "
+        self.nome_da_variavel = " "
 
     def mostrar_dados_do_cliente(self):
         return f'\nnome = "{self.__nome}"    \n' \

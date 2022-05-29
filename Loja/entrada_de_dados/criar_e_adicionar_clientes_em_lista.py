@@ -42,7 +42,8 @@ def _escrever_objeto_cliente(cliente: Cliente):
            f'{cpf_da_variavel_do_cliente} = Cliente(nome, cpf, telefone, email)' \
            f'\n' \
            f'add_cliente_na_lista_do_main(cliente_{nome_da_variavel_do_cliente}' \
-           f'{cpf_da_variavel_do_cliente}, variavel_contador_de_posicao_na_lista)' \
+           f'{cpf_da_variavel_do_cliente}, variavel_contador_de_posicao_na_lista, ' \
+           f'"cliente_{nome_da_variavel_do_cliente}{cpf_da_variavel_do_cliente}")' \
            f'\n' \
            f'variavel_contador_de_posicao_na_lista += 1' \
            f'\n'

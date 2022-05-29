@@ -5,6 +5,7 @@ class Loja:
         self.__cnpj = cnpj
         self.__telefone = telefone
         self.posicao_na_lista = None
+        self.nome_da_variavel = " "
 
     def __str__(self):
         return f'\nloja = "{self.__nome}   "\n' \

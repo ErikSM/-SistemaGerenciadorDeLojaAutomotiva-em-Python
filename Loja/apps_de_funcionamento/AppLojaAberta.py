@@ -4,7 +4,7 @@ import datetime
 from random import sample
 
 from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
-    criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main, \
+    adicionar_relatorio_de_venda_em_lista_do_main, \
     remover_carro_vendido_da_lista_de_carros_registrados
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
@@ -178,9 +178,9 @@ class AppLojaAberta(AppBase):
 
         venda = Venda(data, codigo, loja, cliente, veiculo, preco)
 
-        criar_relatorio_de_venda_em_arquivo_de_texto(venda, codigo)
-        adicionar_relatorio_de_venda_em_lista_do_main(codigo)
-        remover_carro_vendido_da_lista_de_carros_registrados(f"{veiculo.nome_da_variavel}", codigo)
+        # criar_relatorio_de_venda_em_arquivo_de_texto(venda, codigo)
+        adicionar_relatorio_de_venda_em_lista_do_main(venda)
+        remover_carro_vendido_da_lista_de_carros_registrados(veiculo.nome_da_variavel , codigo)
 
         self.venda = venda
 

@@ -33,7 +33,8 @@ def _escrever_objeto_loja(nome, cnpj, telefone):
            f'cnpj = "{cnpj}"\n' \
            f'telefone = "{telefone}"\n' \
            f'loja_{nome_da_variavel_da_loja} = Loja(nome, cnpj, telefone)\n' \
-           f'add_loja_na_lista_do_main(loja_{nome_da_variavel_da_loja}, variavel_contador_de_posicao_na_lista)\n' \
+           f'add_loja_na_lista_do_main(loja_{nome_da_variavel_da_loja}, variavel_contador_de_posicao_na_lista, ' \
+           f'"loja_{nome_da_variavel_da_loja}")\n' \
            f'variavel_contador_de_posicao_na_lista += 1' \
            f'\n'
 

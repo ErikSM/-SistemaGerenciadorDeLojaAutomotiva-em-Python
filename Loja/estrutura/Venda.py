@@ -15,7 +15,7 @@ class Venda:
 
         self.__preco = preco
 
-    def __str__(self):
+    '''def teste(self):
         return f'# codigo:{self.codigo}   data:{self.data}\n' \
                f'\n' \
                f'from estrutura.Cliente import Cliente\n' \
@@ -35,6 +35,25 @@ class Venda:
                f'# (veiculo)' \
                f'{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
                f'carro = Carro(montadora, nome, ano, valor_avaliado)\n' \
+               f'\n' \
+               f'valor_negociado = "{self.__preco}"\n' \
+               f'\n' \
+               f'venda_{self.codigo} = Venda(data, codigo, loja, cliente, carro, valor_negociado)\n' \
+               f'\n'''
+
+    def __str__(self):
+        return f'# ((Dados da Venda)):\n\n' \
+               f'data = "{self.data}"\n\n' \
+               f'codigo = "{self.codigo}"\n\n' \
+               f'# (loja)\n' \
+               f'from entrada_de_dados.lista_de_lojas_criadas import {self.__loja.nome_da_variavel}\n' \
+               f'loja = {self.__loja.nome_da_variavel}\n\n' \
+               f'# (cliente)\n' \
+               f'from entrada_de_dados.lista_de_clientes_registrados import {self.__cliente.nome_da_variavel}\n' \
+               f'cliente = {self.__cliente.nome_da_variavel}\n\n' \
+               f'# (veiculo)\n' \
+               f'from entrada_de_dados.lista_de_carros_registrados import {self.__veiculo.nome_da_variavel}\n' \
+               f'carro = {self.__veiculo.nome_da_variavel}\n' \
                f'\n' \
                f'valor_negociado = "{self.__preco}"\n' \
                f'\n' \
