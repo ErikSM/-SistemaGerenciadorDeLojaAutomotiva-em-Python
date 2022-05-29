@@ -29,3 +29,30 @@ cliente_Joao_Batista827492749 = Cliente(nome, cpf, telefone, email)
 add_cliente_na_lista_do_main(cliente_Joao_Batista827492749, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 
+
+nome = "Ayumi Souza"
+cpf = "2342"
+telefone = "23232432"
+email = "kljslf@.com"
+cliente_ayumi_souza2342 = Cliente(nome, cpf, telefone, email)
+add_cliente_na_lista_do_main(cliente_ayumi_souza2342, variavel_contador_de_posicao_na_lista)
+variavel_contador_de_posicao_na_lista += 1
+
+
+nome = "Neimar Jr"
+cpf = "23424"
+telefone = "34242"
+email = "uhsu@com"
+cliente_neimar_jr23424 = Cliente(nome, cpf, telefone, email)
+add_cliente_na_lista_do_main(cliente_neimar_jr23424, variavel_contador_de_posicao_na_lista)
+variavel_contador_de_posicao_na_lista += 1
+
+
+nome = "Aline Souza"
+cpf = "24242"
+telefone = "24544"
+email = "sjfslk@com"
+cliente_aline_souza24242 = Cliente(nome, cpf, telefone, email)
+add_cliente_na_lista_do_main(cliente_aline_souza24242, variavel_contador_de_posicao_na_lista)
+variavel_contador_de_posicao_na_lista += 1
+

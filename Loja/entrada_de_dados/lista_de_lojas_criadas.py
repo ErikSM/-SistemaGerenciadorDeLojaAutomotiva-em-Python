@@ -33,3 +33,11 @@ loja_store_test_3 = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_store_test_3, variavel_contador_de_posicao_na_lista)
 variavel_contador_de_posicao_na_lista += 1
 
+
+nome = "Four Store Test"
+cnpj = "2552"
+telefone = "435252"
+loja_four_store_test = Loja(nome, cnpj, telefone)
+add_loja_na_lista_do_main(loja_four_store_test, variavel_contador_de_posicao_na_lista)
+variavel_contador_de_posicao_na_lista += 1
+

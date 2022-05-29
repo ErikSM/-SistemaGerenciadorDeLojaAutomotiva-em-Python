@@ -4,7 +4,8 @@ import datetime
 from random import sample
 
 from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
-    criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main
+    criar_relatorio_de_venda_em_arquivo_de_texto, adicionar_relatorio_de_venda_em_lista_do_main, \
+    remover_carro_vendido_da_lista_de_carros_registrados
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
 from estrutura.AppBase import AppBase
@@ -12,8 +13,8 @@ from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from estrutura.Loja import Loja
 from estrutura.Venda import Venda
 from apps_de_funcionamento.AppCriarLoja import AppCriarLoja
-from apps_de_funcionamento.AppCarro import AppCarro
-from apps_de_funcionamento.AppCliente import AppCliente
+from apps_de_funcionamento.AppCriarCarro import AppCriarCarro
+from apps_de_funcionamento.AppCriarCliente import AppCriarCliente
 
 
 def abrir_registro_de_loja():
@@ -21,11 +22,11 @@ def abrir_registro_de_loja():
 
 
 def abrir_registro_de_cliente():
-    return AppCliente("Registro de Cliente")
+    return AppCriarCliente("Registro de Cliente")
 
 
 def abrir_registro_de_carro():
-    return AppCarro("Registro de Carro")
+    return AppCriarCarro("Registro de Carro")
 
 
 class AppLojaAberta(AppBase):
@@ -44,8 +45,6 @@ class AppLojaAberta(AppBase):
         self.cliente_comprador = None
         self.carro_escolhido = None
         self.loja_de_transacao = loja
-
-        self.valor_negociado = None
 
         self.window.resizable(2, 2)
         self.texto_relatorio.config(width=70, height=20)
@@ -110,9 +109,9 @@ class AppLojaAberta(AppBase):
         self.label_title.grid(row=0, column=0, columnspan=2)
 
         # valor da venda
-        self.label_da_lista_de_carros = tkinter.Label(self.frame_dados, text="  Digite o valor da negociacao  ->",
-                                                      bg="white")
-        self.label_da_lista_de_carros.grid(row=0, column=4)
+        self.label_valor_de_venda = tkinter.Label(self.frame_dados, text="  Digite o valor da negociacao  ->",
+                                                         bg="white")
+        self.label_valor_de_venda.grid(row=0, column=4)
 
         self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados,  font="Verdanna 10 bold", width=30, bg="grey70",
                                                      fg="black", bd=4)
@@ -120,31 +119,31 @@ class AppLojaAberta(AppBase):
         self.valor_de_venda_digitado.grid(row=0, column=5)
 
         # carro selecionado
-        self.label_da_lista_de_carros = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
-                                                      text="Carro Selecionado:", bg="white")
-        self.label_da_lista_de_carros.grid(row=1, column=0)
+        self.label_carro_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
+                                                         text="Carro Selecionado:", bg="white")
+        self.label_carro_pre_selecionado.grid(row=1, column=0)
 
-        self.opcoes_de_carros = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
-                                              disabledforeground="black")
-        self.opcoes_de_carros.config(state=tkinter.DISABLED)
-        self.opcoes_de_carros.grid(row=1, column=1, columnspan=5)
+        self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
+                                                   disabledforeground="black")
+        self.carro_pre_selecionado.config(state=tkinter.DISABLED)
+        self.carro_pre_selecionado.grid(row=1, column=1, columnspan=5)
 
         # cliente selecionado
-        self.label_da_lista_de_carros = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
+        self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
                                                       text="Cliente Selecionado:", bg="white")
-        self.label_da_lista_de_carros.grid(row=2, column=0)
+        self.label_cliente_pre_selecionado.grid(row=2, column=0)
 
-        self.opcoes_de_clientes = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
-                                                disabledforeground="black")
-        self.opcoes_de_clientes.config(state=tkinter.DISABLED)
-        self.opcoes_de_clientes.grid(row=2, column=1, columnspan=5)
+        self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
+                                                     disabledforeground="black")
+        self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
+        self.cliente_pre_selecionado.grid(row=2, column=1, columnspan=5)
 
         # Botao Venda (reescrevendo AppBase)
         self.botao_adicionar.config(command=self.criar_relatorio, text="Efetivar Venda")
         self.botao_adicionar.grid(row=0, column=3)
 
     def criar_relatorio(self):
-        if self.carro_escolhido == None or self.cliente_comprador == None or self.valor_negociado == None:
+        if self.carro_escolhido == None or self.cliente_comprador == None:
             self.texto_relatorio.config(state=tkinter.NORMAL)
 
             self._apagar_relatorio()
@@ -181,12 +180,12 @@ class AppLojaAberta(AppBase):
 
         criar_relatorio_de_venda_em_arquivo_de_texto(venda, codigo)
         adicionar_relatorio_de_venda_em_lista_do_main(codigo)
+        remover_carro_vendido_da_lista_de_carros_registrados(f"{veiculo.nome_da_variavel}", codigo)
 
         self.venda = venda
 
         self.cliente_comprador = None
         self.carro_escolhido = None
-        self.valor_negociado = None
         self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.delete(0, "end")
 
@@ -212,19 +211,19 @@ class AppLojaAberta(AppBase):
         self.relatorio_de_venda_selecionado = None
 
     def selecionar_cliente(self, cliente_select):
-        self.opcoes_de_clientes.config(state=tkinter.NORMAL)
+        self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
 
-        self.opcoes_de_clientes.delete(1, "end")
-        self.opcoes_de_clientes.insert("end", cliente_select.mostrar_dados_do_cliente())
+        self.cliente_pre_selecionado.delete(1, "end")
+        self.cliente_pre_selecionado.insert("end", cliente_select.mostrar_dados_do_cliente())
         self.cliente_comprador = cliente_select
 
-        self.opcoes_de_clientes.config(state=tkinter.DISABLED)
+        self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
 
     def selecionar_carro(self, carro_select):
-        self.opcoes_de_carros.config(state=tkinter.NORMAL)
+        self.carro_pre_selecionado.config(state=tkinter.NORMAL)
 
-        self.opcoes_de_carros.delete(1, "end")
-        self.opcoes_de_carros.insert("end", carro_select.mostrar_dados_do_veiculo())
+        self.carro_pre_selecionado.delete(1, "end")
+        self.carro_pre_selecionado.insert("end", carro_select.mostrar_dados_do_veiculo())
         self.carro_escolhido = carro_select
 
-        self.opcoes_de_carros.config(state=tkinter.DISABLED)
+        self.carro_pre_selecionado.config(state=tkinter.DISABLED)

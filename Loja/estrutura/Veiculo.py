@@ -4,12 +4,15 @@ from abc import ABC, abstractmethod
 class Veiculo(ABC):  # Classe Abstrata
 
     def __init__(self, montadora, nome, ano, valor_avaliado):
+
         self.__montadora = montadora
         self.__nome = nome
         self.__ano = ano
         self.__valor_avaliado = valor_avaliado
+
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
+        self.codigo_de_venda = " "
 
     def mostrar_dados_do_veiculo(self):
         return f'\nmontadora = "{self.__montadora}"    \n' \
