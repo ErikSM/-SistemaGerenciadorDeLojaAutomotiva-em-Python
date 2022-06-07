@@ -1,37 +1,18 @@
-import tkinter
-
-from entrada_de_dados.salvar_dados_adicionados_no_programa import atualizar_informacoes
+from entrada_de_dados.salvar_modificacoes_no_arquivo import abrir_modificar_e_salvar_arquivo
 from estrutura.Cliente import Cliente
 
 
-def salvar_cliente_em_lista_do_main(cliente:Cliente):
-    texto_temporario = tkinter.Text()
+def salvar_cliente_em_lista_do_main(cliente: Cliente):
+    endereco_do_arquivo = "entrada_de_dados/lista_de_clientes_registrados"
 
-    arquivo = open("entrada_de_dados/lista_de_clientes_registrados.py", "r")
-    arquivo_lido = arquivo.read()
-    texto_temporario.insert(1.0, arquivo_lido)
+    escrever = _escrever_objeto_cliente(cliente)
 
-    arquivo_escrito = _escrever_objeto_cliente(cliente)
-
-    file = open("entrada_de_dados/lista_de_clientes_registrados.py", "w")
-    texto_temporario.insert("end", arquivo_escrito)
-    file.write(texto_temporario.get(1.0, "end"))
-
-    atualizar_informacoes(arquivo, file)
-
-    texto_temporario.delete(1.0, "end")
-    arquivo.close()
-    file.close()
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
 
 
-def _escrever_objeto_cliente(cliente: Cliente):
-    nome_espalhado = cliente.nome.split()
-    nome_sem_espaco = "_".join(nome_espalhado)
-    nome_da_variavel_do_cliente = nome_sem_espaco.lower()
-
-    cpf_espalhado = cliente.cpf.split()
-    cpf_sem_espaco = "_".join(cpf_espalhado)
-    cpf_da_variavel_do_cliente = cpf_sem_espaco.lower()
+def _escrever_objeto_cliente(cliente: Cliente,):
+    nome_da_variavel_do_cliente = _tirar_espacos_do_nome(cliente)
+    cpf_da_variavel_do_cliente = _tirar_espacao_do_cpf(cliente)
     return f"\n" \
            f'nome = "{cliente.nome}"\n' \
            f'cpf = "{cliente.cpf}"\n' \
@@ -47,3 +28,17 @@ def _escrever_objeto_cliente(cliente: Cliente):
            f'\n' \
            f'variavel_contador_de_posicao_na_lista += 1' \
            f'\n'
+
+
+def _tirar_espacos_do_nome(cliente: Cliente):
+    nome_espalhado = cliente.nome.split()
+    nome_sem_espaco = "_".join(nome_espalhado)
+    nome_da_variavel_do_cliente = nome_sem_espaco.lower()
+    return nome_da_variavel_do_cliente
+
+
+def _tirar_espacao_do_cpf(cliente: Cliente):
+    cpf_espalhado = cliente.cpf.split()
+    cpf_sem_espaco = "_".join(cpf_espalhado)
+    cpf_da_variavel_do_cliente = cpf_sem_espaco.lower()
+    return cpf_da_variavel_do_cliente

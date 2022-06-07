@@ -3,6 +3,7 @@ import datetime
 
 from random import sample
 
+from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
 from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
     adicionar_relatorio_de_venda_em_lista_do_main, \
     remover_carro_vendido_da_lista_de_carros_registrados
@@ -55,6 +56,9 @@ class AppLojaAberta(AppBase):
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
+        self.menu_loja.add_command(label="DELETAR LOJA (Excluir esta loja)",
+                                   command=lambda loja_select=loja: self.deletar_loja_aberta(loja)
+                                   )
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
         self.window.config(menu=self.menu_principal)
 
@@ -227,3 +231,7 @@ class AppLojaAberta(AppBase):
         self.carro_escolhido = carro_select
 
         self.carro_pre_selecionado.config(state=tkinter.DISABLED)
+
+    def deletar_loja_aberta(self, loja: Loja):
+        remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
+        return self.window.quit()

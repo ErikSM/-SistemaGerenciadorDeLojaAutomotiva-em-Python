@@ -40,3 +40,12 @@ cliente_aline_barros23424 = Cliente(nome, cpf, telefone, email)
 add_cliente_na_lista_do_main(cliente_aline_barros23424, variavel_contador_de_posicao_na_lista, "cliente_aline_barros23424")
 variavel_contador_de_posicao_na_lista += 1
 
+
+nome = "Joao Silva"
+cpf = "352"
+telefone = "90787987"
+email = "sfwfs@com"
+cliente_joao_silva352 = Cliente(nome, cpf, telefone, email)
+add_cliente_na_lista_do_main(cliente_joao_silva352, variavel_contador_de_posicao_na_lista, "cliente_joao_silva352")
+variavel_contador_de_posicao_na_lista += 1
+

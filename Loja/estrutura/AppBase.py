@@ -6,7 +6,7 @@ from abc import ABCMeta
 class AppBase(metaclass=ABCMeta):
 
     def __init__(self, title):
-        # \\\_ APP
+        # \\\ APP
         self.window = tkinter.Tk()
         self.window.title(title)
         self.window.config(bg="white", bd=12)
@@ -16,7 +16,7 @@ class AppBase(metaclass=ABCMeta):
         self.frame_dados = tkinter.Frame(self.window, bg="white", bd=4)
         self.frame_dados.pack(fill="both", side="top")
 
-        #  \\ criando relatorio
+        #  \\\ criando relatorio
         self.texto_relatorio = tkinter.Text(self.window, font=("Consolas", 12), bg="black", fg="white", bd=12)
         self.texto_relatorio.config(width=70, height=10)
         self.texto_relatorio.pack(fill="both", side="bottom")
@@ -32,19 +32,3 @@ class AppBase(metaclass=ABCMeta):
 
     def _apagar_relatorio(self):
         self.texto_relatorio.delete(1.0, "end")
-
-    def _adicionar_em_lista_do_main(self, primeira_variavel, segunda_variavel, terceira_variavel, quarta_variavel):
-        primeira_variavel_para_edicao = primeira_variavel.split()
-        self.primeira_variavel_sem_espaco = "_".join(primeira_variavel_para_edicao)
-
-        segunda_variavel_para_edicao = segunda_variavel.split()
-        self.segunda_variavel_sem_espaco = "".join(segunda_variavel_para_edicao)
-
-        terceira_variavel_para_edicao = terceira_variavel.split()
-        self.terceira_variavel_sem_espaco = "".join(terceira_variavel_para_edicao)
-
-        if quarta_variavel == None:
-            self.quarta_variavel_sem_espaco = None
-        else:
-            quarta_variavel_para_edicao = quarta_variavel.split()
-            self.quarta_variavel_sem_espaco = "".join(quarta_variavel_para_edicao)

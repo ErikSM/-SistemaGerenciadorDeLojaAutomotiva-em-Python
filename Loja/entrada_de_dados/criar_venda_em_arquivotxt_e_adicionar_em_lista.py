@@ -1,29 +1,14 @@
-import tkinter
-
-from entrada_de_dados.salvar_dados_adicionados_no_programa import atualizar_informacoes
+from entrada_de_dados.salvar_modificacoes_no_arquivo import abrir_modificar_e_salvar_arquivo
 from estrutura.Venda import Venda
 from estrutura.Carro import Carro
 
 
 def adicionar_relatorio_de_venda_em_lista_do_main(venda: Venda):
+    endereco_do_arquivo = "entrada_de_dados/lista_de_vendas_efetuadas"
 
-    texto_temporario = tkinter.Text()
+    escrever = _escrever_venda(venda)
 
-    arquivo = open("entrada_de_dados/lista_de_vendas_efetuadas.py", "r")
-    arquivo_lido = arquivo.read()
-    texto_temporario.insert(1.0, arquivo_lido)
-
-    arquivo_escrito = _escrever_venda(venda)
-
-    file = open("entrada_de_dados/lista_de_vendas_efetuadas.py", "w")
-    texto_temporario.insert("end", arquivo_escrito)
-    file.write(texto_temporario.get(1.0, "end"))
-
-    atualizar_informacoes(arquivo, file)
-
-    texto_temporario.delete(1.0, "end")
-    arquivo.close()
-    file.close()
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
 
 
 def _escrever_venda(venda: Venda):
@@ -37,23 +22,11 @@ def _escrever_venda(venda: Venda):
 
 
 def remover_carro_vendido_da_lista_de_carros_registrados(carro: Carro, codigo):
-    texto_temporario = tkinter.Text()
+    endereco_do_arquivo = "entrada_de_dados/lista_de_carros_registrados"
 
-    arquivo = open("entrada_de_dados/lista_de_carros_registrados.py", "r")
-    arquivo_lido = arquivo.read()
-    texto_temporario.insert(1.0, arquivo_lido)
+    escrever = _escrever_remocao_de_carro_vendido(carro, codigo)
 
-    arquivo_escrito = _escrever_remocao_de_carro_vendido(carro, codigo)
-
-    file = open("entrada_de_dados/lista_de_carros_registrados.py", "w")
-    texto_temporario.insert("end", arquivo_escrito)
-    file.write(texto_temporario.get(1.0, "end"))
-
-    atualizar_informacoes(arquivo, file)
-
-    texto_temporario.delete(1.0, "end")
-    arquivo.close()
-    file.close()
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
 
 
 def _escrever_remocao_de_carro_vendido(carro: Carro, codigo):
