@@ -15,32 +15,6 @@ class Venda:
 
         self.__preco = preco
 
-    '''def teste(self):
-        return f'# codigo:{self.codigo}   data:{self.data}\n' \
-               f'\n' \
-               f'from estrutura.Cliente import Cliente\n' \
-               f'from estrutura.Loja import Loja\n' \
-               f'from estrutura.Carro import Carro\n' \
-               f'from estrutura.Venda import Venda\n' \
-               f'\n\n' \
-               f'# ((Dados da Venda)):\n\n' \
-               f'data = "{self.data}"\n\n' \
-               f'codigo = "{self.codigo}"\n\n' \
-               f'# (loja)' \
-               f'{self.__loja}\n' \
-               f'loja = Loja(loja, cnpj, contato)\n\n' \
-               f'# (cliente)' \
-               f'{self.__cliente.mostrar_dados_do_cliente()}\n' \
-               f'cliente = Cliente(nome, cpf, telefone, email)\n\n' \
-               f'# (veiculo)' \
-               f'{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
-               f'carro = Carro(montadora, nome, ano, valor_avaliado)\n' \
-               f'\n' \
-               f'valor_negociado = "{self.__preco}"\n' \
-               f'\n' \
-               f'venda_{self.codigo} = Venda(data, codigo, loja, cliente, carro, valor_negociado)\n' \
-               f'\n'''
-
     def __str__(self):
         return f'# ((Dados da Venda)):\n\n' \
                f'data = "{self.data}"\n\n' \

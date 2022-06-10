@@ -1,5 +1,6 @@
 import tkinter
 
+from apps_de_funcionamento.AppSenhaLogin import AppSenhaLogin
 from entrada_de_dados.lista_de_lojas_criadas import lojas_registradas
 from apps_de_funcionamento.AppLojaAberta import abrir_registro_de_loja, AppLojaAberta
 
@@ -9,7 +10,11 @@ def start():
 
 
 def exibir_loja_selecionada(loja_select):
-    return AppLojaAberta(loja_select)
+    loja = loja_select
+    if loja.senha == None:
+        return AppLojaAberta(loja_select).window.mainloop()
+    else:
+        return AppSenhaLogin("Login", loja_select)
 
 
 class AppLojaStart():
@@ -59,4 +64,3 @@ class AppLojaStart():
 
         else:
             self.opcoes_de_loja == None
-

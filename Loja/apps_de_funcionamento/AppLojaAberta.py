@@ -3,8 +3,9 @@ import datetime
 
 from random import sample
 
+from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
 from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
-from entrada_de_dados.criar_venda_em_arquivotxt_e_adicionar_em_lista import \
+from entrada_de_dados.criar_e_adicionar_vendas_em_lista import \
     adicionar_relatorio_de_venda_em_lista_do_main, \
     remover_carro_vendido_da_lista_de_carros_registrados
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
@@ -33,8 +34,8 @@ def abrir_registro_de_carro():
 class AppLojaAberta(AppBase):
 
     def __init__(self, loja: Loja):
-        super().__init__(loja)
 
+        super().__init__(loja)
         self.texto_temporario = tkinter.Text()
 
         self.lista_carros_da_loja = list()
@@ -50,15 +51,25 @@ class AppLojaAberta(AppBase):
         self.window.resizable(2, 2)
         self.texto_relatorio.config(width=70, height=20)
 
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, f"\n(Dados da Loja):\n{loja}")
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
         # \ Criando menu
         self.menu_principal = tkinter.Menu(self.window)
 
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
-        self.menu_loja.add_command(label="DELETAR LOJA (Excluir esta loja)",
-                                   command=lambda loja_select=loja: self.deletar_loja_aberta(loja)
-                                   )
+
+        self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
+        self.menu_loja_editar.add_command(label=f"Deletar Loja",
+                                          command=lambda loja_select=loja: self.deletar_loja_aberta(loja))
+        self.menu_loja_editar.add_command(label=f"Criar/Modificar Senha",
+                                          command=lambda: self.alterar_senha(loja))
+        self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
+
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
         self.window.config(menu=self.menu_principal)
 
@@ -87,7 +98,7 @@ class AppLojaAberta(AppBase):
                                                      command=lambda carro_select=i:
                                                      self.selecionar_carro(carro_select)
                                                      )
-        self.menu_carro.add_cascade(label="Carross Registrados", menu=self.menu_carros_registrados)
+        self.menu_carro.add_cascade(label="Carros Registrados", menu=self.menu_carros_registrados)
 
         self.menu_principal.add_cascade(label="Carro", menu=self.menu_carro)
         self.window.config(menu=self.menu_principal)
@@ -114,10 +125,10 @@ class AppLojaAberta(AppBase):
 
         # valor da venda
         self.label_valor_de_venda = tkinter.Label(self.frame_dados, text="  Digite o valor da negociacao  ->",
-                                                         bg="white")
+                                                  bg="white")
         self.label_valor_de_venda.grid(row=0, column=4)
 
-        self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados,  font="Verdanna 10 bold", width=30, bg="grey70",
+        self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados, font="Verdanna 10 bold", width=30, bg="grey70",
                                                      fg="black", bd=4)
         self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.grid(row=0, column=5)
@@ -134,7 +145,7 @@ class AppLojaAberta(AppBase):
 
         # cliente selecionado
         self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
-                                                      text="Cliente Selecionado:", bg="white")
+                                                           text="Cliente Selecionado:", bg="white")
         self.label_cliente_pre_selecionado.grid(row=2, column=0)
 
         self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
@@ -182,9 +193,8 @@ class AppLojaAberta(AppBase):
 
         venda = Venda(data, codigo, loja, cliente, veiculo, preco)
 
-        # criar_relatorio_de_venda_em_arquivo_de_texto(venda, codigo)
         adicionar_relatorio_de_venda_em_lista_do_main(venda)
-        remover_carro_vendido_da_lista_de_carros_registrados(veiculo.nome_da_variavel , codigo)
+        remover_carro_vendido_da_lista_de_carros_registrados(veiculo.nome_da_variavel, codigo)
 
         self.venda = venda
 
@@ -223,6 +233,13 @@ class AppLojaAberta(AppBase):
 
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
 
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, cliente_select.mostrar_dados_do_cliente())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
     def selecionar_carro(self, carro_select):
         self.carro_pre_selecionado.config(state=tkinter.NORMAL)
 
@@ -232,6 +249,16 @@ class AppLojaAberta(AppBase):
 
         self.carro_pre_selecionado.config(state=tkinter.DISABLED)
 
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, carro_select.mostrar_dados_do_veiculo())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
     def deletar_loja_aberta(self, loja: Loja):
         remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
         return self.window.quit()
+
+    def alterar_senha(self, loja: Loja):
+        AppSenhaEditar("Editar Senha", loja).window.mainloop()

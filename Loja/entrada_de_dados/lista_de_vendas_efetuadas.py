@@ -1,7 +1,4 @@
 from estrutura.Venda import Venda
-from estrutura.Loja import Loja
-from estrutura.Cliente import Cliente
-from estrutura.Carro import Carro
 
 
 vendas_registradas = list()

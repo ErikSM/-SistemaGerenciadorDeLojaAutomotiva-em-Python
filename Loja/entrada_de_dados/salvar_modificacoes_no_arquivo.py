@@ -21,4 +21,3 @@ def abrir_modificar_e_salvar_arquivo(endereco, escrever):
     texto_temporario.delete(1.0, "end")
     arquivo.close()
     file.close()
-
