@@ -12,6 +12,7 @@ class AppCriarCarro(AppBase):
 
         self.texto_temporario = tkinter.Text()
         self.carro = None
+        self.mensagem_do_relatorio = None
 
         # Montadora
         texto_montadora = tkinter.StringVar()
@@ -70,15 +71,14 @@ class AppCriarCarro(AppBase):
         self.label_preco.grid(row=4, column=1)
         self.entrada_preco.grid(row=4, column=2)
 
-        self.window.mainloop()
-
     def criar_relatorio(self):
         self.texto_relatorio.config(state=tkinter.NORMAL)
+
         self._apagar_relatorio()
 
         self._criar_carro()
 
-        self.texto_relatorio.insert(1.0, self.carro.mostrar_dados_do_veiculo())
+        self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -93,3 +93,4 @@ class AppCriarCarro(AppBase):
         salvar_carro_em_lista_do_main(carro)
 
         self.carro = carro
+        self.mensagem_do_relatorio = self.carro.mostrar_dados_do_veiculo()

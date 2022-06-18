@@ -19,7 +19,7 @@ def _escrever_objeto_carro(carro: Carro):
            f'montadora = "{carro.montadora}"\n' \
            f'nome = "{carro.nome}"\n' \
            f'ano = "{carro.ano}"\n' \
-           f'preco = "{carro.valor_avaliado}"' \
+           f'preco = "{carro.valor_de_aquisicao}"' \
            f'\n' \
            f'carro_{variavel_da_montadora_do_carro}_' \
            f'{nome_da_variavel_do_carro}_{codigo} = Carro(montadora, nome, ano, preco)' \

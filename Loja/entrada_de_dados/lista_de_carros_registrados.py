@@ -103,3 +103,12 @@ _atualizar_contador_da_lista()
 
 remover_carro_da_lista(carro_fiat_uno_942082, "559874")
 
+
+montadora = "WolksWagen"
+nome = "Golf GTI"
+ano = "2009"
+preco = "30 000"
+carro_wolkswagen_golf_gti_351900 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_wolkswagen_golf_gti_351900, "carro_wolkswagen_golf_gti_351900")
+_atualizar_contador_da_lista()
+

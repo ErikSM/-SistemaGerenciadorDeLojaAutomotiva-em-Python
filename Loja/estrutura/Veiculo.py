@@ -8,7 +8,7 @@ class Veiculo(ABC):  # Classe Abstrata
         self.__montadora = montadora
         self.__nome = nome
         self.__ano = ano
-        self.__valor_avaliado = valor_avaliado
+        self.__valor_de_aquisicao = valor_avaliado
 
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
@@ -18,7 +18,7 @@ class Veiculo(ABC):  # Classe Abstrata
         return f'\nmontadora = "{self.__montadora}"    \n' \
                f'nome = "{self.__nome}"    \n' \
                f'ano = "{self.__ano}"    \n' \
-               f'valor_avaliado = "{self.__valor_avaliado}"    \n'
+               f'valor_de_aquisicao = "{self.__valor_de_aquisicao}"    \n'
 
     @abstractmethod
     def abstractmethod(self):
@@ -37,9 +37,9 @@ class Veiculo(ABC):  # Classe Abstrata
         return self.__ano
 
     @property
-    def valor_avaliado(self):
-        return self.__valor_avaliado
+    def valor_de_aquisicao(self):
+        return self.__valor_de_aquisicao
 
-    @valor_avaliado.setter
-    def valor_avaliado(self, valor_avaliado):
-        self.__valor_avaliado = valor_avaliado
+    @valor_de_aquisicao.setter
+    def valor_de_aquisicao(self, valor_de_aquisicao):
+        self.__valor_de_aquisicao = valor_de_aquisicao

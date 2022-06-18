@@ -20,15 +20,15 @@ from apps_de_funcionamento.AppCriarCliente import AppCriarCliente
 
 
 def abrir_registro_de_loja():
-    return AppCriarLoja("Registro de Loja")
+    return AppCriarLoja("Registro de Loja").window.mainloop()
 
 
 def abrir_registro_de_cliente():
-    return AppCriarCliente("Registro de Cliente")
+    return AppCriarCliente("Registro de Cliente").window.mainloop()
 
 
 def abrir_registro_de_carro():
-    return AppCriarCarro("Registro de Carro")
+    return AppCriarCarro("Registro de Carro").window.mainloop()
 
 
 class AppLojaAberta(AppBase):
@@ -48,19 +48,25 @@ class AppLojaAberta(AppBase):
         self.carro_escolhido = None
         self.loja_de_transacao = loja
 
+        self.window.geometry("+350+100")
         self.window.resizable(2, 2)
+        self.frame_dados.pack(fill="y", side="top")
         self.texto_relatorio.config(width=70, height=20)
 
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, f"\n(Dados da Loja):\n{loja}")
+        self.texto_relatorio.insert(1.0, f"\n  OK!!    Login na loja confirmado...    OK!!\n\n"
+                                         f"\n\n    (Dados da Loja):\n{loja}"
+                                    )
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
         # \ Criando menu
         self.menu_principal = tkinter.Menu(self.window)
+        self.window.config(menu=self.menu_principal)
 
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
+
         self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
 
         self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
@@ -71,10 +77,10 @@ class AppLojaAberta(AppBase):
         self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
 
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
-        self.window.config(menu=self.menu_principal)
 
         # \\ Menu cliente
         self.menu_cliente = tkinter.Menu(self.menu_principal, tearoff=0)
+
         self.menu_cliente.add_command(label="Registrar Cliente", command=abrir_registro_de_cliente)
 
         self.menu_clientes_registrados = tkinter.Menu(self.menu_cliente, tearoff=0)
@@ -86,76 +92,82 @@ class AppLojaAberta(AppBase):
         self.menu_cliente.add_cascade(label="Clientes Registrados", menu=self.menu_clientes_registrados)
 
         self.menu_principal.add_cascade(label="Cliente", menu=self.menu_cliente)
-        self.window.config(menu=self.menu_principal)
 
         # \\ Menu carro
         self.menu_carro = tkinter.Menu(self.menu_principal, tearoff=0)
+
         self.menu_carro.add_command(label="Registrar Carro", command=abrir_registro_de_carro)
 
         self.menu_carros_registrados = tkinter.Menu(self.menu_carro, tearoff=0)
         for i in carros_registrados:
-            self.menu_carros_registrados.add_command(label=f"Carro:{i.montadora}: {i.nome}    ${i.valor_avaliado}",
+            self.menu_carros_registrados.add_command(label=f"Carro:{i.montadora}: {i.nome}    ${i.valor_de_aquisicao}",
                                                      command=lambda carro_select=i:
                                                      self.selecionar_carro(carro_select)
                                                      )
         self.menu_carro.add_cascade(label="Carros Registrados", menu=self.menu_carros_registrados)
 
         self.menu_principal.add_cascade(label="Carro", menu=self.menu_carro)
-        self.window.config(menu=self.menu_principal)
 
         # \\ Menu relatorios
         self.menu_relatorios = tkinter.Menu(self.menu_principal, tearoff=0)
 
         self.menu_relatorio_de_vendas = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_detalhes_de_venda = tkinter.Menu(self.menu_relatorio_de_vendas, tearoff=0)
         for i in vendas_registradas:
-            self.menu_relatorio_de_vendas.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
+            self.menu_detalhes_de_venda.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
                                                       command=lambda venda_select=i:
                                                       self.exibir_relatorio_de_vendas_existente_na_lista(venda_select)
-                                                      )
+                                                    )
+        self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de Venda", menu=self.menu_detalhes_de_venda)
         self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
-        self.window.config(menu=self.menu_relatorios)
+
+        self.menu_relatorio_financeiro = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorio_financeiro.add_command(label="Lucro de Vendas",
+                                                   command=self.exibir_relatorio_de_lucro_de_vendas)
+        self.menu_relatorios.add_cascade(label="Relatorio financeiro", menu=self.menu_relatorio_financeiro)
+
         self.menu_principal.add_cascade(label="Relatorios", menu=self.menu_relatorios)
-        self.window.config(menu=self.menu_principal)
 
         # Titulo da Loja Aberta
         self.label_title = tkinter.Label(self.frame_dados, text=f"Loja:({self.loja_de_transacao.nome})".title(),
                                          bg="white")
         self.label_title.config(font="Times 22 bold")
-        self.label_title.grid(row=0, column=0, columnspan=2)
+        self.label_title.grid(row=2, column=0, columnspan=2)
+
+        # Botao Venda (reescrevendo AppBase)
+        self.botao_adicionar.config(command=self.criar_relatorio, text="Efetivar Venda")
+        self.botao_adicionar.grid(row=2, column=3)
 
         # valor da venda
         self.label_valor_de_venda = tkinter.Label(self.frame_dados, text="  Digite o valor da negociacao  ->",
                                                   bg="white")
-        self.label_valor_de_venda.grid(row=0, column=4)
+        self.label_valor_de_venda.grid(row=2, column=4)
 
         self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados, font="Verdanna 10 bold", width=30, bg="grey70",
                                                      fg="black", bd=4)
         self.valor_de_venda_digitado.insert("end", "0")
-        self.valor_de_venda_digitado.grid(row=0, column=5)
+        self.valor_de_venda_digitado.grid(row=2, column=5)
 
         # carro selecionado
         self.label_carro_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
                                                          text="Carro Selecionado:", bg="white")
-        self.label_carro_pre_selecionado.grid(row=1, column=0)
+        self.label_carro_pre_selecionado.grid(row=3, column=0)
 
         self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
                                                    disabledforeground="black")
         self.carro_pre_selecionado.config(state=tkinter.DISABLED)
-        self.carro_pre_selecionado.grid(row=1, column=1, columnspan=5)
+        self.carro_pre_selecionado.grid(row=3, column=1, columnspan=5)
 
         # cliente selecionado
         self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
                                                            text="Cliente Selecionado:", bg="white")
-        self.label_cliente_pre_selecionado.grid(row=2, column=0)
+        self.label_cliente_pre_selecionado.grid(row=4, column=0)
 
         self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
                                                      disabledforeground="black")
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
-        self.cliente_pre_selecionado.grid(row=2, column=1, columnspan=5)
+        self.cliente_pre_selecionado.grid(row=4, column=1, columnspan=5)
 
-        # Botao Venda (reescrevendo AppBase)
-        self.botao_adicionar.config(command=self.criar_relatorio, text="Efetivar Venda")
-        self.botao_adicionar.grid(row=0, column=3)
 
     def criar_relatorio(self):
         if self.carro_escolhido == None or self.cliente_comprador == None:
@@ -258,7 +270,44 @@ class AppLojaAberta(AppBase):
 
     def deletar_loja_aberta(self, loja: Loja):
         remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
-        return self.window.quit()
+        return self.window.destroy()
 
     def alterar_senha(self, loja: Loja):
         AppSenhaEditar("Editar Senha", loja).window.mainloop()
+
+    def exibir_relatorio_de_lucro_de_vendas(self):
+        total_venda = 0
+        total_gasto = 0
+        
+        for i in vendas_registradas:
+            variavel = i.preco.split()
+            venda_sem_espaco = "".join(variavel)
+            venda = int(venda_sem_espaco)
+            total_venda += venda
+
+            variavel = i.veiculo.valor_de_aquisicao.split()
+            gasto_sem_espaco = "".join(variavel)
+            gasto = int(gasto_sem_espaco)
+            total_gasto += gasto
+
+        resultado = (int(total_venda) - int(total_gasto))
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_lucro(total_venda, total_gasto, resultado))
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+
+    def _escrever_relatorio_de_lucro(self, total_venda, total_gasto, resultado):
+        return f'\n' \
+               f'               ###?     (( Relatorio de Lucro ))     ?###\n' \
+               f'\n' \
+               f'\n' \
+               f'    >> Valor bruto ganho em vendas:               R${total_venda}\n' \
+               f'    >> Despesar com obtencao de veiculos:         R${total_gasto}\n' \
+               f'\n                                                  __________\n' \
+               f'         ** Lucro Total com Vendas:                R${resultado}\n' \
+               f'\n' \
+               f'-------------  -------------------  -------------------   -----------------' \
+               f'\n'
+

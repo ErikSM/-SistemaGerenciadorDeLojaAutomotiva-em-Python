@@ -43,7 +43,6 @@ nome = "Test Store 3"
 cnpj = "2342342"
 telefone = "9080980"
 loja_test_store_3 = Loja(nome, cnpj, telefone)
-loja_test_store_3.senha = "123"
 add_loja_na_lista_do_main(loja_test_store_3, "loja_test_store_3")
 _atualizar_contador_da_lista()
 
@@ -56,11 +55,11 @@ add_loja_na_lista_do_main(loja_four_test_store, "loja_four_test_store")
 _atualizar_contador_da_lista()
 
 
+loja_four_test_store.senha = "123"
+
+
+loja_four_test_store.senha = "123"
+
+
 remover_loja_da_lista(loja_four_test_store)
-
-
-loja_test_store_3.senha = "321"
-
-
-loja_test_store_3.senha = "123"
 

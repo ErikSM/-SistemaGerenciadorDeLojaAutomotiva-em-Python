@@ -11,6 +11,7 @@ class AppBase(metaclass=ABCMeta):
         self.window.title(title)
         self.window.config(bg="white", bd=12)
         self.window.resizable(0, 0)
+        self.window.geometry("+500+200")
 
         # \\\ Criando frame dos dados
         self.frame_dados = tkinter.Frame(self.window, bg="white", bd=4)
@@ -18,7 +19,7 @@ class AppBase(metaclass=ABCMeta):
 
         #  \\\ criando relatorio
         self.texto_relatorio = tkinter.Text(self.window, font=("Consolas", 12), bg="black", fg="white", bd=12)
-        self.texto_relatorio.config(width=70, height=10)
+        self.texto_relatorio.config(width=40, height=10)
         self.texto_relatorio.pack(fill="both", side="bottom")
         self.texto_relatorio.config(state=tkinter.DISABLED)
 

@@ -6,15 +6,7 @@ from apps_de_funcionamento.AppLojaAberta import abrir_registro_de_loja, AppLojaA
 
 
 def start():
-    AppLojaStart("Crie ou Abra um loja para iniciar")
-
-
-def exibir_loja_selecionada(loja_select):
-    loja = loja_select
-    if loja.senha == None:
-        return AppLojaAberta(loja_select).window.mainloop()
-    else:
-        return AppSenhaLogin("Login", loja_select)
+    AppLojaStart("Crie ou Abra um loja para iniciar").window.mainloop()
 
 
 class AppLojaStart():
@@ -28,6 +20,7 @@ class AppLojaStart():
         self.window.config(bg="white", bd=30)
         self.window.minsize(width=500, height=100)
         self.window.resizable(0, 0)
+        self.window.geometry("200x100+500+300")
 
         # \ Criando menu
         self.menu_principal = tkinter.Menu(self.window)
@@ -50,17 +43,25 @@ class AppLojaStart():
         self.texto_mensagem.config(text="Nenhuma Loja Aberta no Momento...")
         self.texto_mensagem.pack()
 
-        self.window.mainloop()
-
     def abrir_opcoes_de_loja(self):
+        self.window.geometry("")
         self.texto_mensagem.config(text="Selecione uma das opcoes de loja para abri-la:")
 
         if self.opcoes_de_loja == None:
             for i in lojas_registradas:
                 self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_sem_pular_linha()}', width=50,
                                                      height=2, bg="grey")
-                self.opcoes_de_loja.config(command=lambda loja_select=i: exibir_loja_selecionada(loja_select))
+                self.opcoes_de_loja.config(command=lambda loja_select=i: self._exibir_loja_selecionada(loja_select))
                 self.opcoes_de_loja.pack()
 
         else:
             self.opcoes_de_loja == None
+
+    def _exibir_loja_selecionada(self, loja_select):
+        self.window.destroy()
+        loja = loja_select
+        if loja.senha == None:
+            AppLojaAberta(loja_select).window.mainloop()
+        else:
+            AppSenhaLogin("Login", loja_select)
+

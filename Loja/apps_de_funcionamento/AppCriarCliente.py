@@ -12,6 +12,7 @@ class AppCriarCliente(AppBase):
 
         self.texto_temporario = tkinter.Text()
         self.cliente = None
+        self.mensagem_do_relatorio = None
 
         # Cliente
         texto_no_nome = tkinter.StringVar()
@@ -64,8 +65,6 @@ class AppCriarCliente(AppBase):
         self.label_email.grid(row=4, column=1)
         self.entrada_do_email.grid(row=4, column=2)
 
-        self.window.mainloop()
-
     def criar_relatorio(self):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
@@ -73,7 +72,7 @@ class AppCriarCliente(AppBase):
 
         self._criar_cliente()
 
-        self.texto_relatorio.insert(1.0, self.cliente.mostrar_dados_do_cliente())
+        self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -88,3 +87,5 @@ class AppCriarCliente(AppBase):
         salvar_cliente_em_lista_do_main(cliente)
 
         self.cliente = cliente
+
+        self.mensagem_do_relatorio = self.cliente.mostrar_dados_do_cliente()

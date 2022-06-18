@@ -55,8 +55,6 @@ class AppCriarLoja(AppBase):
         self.label_telefone.grid(row=3, column=1)
         self.entrada_do_telefone.grid(row=3, column=2)
 
-        self.window.mainloop()
-
     def criar_relatorio(self):
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()

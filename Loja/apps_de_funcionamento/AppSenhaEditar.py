@@ -27,4 +27,4 @@ class AppSenhaEditar(AppSenha):
 
         adicionar_nova_senha_criada_no_arquivo_da_loja(self.loja)
 
-        self.window.quit()
+        self.window.destroy()

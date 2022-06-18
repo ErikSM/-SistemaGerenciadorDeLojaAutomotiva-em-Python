@@ -43,7 +43,7 @@ class Venda:
                f'((Veiculo)):{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
-               f'PrecoY$: "{self.__preco}"\n' \
+               f'Preco_R$: "{self.__preco}"\n' \
                f'\n '
 
     @property

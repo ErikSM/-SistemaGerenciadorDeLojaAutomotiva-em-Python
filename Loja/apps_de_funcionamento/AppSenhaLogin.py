@@ -1,3 +1,4 @@
+import time
 import tkinter
 
 from apps_de_funcionamento.AppLojaAberta import AppLojaAberta
@@ -28,11 +29,8 @@ class AppSenhaLogin(AppSenha):
     def validar_senha(self):
         self.__senha_digitada = self.captura_senha.get()
         if self.__senha_digitada == self.__senha_da_loja:
-            self.texto_relatorio.config(state=tkinter.NORMAL)
-            self.texto_relatorio.delete(1.0, "end")
-            self.texto_relatorio.insert(1.0, "\n   Logado com sucesso!!       ")
-            self.texto_relatorio.config(state=tkinter.DISABLED)
-            self.window.quit()
+            time.sleep(1.0)
+            self.window.destroy()
             abrir_loja(self.__loja)
         else:
             self.texto_relatorio.config(state=tkinter.NORMAL)
