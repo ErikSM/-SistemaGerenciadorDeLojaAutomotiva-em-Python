@@ -27,7 +27,9 @@ class AppLojaStart():
 
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
-        self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
+
+        if len(lojas_registradas) == 0:
+            self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
         self.menu_loja.add_command(label="Abrir Loja Existente", command=self.abrir_opcoes_de_loja)
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
         self.window.config(menu=self.menu_principal)
@@ -40,12 +42,14 @@ class AppLojaStart():
 
         # Mensagem de orientacao para o usuario
         self.texto_mensagem = tkinter.Label(self.frame, font="Consolas 11 bold", bg="white")
-        self.texto_mensagem.config(text="Nenhuma Loja Aberta no Momento...")
+        self.texto_mensagem.config(text="Selecione uma das opcoes de loja no menu acima \nou registre uma nova loja...")
         self.texto_mensagem.pack()
 
     def abrir_opcoes_de_loja(self):
         self.window.geometry("")
-        self.texto_mensagem.config(text="Selecione uma das opcoes de loja para abri-la:")
+        self.texto_mensagem.config(text="Loja Registrada:")
+        if len(lojas_registradas) < 1:
+            self.texto_mensagem.config(text="Nenhuma loja registrada no momento...")
 
         if self.opcoes_de_loja == None:
             for i in lojas_registradas:
@@ -64,4 +68,3 @@ class AppLojaStart():
             AppLojaAberta(loja_select).window.mainloop()
         else:
             AppSenhaLogin("Login", loja_select)
-

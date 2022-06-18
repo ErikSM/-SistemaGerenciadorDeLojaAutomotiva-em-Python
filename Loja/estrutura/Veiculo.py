@@ -43,3 +43,12 @@ class Veiculo(ABC):  # Classe Abstrata
     @valor_de_aquisicao.setter
     def valor_de_aquisicao(self, valor_de_aquisicao):
         self.__valor_de_aquisicao = valor_de_aquisicao
+
+
+    @property
+    def loja_de_registro(self):
+        return self.__loja_de_registro
+
+    @loja_de_registro.setter
+    def loja_de_registro(self, loja_de_registro):
+        self.__loja_de_registro = loja_de_registro

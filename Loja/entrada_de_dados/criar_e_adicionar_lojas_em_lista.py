@@ -11,7 +11,7 @@ def salvar_loja_em_lista_do_main(nome, cnpj, telefone):
 
 
 def _escrever_objeto_loja(nome, cnpj, telefone):
-    nome_da_variavel_da_loja = _nome_sem_espaco()
+    nome_da_variavel_da_loja = _nome_sem_espaco(nome)
     return f'\n' \
            f'nome = "{nome}"\n' \
            f'cnpj = "{cnpj}"\n' \

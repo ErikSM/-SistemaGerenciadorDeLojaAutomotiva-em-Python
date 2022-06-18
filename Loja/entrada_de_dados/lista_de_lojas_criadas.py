@@ -23,43 +23,22 @@ def _atualizar_contador_da_lista():
 
 # ------------------ ---------------------- -------------------- -------
 
+
 nome = "Test Store"
-cnpj = "675"
-telefone = "76565465"
+cnpj = "2423794"
+telefone = "0977687"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
 _atualizar_contador_da_lista()
 
 
-nome = "Secound Test Store"
-cnpj = "4254"
-telefone = "987987"
-loja_secound_test_store = Loja(nome, cnpj, telefone)
-add_loja_na_lista_do_main(loja_secound_test_store, "loja_secound_test_store")
+remover_loja_da_lista(loja_test_store)
+
+
+nome = "Test Store"
+cnpj = "234242352"
+telefone = "090786757"
+loja_test_store = Loja(nome, cnpj, telefone)
+add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
 _atualizar_contador_da_lista()
-
-
-nome = "Test Store 3"
-cnpj = "2342342"
-telefone = "9080980"
-loja_test_store_3 = Loja(nome, cnpj, telefone)
-add_loja_na_lista_do_main(loja_test_store_3, "loja_test_store_3")
-_atualizar_contador_da_lista()
-
-
-nome = "Four Test Store"
-cnpj = "9879872423"
-telefone = "76576000"
-loja_four_test_store = Loja(nome, cnpj, telefone)
-add_loja_na_lista_do_main(loja_four_test_store, "loja_four_test_store")
-_atualizar_contador_da_lista()
-
-
-loja_four_test_store.senha = "123"
-
-
-loja_four_test_store.senha = "123"
-
-
-remover_loja_da_lista(loja_four_test_store)
 

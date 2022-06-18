@@ -50,3 +50,4 @@ def _nome_sem_espaco(carro: Carro):
     nome_sem_espaco = "_".join(nome_espalhado)
     nome_da_variavel_do_carro = nome_sem_espaco.lower()
     return nome_da_variavel_do_carro
+

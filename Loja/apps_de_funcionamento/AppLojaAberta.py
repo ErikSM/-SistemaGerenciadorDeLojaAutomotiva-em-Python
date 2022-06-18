@@ -67,8 +67,6 @@ class AppLojaAberta(AppBase):
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
 
-        self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
-
         self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
         self.menu_loja_editar.add_command(label=f"Deletar Loja",
                                           command=lambda loja_select=loja: self.deletar_loja_aberta(loja))
@@ -96,7 +94,8 @@ class AppLojaAberta(AppBase):
         # \\ Menu carro
         self.menu_carro = tkinter.Menu(self.menu_principal, tearoff=0)
 
-        self.menu_carro.add_command(label="Registrar Carro", command=abrir_registro_de_carro)
+        self.menu_carro.add_command(label="Registrar Carro",
+                                    command=abrir_registro_de_carro)
 
         self.menu_carros_registrados = tkinter.Menu(self.menu_carro, tearoff=0)
         for i in carros_registrados:
@@ -115,8 +114,8 @@ class AppLojaAberta(AppBase):
         self.menu_detalhes_de_venda = tkinter.Menu(self.menu_relatorio_de_vendas, tearoff=0)
         for i in vendas_registradas:
             self.menu_detalhes_de_venda.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
-                                                      command=lambda venda_select=i:
-                                                      self.exibir_relatorio_de_vendas_existente_na_lista(venda_select)
+                                                    command=lambda venda_select=i:
+                                                    self.exibir_relatorio_de_vendas_existente_na_lista(venda_select)
                                                     )
         self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de Venda", menu=self.menu_detalhes_de_venda)
         self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
@@ -167,7 +166,6 @@ class AppLojaAberta(AppBase):
                                                      disabledforeground="black")
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
         self.cliente_pre_selecionado.grid(row=4, column=1, columnspan=5)
-
 
     def criar_relatorio(self):
         if self.carro_escolhido == None or self.cliente_comprador == None:
@@ -278,7 +276,7 @@ class AppLojaAberta(AppBase):
     def exibir_relatorio_de_lucro_de_vendas(self):
         total_venda = 0
         total_gasto = 0
-        
+
         for i in vendas_registradas:
             variavel = i.preco.split()
             venda_sem_espaco = "".join(variavel)
@@ -297,17 +295,15 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_lucro(total_venda, total_gasto, resultado))
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-
     def _escrever_relatorio_de_lucro(self, total_venda, total_gasto, resultado):
         return f'\n' \
                f'               ###?     (( Relatorio de Lucro ))     ?###\n' \
                f'\n' \
                f'\n' \
                f'    >> Valor bruto ganho em vendas:               R${total_venda}\n' \
-               f'    >> Despesar com obtencao de veiculos:         R${total_gasto}\n' \
+               f'    >> Despesas com obtencao de veiculos:         R${total_gasto}\n' \
                f'\n                                                  __________\n' \
                f'         ** Lucro Total com Vendas:                R${resultado}\n' \
                f'\n' \
                f'-------------  -------------------  -------------------   -----------------' \
                f'\n'
-
