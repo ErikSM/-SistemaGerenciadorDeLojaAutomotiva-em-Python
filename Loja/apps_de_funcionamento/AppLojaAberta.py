@@ -4,6 +4,8 @@ import datetime
 from random import sample
 
 from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
+from dados_financeiros.lucro_por_venda import calcular_lucro_sobre_a_venda_por_cada_veiculo
+from dados_financeiros.total_de_lucro import calcular_lucro_total_de_vendas
 from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
 from entrada_de_dados.criar_e_adicionar_vendas_em_lista import \
     adicionar_relatorio_de_venda_em_lista_do_main, \
@@ -31,12 +33,16 @@ def abrir_registro_de_carro():
     return AppCriarCarro("Registro de Carro").window.mainloop()
 
 
+def abrir_alterador_de_senha(loja: Loja):
+    AppSenhaEditar("Editar Senha", loja).window.mainloop()
+
+
 class AppLojaAberta(AppBase):
 
     def __init__(self, loja: Loja):
 
         super().__init__(loja)
-        self.texto_temporario = tkinter.Text()
+        self.texto_temporario = ""
 
         self.lista_carros_da_loja = list()
         self.lista_clientes_da_loja = list()
@@ -71,7 +77,7 @@ class AppLojaAberta(AppBase):
         self.menu_loja_editar.add_command(label=f"Deletar Loja",
                                           command=lambda loja_select=loja: self.deletar_loja_aberta(loja))
         self.menu_loja_editar.add_command(label=f"Criar/Modificar Senha",
-                                          command=lambda: self.alterar_senha(loja))
+                                          command=lambda: abrir_alterador_de_senha(loja))
         self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
 
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
@@ -117,12 +123,16 @@ class AppLojaAberta(AppBase):
                                                     command=lambda venda_select=i:
                                                     self.exibir_relatorio_de_vendas_existente_na_lista(venda_select)
                                                     )
-        self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de Venda", menu=self.menu_detalhes_de_venda)
+        self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de cada Venda", menu=self.menu_detalhes_de_venda)
+        self.menu_relatorio_de_vendas.add_command(label="Historico de vendas",
+                                                  command=self.exibir_relatorio_de_historico_de_vendas)
         self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
 
         self.menu_relatorio_financeiro = tkinter.Menu(self.menu_relatorios, tearoff=0)
-        self.menu_relatorio_financeiro.add_command(label="Lucro de Vendas",
-                                                   command=self.exibir_relatorio_de_lucro_de_vendas)
+        self.menu_relatorio_financeiro.add_command(label="Lucro Total",
+                                                   command=self.exibir_relatorio_do_total_de_lucro_das_vendas)
+        self.menu_relatorio_financeiro.add_command(label="Historico de lucro",
+                                                   command=self.exibir_relatorio_de_lucro_por_venda)
         self.menu_relatorios.add_cascade(label="Relatorio financeiro", menu=self.menu_relatorio_financeiro)
 
         self.menu_principal.add_cascade(label="Relatorios", menu=self.menu_relatorios)
@@ -223,17 +233,6 @@ class AppLojaAberta(AppBase):
                f"\n" \
                f"Valor Negociado: ${self.venda.preco}"
 
-    def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select):
-        self.texto_relatorio.config(state=tkinter.NORMAL)
-
-        self._apagar_relatorio()
-        self.relatorio_de_venda_selecionado = venda_select.mostrar_venda()
-        self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
-
-        self.texto_relatorio.config(state=tkinter.DISABLED)
-
-        self.relatorio_de_venda_selecionado = None
-
     def selecionar_cliente(self, cliente_select):
         self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
 
@@ -270,40 +269,51 @@ class AppLojaAberta(AppBase):
         remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
         return self.window.destroy()
 
-    def alterar_senha(self, loja: Loja):
-        AppSenhaEditar("Editar Senha", loja).window.mainloop()
-
-    def exibir_relatorio_de_lucro_de_vendas(self):
-        total_venda = 0
-        total_gasto = 0
-
-        for i in vendas_registradas:
-            variavel = i.preco.split()
-            venda_sem_espaco = "".join(variavel)
-            venda = int(venda_sem_espaco)
-            total_venda += venda
-
-            variavel = i.veiculo.valor_de_aquisicao.split()
-            gasto_sem_espaco = "".join(variavel)
-            gasto = int(gasto_sem_espaco)
-            total_gasto += gasto
-
-        resultado = (int(total_venda) - int(total_gasto))
-
+    def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select):
         self.texto_relatorio.config(state=tkinter.NORMAL)
+
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_lucro(total_venda, total_gasto, resultado))
+        self.relatorio_de_venda_selecionado = venda_select.mostrar_venda()
+        self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
+
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-    def _escrever_relatorio_de_lucro(self, total_venda, total_gasto, resultado):
-        return f'\n' \
-               f'               ###?     (( Relatorio de Lucro ))     ?###\n' \
-               f'\n' \
-               f'\n' \
-               f'    >> Valor bruto ganho em vendas:               R${total_venda}\n' \
-               f'    >> Despesas com obtencao de veiculos:         R${total_gasto}\n' \
-               f'\n                                                  __________\n' \
-               f'         ** Lucro Total com Vendas:                R${resultado}\n' \
-               f'\n' \
-               f'-------------  -------------------  -------------------   -----------------' \
-               f'\n'
+        self.relatorio_de_venda_selecionado = None
+
+    def exibir_relatorio_do_total_de_lucro_das_vendas(self):
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, calcular_lucro_total_de_vendas())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def exibir_relatorio_de_lucro_por_venda(self):
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, calcular_lucro_sobre_a_venda_por_cada_veiculo())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def exibir_relatorio_de_historico_de_vendas(self):
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, "\n       ((Historico de Vendas))\n\n\n")
+
+        for i in vendas_registradas:
+            self.texto_relatorio.insert("end", f""
+                                               f"   >>  codigo:{i.codigo}  << \n"
+                                               f"\n"
+                                               f"data:{i.data}  "
+                                               f"Loja:{i.loja.nome}  "
+                                               f"Cliente:{i.cliente.nome}  "
+                                               f"**Valor Negociado:{i.preco}**\n"
+                                               f"{'-'*98}"
+                                        )
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+
