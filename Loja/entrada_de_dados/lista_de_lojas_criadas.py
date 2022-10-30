@@ -42,3 +42,21 @@ loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
 _atualizar_contador_da_lista()
 
+
+loja_test_store.senha = "1234"
+
+
+loja_test_store.senha = ""
+
+
+loja_test_store.senha = ""
+
+
+loja_test_store.senha = "1234"
+
+
+loja_test_store.senha = "None"
+
+
+loja_test_store.senha = None
+
