@@ -7,7 +7,6 @@ class Loja:
         self.__senha = None
         self.posicao_na_lista = None
         self.nome_da_variavel = " "
-        self.lista_de_carros_vinculados_a_loja = list()
 
     def __str__(self):
         return f'\nloja = "{self.__nome}"   \n' \
