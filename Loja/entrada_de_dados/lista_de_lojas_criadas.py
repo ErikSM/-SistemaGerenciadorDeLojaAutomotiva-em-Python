@@ -25,38 +25,9 @@ def _atualizar_contador_da_lista():
 
 
 nome = "Test Store"
-cnpj = "2423794"
-telefone = "0977687"
+cnpj = "124134100000"
+telefone = "99881343425"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
 _atualizar_contador_da_lista()
-
-
-remover_loja_da_lista(loja_test_store)
-
-
-nome = "Test Store"
-cnpj = "234242352"
-telefone = "090786757"
-loja_test_store = Loja(nome, cnpj, telefone)
-add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
-_atualizar_contador_da_lista()
-
-
-loja_test_store.senha = "1234"
-
-
-loja_test_store.senha = ""
-
-
-loja_test_store.senha = ""
-
-
-loja_test_store.senha = "1234"
-
-
-loja_test_store.senha = "None"
-
-
-loja_test_store.senha = None
 

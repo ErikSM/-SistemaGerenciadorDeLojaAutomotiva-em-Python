@@ -13,28 +13,28 @@ def add_venda_na_lista_do_main(venda: Venda):
 
 # ((Dados da Venda)):
 
-data = "2022-06-18"
+data = "2022-11-02"
 
-codigo = "155920"
+codigo = "124776"
 
 # (loja)
 from entrada_de_dados.lista_de_lojas_criadas import loja_test_store
 loja = loja_test_store
 
 # (cliente)
-from entrada_de_dados.lista_de_clientes_registrados import cliente_erik_miyajima897498274
-cliente = cliente_erik_miyajima897498274
+from entrada_de_dados.lista_de_clientes_registrados import cliente_erik_miyajima23434248979
+cliente = cliente_erik_miyajima23434248979
 
 # (veiculo)
-from entrada_de_dados.lista_de_carros_registrados import carro_wolkswagen_golf_gti_570752
-carro = carro_wolkswagen_golf_gti_570752
+from entrada_de_dados.lista_de_carros_registrados import carro_wolkswagen_gol_875414
+carro = carro_wolkswagen_gol_875414
 
-valor_negociado = "23 000"
+valor_negociado = "25000"
 
-venda_155920 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
+venda_124776 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
 
 
-add_venda_na_lista_do_main(venda_155920)
+add_venda_na_lista_do_main(venda_124776)
 
 # -------------------------------------------------------
 
@@ -42,115 +42,28 @@ add_venda_na_lista_do_main(venda_155920)
 
 # ((Dados da Venda)):
 
-data = "2022-06-19"
+data = "2022-11-02"
 
-codigo = "6084"
-
-# (loja)
-from entrada_de_dados.lista_de_lojas_criadas import loja_test_store
-loja = loja_test_store
-
-# (cliente)
-from entrada_de_dados.lista_de_clientes_registrados import cliente_erik_miyajima897498274
-cliente = cliente_erik_miyajima897498274
-
-# (veiculo)
-from entrada_de_dados.lista_de_carros_registrados import carro_fiat_uno_561718
-carro = carro_fiat_uno_561718
-
-valor_negociado = "16 000"
-
-venda_6084 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
-
-
-add_venda_na_lista_do_main(venda_6084)
-
-# -------------------------------------------------------
-
-
-
-# ((Dados da Venda)):
-
-data = "2022-06-19"
-
-codigo = "393755"
+codigo = "596013"
 
 # (loja)
 from entrada_de_dados.lista_de_lojas_criadas import loja_test_store
 loja = loja_test_store
 
 # (cliente)
-from entrada_de_dados.lista_de_clientes_registrados import cliente_ayumi_souza234299
-cliente = cliente_ayumi_souza234299
+from entrada_de_dados.lista_de_clientes_registrados import cliente_ayumi_souza98798798
+cliente = cliente_ayumi_souza98798798
 
 # (veiculo)
-from entrada_de_dados.lista_de_carros_registrados import carro_toyota_lexus_856048
-carro = carro_toyota_lexus_856048
+from entrada_de_dados.lista_de_carros_registrados import carro_toyota_corolla_818630
+carro = carro_toyota_corolla_818630
 
-valor_negociado = "80 000"
+valor_negociado = "51000"
 
-venda_393755 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
-
-
-add_venda_na_lista_do_main(venda_393755)
-
-# -------------------------------------------------------
+venda_596013 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
 
 
-
-# ((Dados da Venda)):
-
-data = "2022-06-24"
-
-codigo = "907758"
-
-# (loja)
-from entrada_de_dados.lista_de_lojas_criadas import loja_test_store
-loja = loja_test_store
-
-# (cliente)
-from entrada_de_dados.lista_de_clientes_registrados import cliente_erik_miyajima897498274
-cliente = cliente_erik_miyajima897498274
-
-# (veiculo)
-from entrada_de_dados.lista_de_carros_registrados import carro_toyota_hilux_371922
-carro = carro_toyota_hilux_371922
-
-valor_negociado = "250 000"
-
-venda_907758 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
-
-
-add_venda_na_lista_do_main(venda_907758)
-
-# -------------------------------------------------------
-
-
-
-# ((Dados da Venda)):
-
-data = "2022-06-24"
-
-codigo = "687154"
-
-# (loja)
-from entrada_de_dados.lista_de_lojas_criadas import loja_test_store
-loja = loja_test_store
-
-# (cliente)
-from entrada_de_dados.lista_de_clientes_registrados import cliente_ayumi_souza234299
-cliente = cliente_ayumi_souza234299
-
-# (veiculo)
-from entrada_de_dados.lista_de_carros_registrados import carro_toyota_prius_55076
-carro = carro_toyota_prius_55076
-
-valor_negociado = "120 000"
-
-venda_687154 = Venda(data, codigo, loja, cliente, carro, valor_negociado)
-
-
-add_venda_na_lista_do_main(venda_687154)
+add_venda_na_lista_do_main(venda_596013)
 
 # -------------------------------------------------------
 
