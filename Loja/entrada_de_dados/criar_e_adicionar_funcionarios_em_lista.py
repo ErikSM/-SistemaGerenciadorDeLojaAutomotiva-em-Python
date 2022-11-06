@@ -22,10 +22,11 @@ def _escrever_objeto_funcionario(funcionario: Funcionario):
            f'nome = "{funcionario.nome}"\n' \
            f'cpf = "{funcionario.cpf}"\n' \
            f'telefone = "{funcionario.telefone}"\n' \
-           f'email = "{funcionario.email}"' \
+           f'email = "{funcionario.email}"\n' \
+           f'cargo = "{funcionario.cargo["funcao"]}"' \
            f'\n' \
            f'funcionario_{nome_da_variavel_do_funcionario}' \
-           f'{cpf_da_variavel_do_funcionario} = Funcionario(nome, cpf, telefone, email)' \
+           f'{cpf_da_variavel_do_funcionario} = Funcionario(nome, cpf, telefone, email, cargo)' \
            f'\n' \
            f'add_funcionario_na_lista_do_main(funcionario_{nome_da_variavel_do_funcionario}' \
            f'{cpf_da_variavel_do_funcionario}, variavel_contador_de_posicao_na_lista, ' \

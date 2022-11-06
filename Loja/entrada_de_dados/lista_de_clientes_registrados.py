@@ -19,7 +19,8 @@ cpf = "23434248979"
 telefone = "989234242"
 email = "erik@.com"
 cliente_erik_miyajima23434248979 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_erik_miyajima23434248979, variavel_contador_de_posicao_na_lista, "cliente_erik_miyajima23434248979")
+add_cliente_na_lista_do_main(cliente_erik_miyajima23434248979, variavel_contador_de_posicao_na_lista,
+                             "cliente_erik_miyajima23434248979")
 variavel_contador_de_posicao_na_lista += 1
 
 
@@ -28,6 +29,7 @@ cpf = "98798798"
 telefone = "234234234"
 email = "ayu@.com"
 cliente_ayumi_souza98798798 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_ayumi_souza98798798, variavel_contador_de_posicao_na_lista, "cliente_ayumi_souza98798798")
+add_cliente_na_lista_do_main(cliente_ayumi_souza98798798, variavel_contador_de_posicao_na_lista,
+                             "cliente_ayumi_souza98798798")
 variavel_contador_de_posicao_na_lista += 1
 
