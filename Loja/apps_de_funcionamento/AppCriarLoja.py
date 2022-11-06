@@ -63,6 +63,9 @@ class AppCriarLoja(AppBase):
 
         self.texto_relatorio.insert(1.0, self.loja)
 
+        mensagem_final = "\n\n Feche todo o programa e abra novamente"
+        self.texto_relatorio.insert("end", mensagem_final)
+
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def _criar_loja(self):

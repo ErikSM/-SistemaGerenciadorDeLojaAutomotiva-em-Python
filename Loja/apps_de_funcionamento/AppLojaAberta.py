@@ -1,24 +1,26 @@
 import tkinter
-import datetime
 
+import datetime
 from random import sample
 
-from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
-from dados_financeiros.lucro_por_venda import calcular_lucro_sobre_a_venda_por_cada_veiculo
-from dados_financeiros.total_de_lucro import calcular_lucro_total_de_vendas
-from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
-from entrada_de_dados.criar_e_adicionar_vendas_em_lista import \
-    adicionar_relatorio_de_venda_em_lista_do_main, \
-    remover_carro_vendido_da_lista_de_carros_registrados
-from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
-from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
 from estrutura.AppBase import AppBase
-from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from estrutura.Loja import Loja
 from estrutura.Venda import Venda
 from apps_de_funcionamento.AppCriarLoja import AppCriarLoja
 from apps_de_funcionamento.AppCriarCarro import AppCriarCarro
 from apps_de_funcionamento.AppCriarCliente import AppCriarCliente
+from apps_de_funcionamento.AppCriarFuncionario import AppCriarFuncionario
+from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
+from dados_financeiros.lucro_por_venda import calcular_lucro_sobre_a_venda_por_cada_veiculo
+from dados_financeiros.total_de_lucro import calcular_lucro_total_de_vendas
+from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
+from entrada_de_dados.lista_de_funcionarios_registrados import funcionarios_registrados
+from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
+from entrada_de_dados.lista_de_carros_registrados import carros_registrados
+from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
+from entrada_de_dados.criar_e_adicionar_vendas_em_lista import \
+    adicionar_relatorio_de_venda_em_lista_do_main, \
+    remover_carro_vendido_da_lista_de_carros_registrados
 
 
 def abrir_registro_de_loja():
@@ -27,6 +29,10 @@ def abrir_registro_de_loja():
 
 def abrir_registro_de_cliente():
     return AppCriarCliente("Registro de Cliente").window.mainloop()
+
+
+def abrir_registro_de_funcionario():
+    return AppCriarFuncionario("Registro de Funcionario").window.mainloop()
 
 
 def abrir_registro_de_carro():
@@ -61,9 +67,9 @@ class AppLojaAberta(AppBase):
 
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, f"\n  OK!!    Login na loja confirmado...    OK!!\n\n"
-                                         f"\n\n    (Dados da Loja):\n{loja}"
-                                    )
+        self.texto_relatorio.insert(1.0, f"\n  (( Loja {loja.nome} ))\n\n\n"
+                                         f"\n  OK!.."
+                                         f"\n  Login na loja confirmado...")
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
         # \ Criando menu
@@ -73,14 +79,36 @@ class AppLojaAberta(AppBase):
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
 
+        self.menu_loja.add_command(label=f"Sobre a Loja",
+                                          command=lambda: self.mostrar_detalhes_da_loja(loja))
+
         self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
         self.menu_loja_editar.add_command(label=f"Deletar Loja",
-                                          command=lambda loja_select=loja: self.deletar_loja_aberta(loja))
+                                          command=lambda loja_select=loja: self.deletar_loja_aberta(loja_select))
         self.menu_loja_editar.add_command(label=f"Criar/Modificar Senha",
                                           command=lambda: abrir_alterador_de_senha(loja))
         self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
 
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
+
+        # \\\ SubMenu Funcionario
+        '''  
+        OBS: Menu ainda em desenvolvimento... 
+        '''
+        self.menu_funcionario = tkinter.Menu(self.menu_loja, tearoff=0)
+
+        self.menu_funcionario.add_command(label="Registrar Funcionario", command=abrir_registro_de_funcionario
+                                          )
+
+        self.menu_funcionarios_registrados = tkinter.Menu(self.menu_funcionario, tearoff=0)
+        for i in funcionarios_registrados:
+            self.menu_funcionarios_registrados.add_command(label=f"Funcionario:{i.nome}    cpf:{i.cpf}",
+                                                           command=lambda funcionario_select=i:
+                                                           self.mostrar_funcionario(funcionario_select)
+                                                           )
+        self.menu_funcionario.add_cascade(label="Funcionarios Registrados", menu=self.menu_funcionarios_registrados)
+
+        self.menu_loja.add_cascade(label="Administrar Funcionarios", menu=self.menu_funcionario)
 
         # \\ Menu cliente
         self.menu_cliente = tkinter.Menu(self.menu_principal, tearoff=0)
@@ -177,8 +205,61 @@ class AppLojaAberta(AppBase):
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
         self.cliente_pre_selecionado.grid(row=4, column=1, columnspan=5)
 
+    def mostrar_detalhes_da_loja(self, loja: Loja):
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, '\n(-Loja Registrada-)\n\n')
+        self.texto_relatorio.insert("end", loja)
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def deletar_loja_aberta(self, loja: Loja):
+        remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
+        return self.window.destroy()
+
+    def mostrar_funcionario(self, funcionario_select):
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, funcionario_select.mostrar_dados_do_funcionario())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def selecionar_cliente(self, cliente_select):
+        self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
+
+        self.cliente_pre_selecionado.delete(1, "end")
+        self.cliente_pre_selecionado.insert("end", cliente_select.mostrar_dados_do_cliente())
+        self.cliente_comprador = cliente_select
+
+        self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, cliente_select.mostrar_dados_do_cliente())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def selecionar_carro(self, carro_select):
+        self.carro_pre_selecionado.config(state=tkinter.NORMAL)
+
+        self.carro_pre_selecionado.delete(1, "end")
+        self.carro_pre_selecionado.insert("end", carro_select.mostrar_dados_do_veiculo())
+        self.carro_escolhido = carro_select
+
+        self.carro_pre_selecionado.config(state=tkinter.DISABLED)
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0, carro_select.mostrar_dados_do_veiculo())
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
     def criar_relatorio(self):
-        if self.carro_escolhido == None or self.cliente_comprador == None:
+        if self.carro_escolhido is None or self.cliente_comprador is None:
             self.texto_relatorio.config(state=tkinter.NORMAL)
 
             self._apagar_relatorio()
@@ -233,41 +314,6 @@ class AppLojaAberta(AppBase):
                f"\n" \
                f"Valor Negociado: ${self.venda.preco}"
 
-    def selecionar_cliente(self, cliente_select):
-        self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
-
-        self.cliente_pre_selecionado.delete(1, "end")
-        self.cliente_pre_selecionado.insert("end", cliente_select.mostrar_dados_do_cliente())
-        self.cliente_comprador = cliente_select
-
-        self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
-
-        self.texto_relatorio.config(state=tkinter.NORMAL)
-
-        self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, cliente_select.mostrar_dados_do_cliente())
-
-        self.texto_relatorio.config(state=tkinter.DISABLED)
-
-    def selecionar_carro(self, carro_select):
-        self.carro_pre_selecionado.config(state=tkinter.NORMAL)
-
-        self.carro_pre_selecionado.delete(1, "end")
-        self.carro_pre_selecionado.insert("end", carro_select.mostrar_dados_do_veiculo())
-        self.carro_escolhido = carro_select
-
-        self.carro_pre_selecionado.config(state=tkinter.DISABLED)
-
-        self.texto_relatorio.config(state=tkinter.NORMAL)
-
-        self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, carro_select.mostrar_dados_do_veiculo())
-
-        self.texto_relatorio.config(state=tkinter.DISABLED)
-
-    def deletar_loja_aberta(self, loja: Loja):
-        remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
-        return self.window.destroy()
 
     def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select):
         self.texto_relatorio.config(state=tkinter.NORMAL)
@@ -311,9 +357,7 @@ class AppLojaAberta(AppBase):
                                                f"Loja:{i.loja.nome}  "
                                                f"Cliente:{i.cliente.nome}  "
                                                f"**Valor Negociado:{i.preco}**\n"
-                                               f"{'-'*98}"
+                                               f"{'-' * 98}"
                                         )
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
-
-

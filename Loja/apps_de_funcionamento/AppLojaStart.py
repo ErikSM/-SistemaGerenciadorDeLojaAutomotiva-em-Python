@@ -42,7 +42,7 @@ class AppLojaStart():
 
         # Mensagem de orientacao para o usuario
         self.texto_mensagem = tkinter.Label(self.frame, font="Consolas 11 bold", bg="white")
-        self.texto_mensagem.config(text="Selecione uma das opcoes de loja no menu acima \nou registre uma nova loja...")
+        self.texto_mensagem.config(text="Selecione a Loja abrindo o menu acima \nou registre uma nova loja...")
         self.texto_mensagem.pack()
 
     def abrir_opcoes_de_loja(self):
