@@ -19,7 +19,6 @@ def _escrever_objeto_loja(nome, cnpj, telefone):
            f'loja_{nome_da_variavel_da_loja} = Loja(nome, cnpj, telefone)\n' \
            f'add_loja_na_lista_do_main(loja_{nome_da_variavel_da_loja}, ' \
            f'"loja_{nome_da_variavel_da_loja}")\n' \
-           f'_atualizar_contador_da_lista()' \
            f'\n'
 
 

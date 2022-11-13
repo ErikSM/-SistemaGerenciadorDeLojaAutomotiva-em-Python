@@ -32,7 +32,6 @@ ano = "2009"
 preco = "40000"
 carro_toyota_corolla_818630 = Carro(montadora, nome, ano, preco)
 add_carro_na_lista_do_main(carro_toyota_corolla_818630, "carro_toyota_corolla_818630")
-_atualizar_contador_da_lista()
 
 
 montadora = "WolksWagen"
@@ -41,7 +40,6 @@ ano = "2015"
 preco = "20000"
 carro_wolkswagen_gol_875414 = Carro(montadora, nome, ano, preco)
 add_carro_na_lista_do_main(carro_wolkswagen_gol_875414, "carro_wolkswagen_gol_875414")
-_atualizar_contador_da_lista()
 
 
 remover_carro_da_lista(carro_wolkswagen_gol_875414, "124776")
@@ -56,5 +54,12 @@ ano = "2010"
 preco = "15000"
 carro_wolkswagen_golf_520954 = Carro(montadora, nome, ano, preco)
 add_carro_na_lista_do_main(carro_wolkswagen_golf_520954, "carro_wolkswagen_golf_520954")
-_atualizar_contador_da_lista()
+
+
+montadora = "Fiat"
+nome = "Uno"
+ano = "2018"
+preco = "27000"
+carro_fiat_uno_869338 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_fiat_uno_869338, "carro_fiat_uno_869338")
 

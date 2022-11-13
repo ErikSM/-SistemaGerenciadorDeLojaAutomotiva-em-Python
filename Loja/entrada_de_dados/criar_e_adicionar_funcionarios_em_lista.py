@@ -2,11 +2,6 @@ from entrada_de_dados.salvar_modificacoes_no_arquivo import abrir_modificar_e_sa
 from estrutura.Funcionario import Funcionario
 
 
-''' 
-Ainda em desenvolvimento
-
-'''
-
 def salvar_funcionario_em_lista_do_main(funcionario: Funcionario):
     endereco_do_arquivo = "entrada_de_dados/lista_de_funcionarios_registrados"
 
@@ -23,16 +18,14 @@ def _escrever_objeto_funcionario(funcionario: Funcionario):
            f'cpf = "{funcionario.cpf}"\n' \
            f'telefone = "{funcionario.telefone}"\n' \
            f'email = "{funcionario.email}"\n' \
-           f'cargo = "{funcionario.cargo["funcao"]}"' \
+           f'cargo = "{funcionario.cargo["cargo"]}"' \
            f'\n' \
            f'funcionario_{nome_da_variavel_do_funcionario}' \
            f'{cpf_da_variavel_do_funcionario} = Funcionario(nome, cpf, telefone, email, cargo)' \
            f'\n' \
            f'add_funcionario_na_lista_do_main(funcionario_{nome_da_variavel_do_funcionario}' \
-           f'{cpf_da_variavel_do_funcionario}, variavel_contador_de_posicao_na_lista, ' \
+           f'{cpf_da_variavel_do_funcionario}, ' \
            f'"funcionario_{nome_da_variavel_do_funcionario}{cpf_da_variavel_do_funcionario}")' \
-           f'\n' \
-           f'variavel_contador_de_posicao_na_lista += 1' \
            f'\n'
 
 

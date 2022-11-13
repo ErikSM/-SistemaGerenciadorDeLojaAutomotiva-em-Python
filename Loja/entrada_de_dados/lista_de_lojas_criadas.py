@@ -6,6 +6,7 @@ lojas_registradas = list()
 def add_loja_na_lista_do_main(loja: Loja, variavel):
     loja.nome_da_variavel = variavel
     lojas_registradas.append(loja)
+    _atualizar_contador_da_lista()
 
 
 def remover_loja_da_lista(loja):
@@ -29,5 +30,4 @@ cnpj = "124134100000"
 telefone = "99881343425"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
-_atualizar_contador_da_lista()
 

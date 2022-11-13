@@ -27,8 +27,6 @@ def _escrever_objeto_carro(carro: Carro):
            f'add_carro_na_lista_do_main(carro_{variavel_da_montadora_do_carro}_' \
            f'{nome_da_variavel_do_carro}_{codigo}, "carro_{variavel_da_montadora_do_carro}_' \
            f'{nome_da_variavel_do_carro}_{codigo}")' \
-           f'\n' \
-           f'_atualizar_contador_da_lista()' \
            f'\n'
 
 
