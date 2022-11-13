@@ -1,8 +1,4 @@
-from admin import cargos_e_salarios
-
-'''
-    classe em construcao
-'''
+from administracao import cargos_e_salarios
 
 
 class Funcionario:
@@ -13,7 +9,7 @@ class Funcionario:
         self.__telefone = telefone
         self.__email = email
 
-        self.__cargo = cargos_e_salarios.dicio_de_cargos[cargo]
+        self.__cargo = cargos_e_salarios.dicionario_de_cargos[cargo]
         self.__salario = self.__cargo["salario"]
         self.bonus = self.__cargo["bonus"]
         self.comissao = self.__cargo["comissao"]
@@ -29,7 +25,7 @@ class Funcionario:
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
-               f'cargo = "{self.__cargo["funcao"]}"    \n' \
+               f'cargo = "{self.__cargo["cargo"]}"    \n' \
                f'salario = "{self.__salario}"    '
 
     @property
