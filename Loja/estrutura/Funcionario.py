@@ -11,11 +11,8 @@ class Funcionario:
 
         self.__cargo = cargos_e_salarios.dicionario_de_cargos[cargo]
         self.__salario = self.__cargo["salario"]
-        self.bonus = self.__cargo["bonus"]
-        self.comissao = self.__cargo["comissao"]
-
-        self.__bonus = None
-        self.__comissao = None
+        self.__bonus = self.__cargo["bonus"]
+        self.__comissao = self.__cargo["comissao"]
 
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
@@ -26,7 +23,9 @@ class Funcionario:
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
                f'cargo = "{self.__cargo["cargo"]}"    \n' \
-               f'salario = "{self.__salario}"    '
+               f'salario = "{self.__salario}"    \n' \
+               f'bonus = "{int(self.__bonus * 100)}"%    \n' \
+               f'comissao = "{int(self.__comissao * 100)}%\n"    '
 
     @property
     def nome(self):
@@ -53,6 +52,14 @@ class Funcionario:
         self.__email = email
 
     @property
+    def cargo(self):
+        return self.__cargo
+
+    @cargo.setter
+    def cargo(self, cargo):
+        self.__cargo = cargo
+
+    @property
     def salario(self):
         return self.__salario
 
@@ -61,11 +68,19 @@ class Funcionario:
         self.__salario = salario
 
     @property
-    def cargo(self):
-        return self.__cargo
+    def bonus(self):
+        return self.__bonus
 
-    @cargo.setter
-    def cargo(self, cargo):
-        self.__cargo = cargo
+    @bonus.setter
+    def bonus(self, bonus):
+        self.__bonus = bonus
+
+    @property
+    def comissao(self):
+        return self.__comissao
+
+    @comissao.setter
+    def comissao(self, comissao):
+        self.__comissao = comissao
 
 

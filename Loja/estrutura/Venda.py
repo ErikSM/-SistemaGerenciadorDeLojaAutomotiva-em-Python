@@ -1,3 +1,4 @@
+from estrutura.Funcionario import Funcionario
 from estrutura.Cliente import Cliente
 from estrutura.Loja import Loja
 from estrutura.Veiculo import Veiculo
@@ -5,11 +6,12 @@ from estrutura.Veiculo import Veiculo
 
 class Venda:
 
-    def __init__(self, data, codigo, loja: Loja, cliente: Cliente, veiculo: Veiculo, preco):
+    def __init__(self, data, codigo, loja: Loja, funcionario: Funcionario, cliente: Cliente, veiculo: Veiculo, preco):
         self.data = data
         self.codigo = codigo
 
         self.__loja = loja
+        self.__funcionario = funcionario
         self.__cliente = cliente
         self.__veiculo = veiculo
 
@@ -22,6 +24,9 @@ class Venda:
                f'# (loja)\n' \
                f'from entrada_de_dados.lista_de_lojas_criadas import {self.__loja.nome_da_variavel}\n' \
                f'loja = {self.__loja.nome_da_variavel}\n\n' \
+               f'# (funcionario)\n' \
+               f'from entrada_de_dados.lista_de_funcionarios_registrados import {self.__funcionario.nome_da_variavel}\n' \
+               f'funcionario = {self.__funcionario.nome_da_variavel}\n\n' \
                f'# (cliente)\n' \
                f'from entrada_de_dados.lista_de_clientes_registrados import {self.__cliente.nome_da_variavel}\n' \
                f'cliente = {self.__cliente.nome_da_variavel}\n\n' \
@@ -31,7 +36,7 @@ class Venda:
                f'\n' \
                f'valor_negociado = "{self.__preco}"\n' \
                f'\n' \
-               f'venda_{self.codigo} = Venda(data, codigo, loja, cliente, carro, valor_negociado)\n' \
+               f'venda_{self.codigo} = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)\n' \
                f'\n'
 
     def mostrar_venda(self):
@@ -39,6 +44,7 @@ class Venda:
                f'\n' \
                f'((Dados da Venda)):\n' \
                f'Loja:{self.__loja.nome}     cnpj:{self.__loja.cnpj}  \n' \
+               f'Funcionario:{self.__funcionario.nome}     cargo:{self.__funcionario.cargo["cargo"]}  \n' \
                f'Cliente:{self.__cliente.nome}     contato:{self.__cliente.telefone}   \n\n' \
                f'((Veiculo)):{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
                f'\n' \
@@ -49,6 +55,10 @@ class Venda:
     @property
     def loja(self):
         return self.__loja
+
+    @property
+    def funcionario(self):
+        return self.__funcionario
 
     @property
     def cliente(self):
