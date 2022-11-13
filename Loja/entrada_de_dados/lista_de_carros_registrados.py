@@ -42,12 +42,6 @@ carro_wolkswagen_gol_875414 = Carro(montadora, nome, ano, preco)
 add_carro_na_lista_do_main(carro_wolkswagen_gol_875414, "carro_wolkswagen_gol_875414")
 
 
-remover_carro_da_lista(carro_wolkswagen_gol_875414, "124776")
-
-
-remover_carro_da_lista(carro_toyota_corolla_818630, "596013")
-
-
 montadora = "WolksWagen"
 nome = "Golf"
 ano = "2010"
@@ -62,4 +56,10 @@ ano = "2018"
 preco = "27000"
 carro_fiat_uno_869338 = Carro(montadora, nome, ano, preco)
 add_carro_na_lista_do_main(carro_fiat_uno_869338, "carro_fiat_uno_869338")
+
+
+remover_carro_da_lista(carro_wolkswagen_gol_875414, "536368")
+
+
+remover_carro_da_lista(carro_wolkswagen_golf_520954, "477120")
 
