@@ -1,4 +1,3 @@
-
 dicionario_de_cargos = dict()
 
 
@@ -50,5 +49,3 @@ comissao_zelaor = 0
 
 criar_profissao(nome_cargo_zelador, salario_zelador,
                 bonus_zelador, comissao_zelaor)
-
-print(dicionario_de_cargos)
