@@ -1,13 +1,9 @@
 import tkinter
 
+from administracao.cargos_e_salarios import dicionario_de_cargos
 from entrada_de_dados.criar_e_adicionar_funcionarios_em_lista import salvar_funcionario_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
-
-''' 
-Ainda em desenvolvimento
-
-'''
 
 
 class AppCriarFuncionario(AppBase):
@@ -18,6 +14,10 @@ class AppCriarFuncionario(AppBase):
         self.texto_temporario = tkinter.Text()
         self.cliente = None
         self.mensagem_do_relatorio = None
+
+        self.lista_de_funcionarios_existentes = list()
+        for i in dicionario_de_cargos:
+            self.lista_de_funcionarios_existentes.append(f"{i}")
 
         # Funcionario
         texto_no_nome = tkinter.StringVar()
@@ -71,14 +71,9 @@ class AppCriarFuncionario(AppBase):
         self.entrada_do_email.grid(row=4, column=2)
 
         # Cargo
-        texto_no_cargo = tkinter.StringVar()
-        texto_no_cargo.set("cargo")
-
         self.label_cargo = tkinter.Label(self.frame_dados, font="Arial 10", bg="white", text="Cargo:  ")
 
-        self.entrada_do_cargo = tkinter.Entry(self.frame_dados, font="Arial 8 bold", bg="white", fg="black", bd=2,
-                                              width=30)
-        self.entrada_do_cargo.config(textvariable=texto_no_cargo)
+        self.entrada_do_cargo = tkinter.Spinbox(self.frame_dados, values=self.lista_de_funcionarios_existentes)
 
         self.label_cargo.grid(row=5, column=1)
         self.entrada_do_cargo.grid(row=5, column=2)
@@ -108,3 +103,4 @@ class AppCriarFuncionario(AppBase):
         self.funcionario = funcionario
 
         self.mensagem_do_relatorio = self.funcionario.mostrar_dados_do_funcionario()
+
