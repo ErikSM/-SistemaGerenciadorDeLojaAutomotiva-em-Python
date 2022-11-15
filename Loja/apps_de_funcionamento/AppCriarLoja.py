@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.criar_e_adicionar_lojas_em_lista import salvar_loja_em_lista_do_main
+from entrada_de_dados.editar_lista_lojas_criadas import salvar_loja_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 

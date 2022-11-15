@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.criar_e_adicionar_carros_em_lista import salvar_carro_em_lista_do_main
+from entrada_de_dados.editar_lista_carros_registrados import salvar_carro_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Carro import Carro
 

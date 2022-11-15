@@ -1,7 +1,7 @@
 import tkinter
 
 from administracao.cargos_e_salarios import dicionario_de_cargos
-from entrada_de_dados.criar_e_adicionar_funcionarios_em_lista import salvar_funcionario_em_lista_do_main
+from entrada_de_dados.editar_lista_funcionarios_registrados import salvar_funcionario_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
 

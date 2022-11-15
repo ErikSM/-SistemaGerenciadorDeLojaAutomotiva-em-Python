@@ -11,14 +11,14 @@ from apps_de_funcionamento.AppCriarCarro import AppCriarCarro
 from apps_de_funcionamento.AppCriarCliente import AppCriarCliente
 from apps_de_funcionamento.AppCriarFuncionario import AppCriarFuncionario
 from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
-from dados_financeiros.lucro_por_venda import calcular_lucro_sobre_a_venda_por_cada_veiculo
-from dados_financeiros.total_de_lucro import calcular_lucro_total_de_vendas
+from dados_financeiros.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
+from dados_financeiros.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_funcionarios_registrados import funcionarios_registrados
 from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
 from entrada_de_dados.lista_de_carros_registrados import carros_registrados
-from entrada_de_dados.criar_e_adicionar_lojas_em_lista import remover_loja_da_lista_de_lojas_registrados
-from entrada_de_dados.criar_e_adicionar_vendas_em_lista import \
+from entrada_de_dados.editar_lista_lojas_criadas import remover_loja_da_lista_de_lojas_registrados
+from entrada_de_dados.editar_lista_vendas_registradas import \
     adicionar_relatorio_de_venda_em_lista_do_main, \
     remover_carro_vendido_da_lista_de_carros_registrados
 
@@ -183,25 +183,25 @@ class AppLojaAberta(AppBase):
         self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.grid(row=2, column=5)
 
-        # carro selecionado
-        self.label_carro_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
-                                                         text="Carro Selecionado:", bg="white")
-        self.label_carro_pre_selecionado.grid(row=5, column=0)
-
-        self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
-                                                   disabledforeground="black")
-        self.carro_pre_selecionado.config(state=tkinter.DISABLED)
-        self.carro_pre_selecionado.grid(row=5, column=1, columnspan=5)
-
         # cliente selecionado
         self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
                                                            text="Cliente Selecionado:", bg="white")
-        self.label_cliente_pre_selecionado.grid(row=6, column=0)
+        self.label_cliente_pre_selecionado.grid(row=5, column=0)
 
         self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
                                                      disabledforeground="black")
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
-        self.cliente_pre_selecionado.grid(row=6, column=1, columnspan=5)
+        self.cliente_pre_selecionado.grid(row=5, column=1, columnspan=5)
+
+        # carro selecionado
+        self.label_carro_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
+                                                         text="Carro Selecionado:", bg="white")
+        self.label_carro_pre_selecionado.grid(row=6, column=0)
+
+        self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
+                                                   disabledforeground="black")
+        self.carro_pre_selecionado.config(state=tkinter.DISABLED)
+        self.carro_pre_selecionado.grid(row=6, column=1, columnspan=5)
 
         # vendedor selecionado
         self.label_funcionario_pre_selecionado = tkinter.Label(self.frame_dados,
@@ -350,7 +350,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, calcular_lucro_total_de_vendas())
+        self.texto_relatorio.insert(1.0, criar_relatorio_de_lucro_total_de_vendas())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -359,7 +359,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, calcular_lucro_sobre_a_venda_por_cada_veiculo())
+        self.texto_relatorio.insert(1.0, criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 

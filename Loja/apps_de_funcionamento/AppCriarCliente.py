@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.criar_e_adicionar_clientes_em_lista import salvar_cliente_em_lista_do_main
+from entrada_de_dados.editar_lista_clientes_registrados import salvar_cliente_em_lista_do_main
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
 

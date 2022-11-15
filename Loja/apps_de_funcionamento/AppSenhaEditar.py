@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.criar_e_adicionar_senha_na_loja import adicionar_nova_senha_criada_no_arquivo_da_loja, \
+from entrada_de_dados.editar_senha_na_loja import adicionar_nova_senha_criada_no_arquivo_da_loja, \
     apagar_senha_criada_no_arquivo_da_loja
 from estrutura.AppSenha import AppSenha
 from estrutura.Loja import Loja
