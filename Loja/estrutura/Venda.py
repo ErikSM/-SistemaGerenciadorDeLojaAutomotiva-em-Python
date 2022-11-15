@@ -17,6 +17,9 @@ class Venda:
 
         self.__preco = preco
 
+        self.__comissao_sobre_a_venda = self.calcular_comissao_sobre_a_venda()
+        self.__lucro_sobre_a_venda = self.calcular_lucro_sobre_a_venda()
+
     def __str__(self):
         return f'# ((Dados da Venda)):\n\n' \
                f'data = "{self.data}"\n\n' \
@@ -50,7 +53,19 @@ class Venda:
                f'\n' \
                f'((Valor Negociado)):\n' \
                f'Preco_R$: "{self.__preco}"\n' \
-               f'\n '
+               f'\n' \
+               f'Comissao sobre a venda = R$:{self.__comissao_sobre_a_venda}\n' \
+               f'\n'
+
+    def calcular_comissao_sobre_a_venda(self):
+        valor_calculado = float("".join(self.__preco.split())) * float(self.__funcionario.comissao)
+        return valor_calculado
+
+    def calcular_lucro_sobre_a_venda(self):
+        valor_gasto = float("".join(self.__veiculo.valor_de_aquisicao.split()))
+        valor_ganho = float("".join(self.__preco.split()))
+        lucro = float((valor_ganho - self.__comissao_sobre_a_venda) - valor_gasto)
+        return lucro
 
     @property
     def loja(self):
@@ -75,3 +90,11 @@ class Venda:
     @preco.setter
     def preco(self, preco):
         self.__preco = preco
+
+    @property
+    def comissao_sobre_a_venda(self):
+        return self.__comissao_sobre_a_venda
+
+    @property
+    def lucro_sobre_a_venda(self):
+        return self.__lucro_sobre_a_venda
