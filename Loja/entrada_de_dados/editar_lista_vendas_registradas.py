@@ -16,7 +16,8 @@ def _escrever_venda(venda: Venda):
     return f'\n' \
            f'{venda}' \
            f'\n' \
-           f'add_venda_na_lista_do_main(venda_{venda.codigo})\n\n' \
+           f'add_venda_na_lista_do_main(venda_{venda.codigo})\n' \
+           f'add_novo_codigo_na_lista_de_codigos_ja_existentes(venda_{venda.codigo}.codigo)\n\n' \
            f'# -------------------------------------------------------\n' \
            f'\n'
 

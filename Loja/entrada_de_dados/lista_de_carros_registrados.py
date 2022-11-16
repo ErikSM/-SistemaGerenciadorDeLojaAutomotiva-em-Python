@@ -63,3 +63,20 @@ remover_carro_da_lista(carro_wolkswagen_gol_875414, "536368")
 
 remover_carro_da_lista(carro_wolkswagen_golf_520954, "477120")
 
+
+remover_carro_da_lista(carro_toyota_corolla_818630, "54407")
+
+
+montadora = "WoksWagen"
+nome = "Gol"
+ano = "2014"
+preco = "25000"
+carro_wokswagen_gol_125749 = Carro(montadora, nome, ano, preco)
+add_carro_na_lista_do_main(carro_wokswagen_gol_125749, "carro_wokswagen_gol_125749")
+
+
+remover_carro_da_lista(carro_fiat_uno_869338, "20744")
+
+
+remover_carro_da_lista(carro_wokswagen_gol_125749, "230990")
+
