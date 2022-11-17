@@ -2,17 +2,30 @@ from estrutura.Carro import Carro
 
 carros_registrados = list()
 
+codigos_de_carros_existentes = list()
+
 
 def add_carro_na_lista_do_main(carro: Carro, variavel):
     carro.nome_da_variavel = str(variavel)
     carros_registrados.append(carro)
+    _add_novo_codigo_na_lista_de_codigos_ja_existentes(carro.codigo)
     _atualizar_contador_da_lista()
+
+
+def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
+    codigo_int = int(codigo)
+    codigos_de_carros_existentes.append(codigo_int)
 
 
 def remover_carro_da_lista(carro: Carro, codigo):
     carros_registrados.remove(carro)
     carro.codigo_de_venda = str(codigo)
+    _remover_codigo_da_lista_de_codigos_existentes(carro.codigo)
     _atualizar_contador_da_lista()
+
+
+def _remover_codigo_da_lista_de_codigos_existentes(codigo):
+    codigos_de_carros_existentes.remove(int(codigo))
 
 
 def _atualizar_contador_da_lista():
@@ -26,57 +39,47 @@ def _atualizar_contador_da_lista():
 # --------------------  -----------------   ------------   ------------   ----
 
 
+montadora = "WolksWagen"
+nome = "Gol"
+ano = "2012"
+preco = "18000"
+codigo = "339991"
+carro_wolkswagen_gol_339991 = Carro(montadora, nome, ano, preco, codigo)
+add_carro_na_lista_do_main(carro_wolkswagen_gol_339991, "carro_wolkswagen_gol_339991")
+
+
 montadora = "Toyota"
 nome = "Corolla"
-ano = "2009"
-preco = "40000"
-carro_toyota_corolla_818630 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_toyota_corolla_818630, "carro_toyota_corolla_818630")
-
-
-montadora = "WolksWagen"
-nome = "Gol"
-ano = "2015"
-preco = "20000"
-carro_wolkswagen_gol_875414 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_wolkswagen_gol_875414, "carro_wolkswagen_gol_875414")
-
-
-montadora = "WolksWagen"
-nome = "Golf"
-ano = "2010"
-preco = "15000"
-carro_wolkswagen_golf_520954 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_wolkswagen_golf_520954, "carro_wolkswagen_golf_520954")
-
-
-montadora = "Fiat"
-nome = "Uno"
-ano = "2018"
-preco = "27000"
-carro_fiat_uno_869338 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_fiat_uno_869338, "carro_fiat_uno_869338")
-
-
-remover_carro_da_lista(carro_wolkswagen_gol_875414, "536368")
-
-
-remover_carro_da_lista(carro_wolkswagen_golf_520954, "477120")
-
-
-remover_carro_da_lista(carro_toyota_corolla_818630, "54407")
-
-
-montadora = "WoksWagen"
-nome = "Gol"
 ano = "2014"
-preco = "25000"
-carro_wokswagen_gol_125749 = Carro(montadora, nome, ano, preco)
-add_carro_na_lista_do_main(carro_wokswagen_gol_125749, "carro_wokswagen_gol_125749")
+preco = "23000"
+codigo = "754655"
+carro_toyota_corolla_754655 = Carro(montadora, nome, ano, preco, codigo)
+add_carro_na_lista_do_main(carro_toyota_corolla_754655, "carro_toyota_corolla_754655")
 
 
-remover_carro_da_lista(carro_fiat_uno_869338, "20744")
+montadora = "Toyota"
+nome = "Hilux"
+ano = "2018"
+preco = "180000"
+codigo = "377261"
+carro_toyota_hilux_377261 = Carro(montadora, nome, ano, preco, codigo)
+add_carro_na_lista_do_main(carro_toyota_hilux_377261, "carro_toyota_hilux_377261")
 
 
-remover_carro_da_lista(carro_wokswagen_gol_125749, "230990")
+remover_carro_da_lista(carro_wolkswagen_gol_339991, "115167")
+
+
+remover_carro_da_lista(carro_toyota_hilux_377261, "27637")
+
+
+montadora = "WolksWagen"
+nome = "Polo"
+ano = "2008"
+preco = "15000"
+codigo = "293417"
+carro_wolkswagen_polo_293417 = Carro(montadora, nome, ano, preco, codigo)
+add_carro_na_lista_do_main(carro_wolkswagen_polo_293417, "carro_wolkswagen_polo_293417")
+
+
+remover_carro_da_lista(carro_toyota_corolla_754655, "367251")
 

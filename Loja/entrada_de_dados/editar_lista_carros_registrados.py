@@ -1,4 +1,3 @@
-from random import sample
 from entrada_de_dados.salvar_modificacoes_no_arquivo import abrir_modificar_e_salvar_arquivo
 from estrutura.Carro import Carro
 
@@ -12,28 +11,22 @@ def salvar_carro_em_lista_do_main(carro: Carro):
 
 
 def _escrever_objeto_carro(carro: Carro):
-    codigo = _criar_codigo_do_veiculo()
     variavel_da_montadora_do_carro = _montadora_sem_espaco(carro)
     nome_da_variavel_do_carro = _nome_sem_espaco(carro)
     return f"\n" \
            f'montadora = "{carro.montadora}"\n' \
            f'nome = "{carro.nome}"\n' \
            f'ano = "{carro.ano}"\n' \
-           f'preco = "{carro.valor_de_aquisicao}"' \
+           f'preco = "{carro.valor_de_aquisicao}"\n' \
+           f'codigo = "{carro.codigo}"' \
            f'\n' \
            f'carro_{variavel_da_montadora_do_carro}_' \
-           f'{nome_da_variavel_do_carro}_{codigo} = Carro(montadora, nome, ano, preco)' \
+           f'{nome_da_variavel_do_carro}_{carro.codigo} = Carro(montadora, nome, ano, preco, codigo)' \
            f'\n' \
            f'add_carro_na_lista_do_main(carro_{variavel_da_montadora_do_carro}_' \
-           f'{nome_da_variavel_do_carro}_{codigo}, "carro_{variavel_da_montadora_do_carro}_' \
-           f'{nome_da_variavel_do_carro}_{codigo}")' \
+           f'{nome_da_variavel_do_carro}_{carro.codigo}, "carro_{variavel_da_montadora_do_carro}_' \
+           f'{nome_da_variavel_do_carro}_{carro.codigo}")' \
            f'\n'
-
-
-def _criar_codigo_do_veiculo():
-    codigo_do_veiculo = sample(range(0, 1000000), 1)
-    codigo = codigo_do_veiculo[0]
-    return codigo
 
 
 def _montadora_sem_espaco(carro: Carro):

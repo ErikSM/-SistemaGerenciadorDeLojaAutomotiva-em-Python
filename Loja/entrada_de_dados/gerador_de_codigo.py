@@ -1,15 +1,14 @@
 from random import sample
-from entrada_de_dados.lista_de_vendas_efetuadas import codigos_de_vendas_existentes
 
 
-def criar_codigo_unico_de_venda():
+def criar_codigo_unico(lista):
     codigo = _gerador_de_codigo_aleatorio()
     variavel = True
 
     while variavel:
-        if codigo in codigos_de_vendas_existentes:
+        if codigo in lista:
             codigo = _gerador_de_codigo_aleatorio()
-        if codigo not in codigos_de_vendas_existentes:
+        if codigo not in lista:
             variavel = False
 
     return codigo
