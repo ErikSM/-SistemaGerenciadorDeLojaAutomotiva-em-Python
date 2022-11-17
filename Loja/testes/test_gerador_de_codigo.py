@@ -1,9 +1,10 @@
-from testes.teste_elaboracao import _teste_gerador_de_codigo, teste_criar_codigo_unico
+# CMD:  cd PycharmProjects\Loja\testes
+from testes.teste_elaboracao import _test_gerador_de_codigo, test_criar_codigo_unico
 
 
 def test_gerar():
-    assert _teste_gerador_de_codigo()
+    assert _test_gerador_de_codigo()
 
 
 def test_criar():
-    assert teste_criar_codigo_unico()
+    assert test_criar_codigo_unico()
