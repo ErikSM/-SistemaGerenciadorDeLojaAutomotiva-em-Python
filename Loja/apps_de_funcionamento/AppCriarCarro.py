@@ -1,6 +1,8 @@
 import tkinter
 
 from entrada_de_dados.editar_lista_carros_registrados import salvar_carro_em_lista_do_main
+from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from entrada_de_dados.lista_de_carros_registrados import codigos_de_carros_existentes
 from estrutura.AppBase import AppBase
 from estrutura.Carro import Carro
 
@@ -87,8 +89,9 @@ class AppCriarCarro(AppBase):
         nome = self.entrada_do_nome.get()
         ano = self.entrada_ano.get()
         preco = self.entrada_preco.get()
+        codigo = criar_codigo_unico(codigos_de_carros_existentes)
 
-        carro = Carro(montadora, nome, ano, preco)
+        carro = Carro(montadora, nome, ano, preco, codigo)
 
         salvar_carro_em_lista_do_main(carro)
 

@@ -2,7 +2,7 @@ import tkinter
 
 import datetime
 
-from entrada_de_dados.gerador_de_codigo import criar_codigo_unico_de_venda
+from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 from estrutura.Venda import Venda
@@ -15,7 +15,7 @@ from dados_organizados.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_v
 from dados_organizados.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_funcionarios_registrados import funcionarios_registrados
-from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
+from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas, codigos_de_vendas_existentes
 from entrada_de_dados.lista_de_carros_registrados import carros_registrados
 from entrada_de_dados.editar_lista_lojas_criadas import remover_loja_da_lista_de_lojas_registrados
 from entrada_de_dados.editar_lista_vendas_registradas import \
@@ -308,7 +308,7 @@ class AppLojaAberta(AppBase):
         preco = self.valor_negociado
         data = datetime.date.today()
 
-        codigo = criar_codigo_unico_de_venda()
+        codigo = criar_codigo_unico(codigos_de_vendas_existentes)
 
         venda = Venda(data, codigo, loja, funcionario, cliente, veiculo, preco)
 
@@ -322,7 +322,6 @@ class AppLojaAberta(AppBase):
         self.carro_escolhido = None
         self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.delete(0, "end")
-
 
     def _escrever_relatorio_de_venda_criada(self):
         return f"codigo:{self.venda.codigo}   " \
