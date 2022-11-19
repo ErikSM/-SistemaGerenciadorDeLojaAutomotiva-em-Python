@@ -1,6 +1,7 @@
 import tkinter
 
 from entrada_de_dados.editar_lista_lojas_criadas import salvar_loja_em_lista_do_main
+from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 
@@ -57,7 +58,15 @@ class AppCriarLoja(AppBase):
 
     def criar_relatorio(self):
         self.texto_relatorio.config(state=tkinter.NORMAL)
+
         self._apagar_relatorio()
+
+# -----------------------------  --------------   ----------------
+        #if verificar_documento(self.entrada_do_cnpj.get()):
+        #   self._criar_loja()
+        #else:
+        #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CNPJ invalido"
+# --------------  -------------------------  -----------------
 
         self._criar_loja()
 

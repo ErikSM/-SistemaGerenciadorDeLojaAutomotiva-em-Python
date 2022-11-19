@@ -2,6 +2,7 @@ import tkinter
 
 from administracao.cargos_e_salarios import dicionario_de_cargos
 from entrada_de_dados.editar_lista_funcionarios_registrados import salvar_funcionario_em_lista_do_main
+from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
 
@@ -82,6 +83,13 @@ class AppCriarFuncionario(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
+
+# -----------------------------  --------------   ----------------
+        #if verificar_documento(self.entrada_do_cpf.get()):
+        #    self._criar_funcionario()
+        #else:
+        #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
+# -----------------------------  --------------   ----------------
 
         self._criar_funcionario()
 

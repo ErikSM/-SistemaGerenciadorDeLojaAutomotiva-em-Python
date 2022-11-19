@@ -1,6 +1,7 @@
 import tkinter
 
 from entrada_de_dados.editar_lista_clientes_registrados import salvar_cliente_em_lista_do_main
+from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
 
@@ -70,6 +71,13 @@ class AppCriarCliente(AppBase):
 
         self._apagar_relatorio()
 
+# -----------------------------  --------------   ----------------
+        #if verificar_documento(self.entrada_do_cpf.get()):
+        #    self._criar_cliente()
+        #else:
+        #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
+# -----------------------------  --------------   ----------------
+
         self._criar_cliente()
 
         self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
@@ -77,9 +85,13 @@ class AppCriarCliente(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def _criar_cliente(self):
+
         nome = self.entrada_nome.get()
+
         cpf = self.entrada_do_cpf.get()
+
         telefone = self.entrada_do_telefone.get()
+
         email = self.entrada_do_email.get()
 
         cliente = Cliente(nome, cpf, telefone, email)
@@ -89,3 +101,5 @@ class AppCriarCliente(AppBase):
         self.cliente = cliente
 
         self.mensagem_do_relatorio = self.cliente.mostrar_dados_do_cliente()
+
+
