@@ -1,5 +1,5 @@
 # CMD:  cd PycharmProjects\Loja\testes
-from testes.teste_elaboracao import _test_gerador_de_codigo, test_criar_codigo_unico
+from testes.elaborar_gerador_codigo import _test_gerador_de_codigo, test_criar_codigo_unico
 
 
 def test_gerar():
