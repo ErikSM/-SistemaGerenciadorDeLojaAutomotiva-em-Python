@@ -14,11 +14,7 @@ def _escrever_objeto_cliente(cliente: Cliente,):
     nome_da_variavel_do_cliente = _tirar_espacos_do_nome(cliente)
     cpf_da_variavel_do_cliente = _tirar_espacao_do_cpf(cliente)
     return f"\n" \
-           f'nome = "{cliente.nome}"\n' \
-           f'cpf = "{cliente.cpf}"\n' \
-           f'telefone = "{cliente.telefone}"\n' \
-           f'email = "{cliente.email}"' \
-           f'\n' \
+           f'{cliente.mostrar_dados_do_cliente()}' \
            f'cliente_{nome_da_variavel_do_cliente}' \
            f'{cpf_da_variavel_do_cliente} = Cliente(nome, cpf, telefone, email)' \
            f'\n' \

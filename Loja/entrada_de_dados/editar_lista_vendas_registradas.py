@@ -1,7 +1,12 @@
 from entrada_de_dados.salvar_modificacoes_no_arquivo import abrir_modificar_e_salvar_arquivo
 from estrutura.Venda import Venda
 from estrutura.Carro import Carro
-
+'''
+f'nome = "{cliente.nome}"\n' \
+f'cpf = "{cliente.cpf}"\n' \
+f'telefone = "{cliente.telefone}"\n' \
+f'email = "{cliente.email}"' \
+'''
 
 def adicionar_relatorio_de_venda_em_lista_do_main(venda: Venda):
     endereco_do_arquivo = "entrada_de_dados/lista_de_vendas_efetuadas"

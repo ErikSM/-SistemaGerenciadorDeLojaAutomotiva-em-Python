@@ -41,5 +41,5 @@ cpf = "787979242"
 telefone = "9977000222"
 email = "jsil@com"
 cliente_jose_silveira787979242 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista_do_main(cliente_jose_silveira787979242,"cliente_jose_silveira787979242")
+add_cliente_na_lista_do_main(cliente_jose_silveira787979242, "cliente_jose_silveira787979242")
 
