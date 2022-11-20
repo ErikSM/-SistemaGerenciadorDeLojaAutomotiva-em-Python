@@ -100,6 +100,6 @@ class AppCriarCliente(AppBase):
 
         self.cliente = cliente
 
-        self.mensagem_do_relatorio = self.cliente.mostrar_dados_do_cliente()
+        self.mensagem_do_relatorio = self.cliente.mostrar_atributos_principais()
 
 

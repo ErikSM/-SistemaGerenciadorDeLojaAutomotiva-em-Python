@@ -80,6 +80,14 @@ codigo = "293417"
 carro_wolkswagen_polo_293417 = Carro(montadora, nome, ano, preco, codigo)
 add_carro_na_lista_do_main(carro_wolkswagen_polo_293417, "carro_wolkswagen_polo_293417")
 
-
 remover_carro_da_lista(carro_toyota_corolla_754655, "367251")
+
+
+montadora = "Toyota"
+nome = "Prius"
+ano = "2018"
+valor_de_aquisicao = "80000"
+codigo_de_registro = "743358"
+carro_toyota_prius_743358 = Carro(montadora, nome, ano, preco, codigo)
+add_carro_na_lista_do_main(carro_toyota_prius_743358, "carro_toyota_prius_743358")
 

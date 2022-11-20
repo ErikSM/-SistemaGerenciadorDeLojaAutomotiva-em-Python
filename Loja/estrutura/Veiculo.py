@@ -3,24 +3,23 @@ from abc import ABC, abstractmethod
 
 class Veiculo(ABC):  # Classe Abstrata
 
-    def __init__(self, montadora, nome, ano, valor_avaliado, codigo):
-
+    def __init__(self, montadora, nome, ano, valor_de_aquisicao, codigo):
         self.__montadora = montadora
         self.__nome = nome
         self.__ano = ano
-        self.__valor_de_aquisicao = valor_avaliado
+        self.__valor_de_aquisicao = valor_de_aquisicao
         self.__codigo = codigo
 
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
         self.codigo_de_venda = " "
 
-
-    def mostrar_dados_do_veiculo(self):
+    def mostrar_atributos_principais(self):
         return f'\nmontadora = "{self.__montadora}"    \n' \
                f'nome = "{self.__nome}"    \n' \
                f'ano = "{self.__ano}"    \n' \
-               f'valor_de_aquisicao = "{self.__valor_de_aquisicao}"    \n'
+               f'valor_de_aquisicao = "{self.__valor_de_aquisicao}"    \n' \
+               f'codigo_de_registro = "{self.__codigo}"    \n'
 
     @abstractmethod
     def abstractmethod(self):

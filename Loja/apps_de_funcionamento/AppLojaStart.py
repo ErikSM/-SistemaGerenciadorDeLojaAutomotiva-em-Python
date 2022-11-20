@@ -14,7 +14,7 @@ class AppLojaStart():
 
         self.opcoes_de_loja = None
 
-        # \\\_ APP
+        # App
         self.window = tkinter.Tk()
         self.window.title(title)
         self.window.config(bg="white", bd=30)
@@ -22,10 +22,9 @@ class AppLojaStart():
         self.window.resizable(0, 0)
         self.window.geometry("200x100+500+300")
 
-        # \ Criando menu
+        # \ Menu
         self.menu_principal = tkinter.Menu(self.window)
 
-        # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
 
         if len(lojas_registradas) == 0:
@@ -34,13 +33,13 @@ class AppLojaStart():
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
         self.window.config(menu=self.menu_principal)
 
-        # Editando e criando segundo frame
+        # Frame
         self.frame = tkinter.Frame(self.window, bg="grey60")
         self.frame.pack(side="top")
         self.frame_2 = tkinter.Frame(self.window, bg="grey60")
         self.frame_2.pack(side="bottom")
 
-        # Mensagem de orientacao para o usuario
+        # Msg
         self.texto_mensagem = tkinter.Label(self.frame, font="Consolas 11 bold", bg="white")
         self.texto_mensagem.config(text="Selecione a Loja abrindo o menu acima \nou registre uma nova loja...")
         self.texto_mensagem.pack()
@@ -51,20 +50,18 @@ class AppLojaStart():
         if len(lojas_registradas) < 1:
             self.texto_mensagem.config(text="Nenhuma loja registrada no momento...")
 
-        if self.opcoes_de_loja == None:
+        if self.opcoes_de_loja is None:
             for i in lojas_registradas:
-                self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_sem_pular_linha()}', width=50,
-                                                     height=2, bg="grey")
+                self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_atributos_sem_pular_linha()}',
+                                                     width=50, bg="grey")
                 self.opcoes_de_loja.config(command=lambda loja_select=i: self._exibir_loja_selecionada(loja_select))
                 self.opcoes_de_loja.pack()
-
-        else:
-            self.opcoes_de_loja == None
 
     def _exibir_loja_selecionada(self, loja_select):
         self.window.destroy()
         loja = loja_select
-        if loja.senha == None:
+
+        if loja.senha is None:
             AppLojaAberta(loja_select).window.mainloop()
         else:
             AppSenhaLogin("Login", loja_select)

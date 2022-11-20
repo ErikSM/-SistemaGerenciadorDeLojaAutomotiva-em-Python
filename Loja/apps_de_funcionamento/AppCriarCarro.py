@@ -96,4 +96,4 @@ class AppCriarCarro(AppBase):
         salvar_carro_em_lista_do_main(carro)
 
         self.carro = carro
-        self.mensagem_do_relatorio = self.carro.mostrar_dados_do_veiculo()
+        self.mensagem_do_relatorio = self.carro.mostrar_atributos_principais()

@@ -14,12 +14,7 @@ def _escrever_objeto_carro(carro: Carro):
     variavel_da_montadora_do_carro = _montadora_sem_espaco(carro)
     nome_da_variavel_do_carro = _nome_sem_espaco(carro)
     return f"\n" \
-           f'montadora = "{carro.montadora}"\n' \
-           f'nome = "{carro.nome}"\n' \
-           f'ano = "{carro.ano}"\n' \
-           f'preco = "{carro.valor_de_aquisicao}"\n' \
-           f'codigo = "{carro.codigo}"' \
-           f'\n' \
+           f'{carro.mostrar_atributos_principais()}' \
            f'carro_{variavel_da_montadora_do_carro}_' \
            f'{nome_da_variavel_do_carro}_{carro.codigo} = Carro(montadora, nome, ano, preco, codigo)' \
            f'\n' \

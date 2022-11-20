@@ -1,3 +1,7 @@
+from entrada_de_dados.validar_documento import mascarar_cnpj
+from entrada_de_dados.validar_telefone import Telefone
+
+
 class Loja:
 
     def __init__(self, nome, cnpj, telefone):
@@ -13,10 +17,10 @@ class Loja:
                f'cnpj = "{self.__cnpj}"   \n' \
                f'contato = "{self.__telefone}"   \n'
 
-    def mostrar_sem_pular_linha(self):
-        return f'loja:{self.__nome}   ' \
-                f'cnpj:{self.__cnpj}   ' \
-                f'contato:{self.__telefone}   '
+    def mostrar_atributos_sem_pular_linha(self):
+        return f'\nloja:{self.__nome}   \n' \
+                f'cnpj:{mascarar_cnpj(self.__cnpj)}   \n' \
+                f'contato:{Telefone(self.__telefone)}   \n'
 
     @property
     def nome(self):

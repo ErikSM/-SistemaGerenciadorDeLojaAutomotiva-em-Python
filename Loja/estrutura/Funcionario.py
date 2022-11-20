@@ -1,4 +1,6 @@
 from administracao import cargos_e_salarios
+from entrada_de_dados.validar_documento import mascarar_cpf
+from entrada_de_dados.validar_telefone import Telefone
 
 
 class Funcionario:
@@ -17,15 +19,22 @@ class Funcionario:
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
 
-    def mostrar_dados_do_funcionario(self):
+    def mostrar_atributos_principais(self):
         return f'\nFuncionario = "{self.__nome}"    \n' \
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
+               f'cargo = "{self.__cargo["cargo"]}"    \n'
+
+    def mostrar_dados_do_funcionario(self):
+        return f'\nFuncionario = "{self.__nome}"    \n' \
+               f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
+               f'telefone = "{Telefone(self.__telefone)}"    \n' \
+               f'email = "{self.__email}"    \n' \
                f'cargo = "{self.__cargo["cargo"]}"    \n' \
                f'salario = "{self.__salario}"    \n' \
                f'bonus = "{int(self.__bonus * 100)}"%    \n' \
-               f'comissao = "{int(self.__comissao * 100)}%\n"    '
+               f'comissao = "{int(self.__comissao * 100)}%" \n'
 
     @property
     def nome(self):

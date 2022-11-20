@@ -14,12 +14,7 @@ def _escrever_objeto_funcionario(funcionario: Funcionario):
     nome_da_variavel_do_funcionario = _tirar_espacos_do_nome(funcionario)
     cpf_da_variavel_do_funcionario = _tirar_espacao_do_cpf(funcionario)
     return f"\n" \
-           f'nome = "{funcionario.nome}"\n' \
-           f'cpf = "{funcionario.cpf}"\n' \
-           f'telefone = "{funcionario.telefone}"\n' \
-           f'email = "{funcionario.email}"\n' \
-           f'cargo = "{funcionario.cargo["cargo"]}"' \
-           f'\n' \
+           f'{funcionario.mostrar_atributos_principais()}' \
            f'funcionario_{nome_da_variavel_do_funcionario}' \
            f'{cpf_da_variavel_do_funcionario} = Funcionario(nome, cpf, telefone, email, cargo)' \
            f'\n' \

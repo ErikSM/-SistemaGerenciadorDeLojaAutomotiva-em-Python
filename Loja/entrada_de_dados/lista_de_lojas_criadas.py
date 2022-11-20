@@ -31,9 +31,3 @@ telefone = "99881343425"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista_do_main(loja_test_store, "loja_test_store")
 
-
-loja_test_store.senha = "123"
-
-
-loja_test_store.senha = None
-

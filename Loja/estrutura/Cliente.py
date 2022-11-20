@@ -1,3 +1,7 @@
+from entrada_de_dados.validar_documento import mascarar_cpf
+from entrada_de_dados.validar_telefone import Telefone
+
+
 class Cliente:
 
     def __init__(self, nome, cpf, telefone, email):
@@ -8,10 +12,16 @@ class Cliente:
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
 
-    def mostrar_dados_do_cliente(self):
+    def mostrar_atributos_principais(self):
         return f'\nnome = "{self.__nome}"    \n' \
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
+               f'email = "{self.__email}"    \n'
+
+    def mostrar_dados_do_cliente(self):
+        return f'\nnome = "{self.__nome}"    \n' \
+               f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
+               f'telefone = "{Telefone(self.__telefone)}"    \n' \
                f'email = "{self.__email}"    \n'
 
     @property

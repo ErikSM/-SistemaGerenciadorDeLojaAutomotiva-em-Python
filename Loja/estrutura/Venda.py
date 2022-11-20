@@ -42,14 +42,14 @@ class Venda:
                f'venda_{self.codigo} = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)\n' \
                f'\n'
 
-    def mostrar_venda(self):
+    def mostrar_dados_da_venda(self):
         return f'codigo:{self.codigo}   data:{self.data}  \n' \
                f'\n' \
                f'((Dados da Venda)):\n' \
                f'Loja:{self.__loja.nome}     cnpj:{self.__loja.cnpj}  \n' \
                f'Funcionario:{self.__funcionario.nome}     cargo:{self.__funcionario.cargo["cargo"]}  \n' \
                f'Cliente:{self.__cliente.nome}     contato:{self.__cliente.telefone}   \n\n' \
-               f'((Veiculo)):{self.__veiculo.mostrar_dados_do_veiculo()}\n' \
+               f'((Veiculo)):{self.__veiculo.mostrar_atributos_principais()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
                f'Preco_R$: "{self.__preco}"\n' \

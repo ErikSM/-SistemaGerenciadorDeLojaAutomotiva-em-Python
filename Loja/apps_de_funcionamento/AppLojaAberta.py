@@ -11,8 +11,8 @@ from apps_de_funcionamento.AppCriarCarro import AppCriarCarro
 from apps_de_funcionamento.AppCriarCliente import AppCriarCliente
 from apps_de_funcionamento.AppCriarFuncionario import AppCriarFuncionario
 from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
-from dados_organizados.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
-from dados_organizados.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
+from administracao.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
+from administracao.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
 from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
 from entrada_de_dados.lista_de_funcionarios_registrados import funcionarios_registrados
 from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas, codigos_de_vendas_existentes
@@ -231,7 +231,7 @@ class AppLojaAberta(AppBase):
         self.funcionario_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.funcionario_pre_selecionado.delete(1, "end")
-        self.funcionario_pre_selecionado.insert("end", funcionario_select.mostrar_dados_do_funcionario())
+        self.funcionario_pre_selecionado.insert("end", funcionario_select.mostrar_atributos_principais())
         self.funcionario_vendedor = funcionario_select
 
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
@@ -247,7 +247,7 @@ class AppLojaAberta(AppBase):
         self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.cliente_pre_selecionado.delete(1, "end")
-        self.cliente_pre_selecionado.insert("end", cliente_select.mostrar_dados_do_cliente())
+        self.cliente_pre_selecionado.insert("end", cliente_select.mostrar_atributos_principais())
         self.cliente_comprador = cliente_select
 
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
@@ -263,7 +263,7 @@ class AppLojaAberta(AppBase):
         self.carro_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.carro_pre_selecionado.delete(1, "end")
-        self.carro_pre_selecionado.insert("end", carro_select.mostrar_dados_do_veiculo())
+        self.carro_pre_selecionado.insert("end", carro_select.mostrar_atributos_principais())
         self.carro_escolhido = carro_select
 
         self.carro_pre_selecionado.config(state=tkinter.DISABLED)
@@ -271,7 +271,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, carro_select.mostrar_dados_do_veiculo())
+        self.texto_relatorio.insert(1.0, carro_select.mostrar_atributos_principais())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -328,8 +328,8 @@ class AppLojaAberta(AppBase):
                f"data:{self.venda.data}" \
                f"\n" \
                f"{self.venda.loja}" \
-               f"{self.venda.cliente.mostrar_dados_do_cliente()}" \
-               f"{self.venda.veiculo.mostrar_dados_do_veiculo()}" \
+               f"{self.venda.cliente.mostrar_atributos_principais()}" \
+               f"{self.venda.veiculo.mostrar_atributos_principais()}" \
                f"\n" \
                f"Responsavel pela venda:{self.venda.funcionario.nome} cargo:{self.venda.funcionario.cargo['cargo']}\n" \
                f"\n" \
@@ -339,7 +339,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.relatorio_de_venda_selecionado = venda_select.mostrar_venda()
+        self.relatorio_de_venda_selecionado = venda_select.mostrar_dados_da_venda()
         self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)

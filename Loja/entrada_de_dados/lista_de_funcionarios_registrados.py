@@ -73,4 +73,3 @@ email = "fabiju@com"
 cargo = "vendedor"
 funcionario_fabiana_junqueira987987 = Funcionario(nome, cpf, telefone, email, cargo)
 add_funcionario_na_lista_do_main(funcionario_fabiana_junqueira987987, "funcionario_fabiana_junqueira987987")
-
