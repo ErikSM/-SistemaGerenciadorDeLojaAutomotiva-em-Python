@@ -13,14 +13,14 @@ from apps_de_funcionamento.AppCriarFuncionario import AppCriarFuncionario
 from apps_de_funcionamento.AppSenhaEditar import AppSenhaEditar
 from administracao.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
 from administracao.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
-from entrada_de_dados.lista_de_clientes_registrados import clientes_registrados
-from entrada_de_dados.lista_de_funcionarios_registrados import funcionarios_registrados
-from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas, codigos_de_vendas_existentes
-from entrada_de_dados.lista_de_carros_registrados import carros_registrados
-from entrada_de_dados.editar_lista_lojas_criadas import remover_loja_da_lista_de_lojas_registrados
-from entrada_de_dados.editar_lista_vendas_registradas import \
-    adicionar_relatorio_de_venda_em_lista_do_main, \
-    remover_carro_vendido_da_lista_de_carros_registrados
+from entrada_de_dados.lista_clientes import clientes_registrados
+from entrada_de_dados.lista_funcionarios import funcionarios_registrados
+from entrada_de_dados.lista_vendas import vendas_registradas, codigos_de_vendas_existentes
+from entrada_de_dados.lista_carros import carros_registrados
+from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
+from entrada_de_dados.editar_lista_vendas import \
+    adicionar_venda_em_lista, \
+    remover_carro_vendido_da_lista_carros
 
 
 def abrir_registro_de_loja():
@@ -115,7 +115,7 @@ class AppLojaAberta(AppBase):
 
         self.menu_clientes_registrados = tkinter.Menu(self.menu_cliente, tearoff=0)
         for i in clientes_registrados:
-            self.menu_clientes_registrados.add_command(label=f"Cliente:{i.nome}    cpf:{i.cpf}",
+            self.menu_clientes_registrados.add_command(label=f"Cliente:{i.nome}    cpf:{i.telefone}",
                                                        command=lambda cliente_select=i:
                                                        self.selecionar_cliente(cliente_select)
                                                        )
@@ -224,7 +224,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def deletar_loja_aberta(self, loja: Loja):
-        remover_loja_da_lista_de_lojas_registrados(loja.nome_da_variavel)
+        remover_loja_da_lista(loja.nome_da_variavel)
         return self.window.destroy()
 
     def selecionar_funcionario(self, funcionario_select):
@@ -312,8 +312,8 @@ class AppLojaAberta(AppBase):
 
         venda = Venda(data, codigo, loja, funcionario, cliente, veiculo, preco)
 
-        adicionar_relatorio_de_venda_em_lista_do_main(venda)
-        remover_carro_vendido_da_lista_de_carros_registrados(veiculo.nome_da_variavel, codigo)
+        adicionar_venda_em_lista(venda)
+        remover_carro_vendido_da_lista_carros(veiculo.nome_da_variavel, codigo)
 
         self.venda = venda
 

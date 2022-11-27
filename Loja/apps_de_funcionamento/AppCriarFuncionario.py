@@ -1,7 +1,7 @@
 import tkinter
 
 from administracao.cargos_e_salarios import dicionario_de_cargos
-from entrada_de_dados.editar_lista_funcionarios_registrados import salvar_funcionario_em_lista_do_main
+from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lista
 from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
@@ -106,7 +106,7 @@ class AppCriarFuncionario(AppBase):
 
         funcionario = Funcionario(nome, cpf, telefone, email, cargo)
 
-        salvar_funcionario_em_lista_do_main(funcionario)
+        salvar_funcionario_em_lista(funcionario)
 
         self.funcionario = funcionario
 

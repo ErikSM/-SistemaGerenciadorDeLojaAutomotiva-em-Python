@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.editar_lista_lojas_criadas import salvar_loja_em_lista_do_main
+from entrada_de_dados.editar_lista_lojas import salvar_loja_em_lista
 from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
@@ -84,6 +84,6 @@ class AppCriarLoja(AppBase):
 
         loja = Loja(nome, cnpj, telefone)
 
-        salvar_loja_em_lista_do_main(nome, cnpj, telefone)
+        salvar_loja_em_lista(nome, cnpj, telefone)
 
         self.loja = loja

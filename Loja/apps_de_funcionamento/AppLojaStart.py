@@ -1,7 +1,7 @@
 import tkinter
 
 from apps_de_funcionamento.AppSenhaLogin import AppSenhaLogin
-from entrada_de_dados.lista_de_lojas_criadas import lojas_registradas
+from entrada_de_dados.lista_lojas import lojas_registradas
 from apps_de_funcionamento.AppLojaAberta import abrir_registro_de_loja, AppLojaAberta
 
 

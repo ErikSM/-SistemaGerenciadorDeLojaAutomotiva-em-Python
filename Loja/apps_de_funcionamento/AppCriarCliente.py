@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.editar_lista_clientes_registrados import salvar_cliente_em_lista_do_main
+from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
 from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
@@ -96,7 +96,7 @@ class AppCriarCliente(AppBase):
 
         cliente = Cliente(nome, cpf, telefone, email)
 
-        salvar_cliente_em_lista_do_main(cliente)
+        salvar_cliente_em_lista(cliente)
 
         self.cliente = cliente
 

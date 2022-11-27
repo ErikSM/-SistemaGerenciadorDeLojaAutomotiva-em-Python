@@ -1,4 +1,4 @@
-from entrada_de_dados.lista_de_vendas_efetuadas import vendas_registradas
+from entrada_de_dados.lista_vendas import vendas_registradas
 
 
 def criar_relatorio_de_lucro_total_de_vendas():
