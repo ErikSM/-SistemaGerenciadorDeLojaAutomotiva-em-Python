@@ -25,16 +25,16 @@ class Venda:
                f'data = "{self.data}"\n\n' \
                f'codigo = "{self.codigo}"\n\n' \
                f'# (loja)\n' \
-               f'from entrada_de_dados.lista_de_lojas_criadas import {self.__loja.nome_da_variavel}\n' \
+               f'from entrada_de_dados.lista_lojas import {self.__loja.nome_da_variavel}\n' \
                f'loja = {self.__loja.nome_da_variavel}\n\n' \
                f'# (funcionario)\n' \
-               f'from entrada_de_dados.lista_de_funcionarios_registrados import {self.__funcionario.nome_da_variavel}\n' \
+               f'from entrada_de_dados.lista_funcionarios import {self.__funcionario.nome_da_variavel}\n' \
                f'funcionario = {self.__funcionario.nome_da_variavel}\n\n' \
                f'# (cliente)\n' \
-               f'from entrada_de_dados.lista_de_clientes_registrados import {self.__cliente.nome_da_variavel}\n' \
+               f'from entrada_de_dados.lista_clientes import {self.__cliente.nome_da_variavel}\n' \
                f'cliente = {self.__cliente.nome_da_variavel}\n\n' \
                f'# (veiculo)\n' \
-               f'from entrada_de_dados.lista_de_carros_registrados import {self.__veiculo.nome_da_variavel}\n' \
+               f'from entrada_de_dados.lista_carros import {self.__veiculo.nome_da_variavel}\n' \
                f'carro = {self.__veiculo.nome_da_variavel}\n' \
                f'\n' \
                f'valor_negociado = "{self.__preco}"\n' \

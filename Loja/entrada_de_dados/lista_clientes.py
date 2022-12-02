@@ -3,8 +3,9 @@ from estrutura.Cliente import Cliente
 clientes_registrados = list()
 
 
-def add_cliente_na_lista(cliente: Cliente, variavel):
+def add_cliente_em_lista(cliente: Cliente, variavel, cnpj_loja_vinculada):
     cliente.nome_da_variavel = variavel
+    cliente.cnpj_loja = cnpj_loja_vinculada
     clientes_registrados.append(cliente)
     _atualizar_contador_da_lista()
 
@@ -12,7 +13,7 @@ def add_cliente_na_lista(cliente: Cliente, variavel):
 def _atualizar_contador_da_lista():
     variavel_contador_de_posicao_na_lista = 0
     for i in clientes_registrados:
-        i.posicao_na_lista = " "
+        i.posicao_na_lista = ""
         i.posicao_na_lista = variavel_contador_de_posicao_na_lista
         variavel_contador_de_posicao_na_lista += 1
 
@@ -21,25 +22,17 @@ def _atualizar_contador_da_lista():
 
 
 nome = "Erik Miyajima"
-cpf = "23434248979"
-telefone = "989234242"
-email = "erik@.com"
-cliente_erik_miyajima23434248979 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista(cliente_erik_miyajima23434248979, "cliente_erik_miyajima23434248979")
+cpf = "23948729487"
+telefone = "7539579"
+email = "sjfojfo@com"
+cliente_erik_miyajima23948729487 = Cliente(nome, cpf, telefone, email)
+add_cliente_em_lista(cliente_erik_miyajima23948729487, "cliente_erik_miyajima23948729487", 124134100000)
 
 
-nome = "Ayumi Souza"
-cpf = "98798798"
-telefone = "234234234"
-email = "ayu@.com"
-cliente_ayumi_souza98798798 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista(cliente_ayumi_souza98798798, "cliente_ayumi_souza98798798")
-
-
-nome = "jose Silveira"
-cpf = "787979242"
-telefone = "9977000222"
-email = "jsil@com"
-cliente_jose_silveira787979242 = Cliente(nome, cpf, telefone, email)
-add_cliente_na_lista(cliente_jose_silveira787979242, "cliente_jose_silveira787979242")
+nome = "Ayumi Mello"    
+cpf = "32489765098"    
+telefone = "990834562345"    
+email = "ayu@hotmail.com"    
+cliente_ayumi_mello32489765098 = Cliente(nome, cpf, telefone, email)
+add_cliente_em_lista(cliente_ayumi_mello32489765098, "cliente_ayumi_mello32489765098", 124134100000)
 

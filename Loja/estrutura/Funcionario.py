@@ -11,6 +11,8 @@ class Funcionario:
         self.__telefone = telefone
         self.__email = email
 
+        self.__cnpj_loja = None
+
         self.__cargo = cargos_e_salarios.dicionario_de_cargos[cargo]
         self.__salario = self.__cargo["salario"]
         self.__bonus = self.__cargo["bonus"]
@@ -20,7 +22,7 @@ class Funcionario:
         self.nome_da_variavel = " "
 
     def mostrar_atributos_principais(self):
-        return f'\nFuncionario = "{self.__nome}"    \n' \
+        return f'\nnome = "{self.__nome}"    \n' \
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
@@ -59,6 +61,14 @@ class Funcionario:
     @email.setter
     def email(self, email):
         self.__email = email
+
+    @property
+    def cnpj_loja(self):
+        return self.__cnpj_loja
+
+    @cnpj_loja.setter
+    def cnpj_loja(self, cnpj_loja):
+        self.__cnpj_loja = cnpj_loja
 
     @property
     def cargo(self):

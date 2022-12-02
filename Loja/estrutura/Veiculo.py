@@ -10,6 +10,8 @@ class Veiculo(ABC):  # Classe Abstrata
         self.__valor_de_aquisicao = valor_de_aquisicao
         self.__codigo = codigo
 
+        self.__cnpj_loja = None
+
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
         self.codigo_de_venda = " "
@@ -54,9 +56,9 @@ class Veiculo(ABC):  # Classe Abstrata
         self.__codigo = codigo
 
     @property
-    def loja_de_registro(self):
-        return self.__loja_de_registro
+    def cnpj_loja(self):
+        return self.__cnpj_loja
 
-    @loja_de_registro.setter
-    def loja_de_registro(self, loja_de_registro):
-        self.__loja_de_registro = loja_de_registro
+    @cnpj_loja.setter
+    def cnpj_loja(self, cnpj_loja):
+        self.__cnpj_loja = cnpj_loja

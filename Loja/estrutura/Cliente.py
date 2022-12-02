@@ -9,6 +9,9 @@ class Cliente:
         self.__cpf = cpf
         self.__telefone = telefone
         self.__email = email
+
+        self.__cnpj_loja = None
+
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
 
@@ -47,3 +50,11 @@ class Cliente:
     @email.setter
     def email(self, email):
         self.__email = email
+
+    @property
+    def cnpj_loja(self):
+        return self.__cnpj_loja
+
+    @cnpj_loja.setter
+    def cnpj_loja(self, cnpj_loja):
+        self.__cnpj_loja = cnpj_loja

@@ -9,17 +9,17 @@ def add_loja_na_lista(loja: Loja, variavel):
     _atualizar_contador_da_lista()
 
 
-def remover_loja_da_lista(loja):
-    lojas_registradas.remove(loja)
-    _atualizar_contador_da_lista()
-
-
 def _atualizar_contador_da_lista():
     variavel_contador_de_posicao_na_lista = 0
     for i in lojas_registradas:
         i.posicao_na_lista = " "
         i.posicao_na_lista = variavel_contador_de_posicao_na_lista
         variavel_contador_de_posicao_na_lista += 1
+
+
+def remover_loja_da_lista(loja):
+    lojas_registradas.remove(loja)
+    _atualizar_contador_da_lista()
 
 
 # ------------------ ---------------------- -------------------- -------
@@ -30,4 +30,13 @@ cnpj = "124134100000"
 telefone = "99881343425"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista(loja_test_store, "loja_test_store")
+
+# modificar app loja aberta
+
+nome = "Secound Test Store"
+cnpj = "1234990876543"
+telefone = "987655889099"
+loja_secound_test_store = Loja(nome, cnpj, telefone)
+add_loja_na_lista(loja_secound_test_store, "loja_secound_test_store")
+
 
