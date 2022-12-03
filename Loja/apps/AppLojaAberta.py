@@ -61,8 +61,7 @@ class AppLojaAberta(AppBase):
                 loja.adicionar_venda(venda)
 
         self.loja_de_transacao = loja
-
-        self.dicionario_com_listas = self.loja_de_transacao.dicionario_da_loja
+        self.dicionario_da_loja = self.loja_de_transacao.dicionario_da_loja
 
         self.venda = None
         self.funcionario_vendedor = None
@@ -92,7 +91,7 @@ class AppLojaAberta(AppBase):
         # \\ Menu loja
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_loja.add_command(label=f"Sobre a Loja",
-                                   command=lambda: self.mostrar_detalhes_da_loja(loja))
+                                   command=lambda: self.mostrar_detalhes_da_loja(self.loja_de_transacao))
 
         self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
         self.menu_loja_editar.add_command(label=f"Deletar Loja",
@@ -110,7 +109,7 @@ class AppLojaAberta(AppBase):
                                           command=lambda: abrir_registro_de_funcionario(self.loja_de_transacao))
 
         self.menu_funcionarios_registrados = tkinter.Menu(self.menu_funcionario, tearoff=0)
-        for i in self.dicionario_com_listas["funcionarios"]:
+        for i in self.dicionario_da_loja["funcionarios"]:
             self.menu_funcionarios_registrados.add_command(label=f"Funcionario:{i.nome} (({i.cargo['cargo']}))",
                                                            command=lambda funcionario_select=i:
                                                            self.selecionar_funcionario(funcionario_select))
@@ -124,7 +123,7 @@ class AppLojaAberta(AppBase):
                                       command=lambda: abrir_registro_de_cliente(self.loja_de_transacao))
 
         self.menu_clientes_registrados = tkinter.Menu(self.menu_cliente, tearoff=0)
-        for i in self.dicionario_com_listas["clientes"]:
+        for i in self.dicionario_da_loja["clientes"]:
             self.menu_clientes_registrados.add_command(label=f"Cliente:{i.nome}  Cpf:{i.cpf}",
                                                        command=lambda cliente_select=i:
                                                        self.selecionar_cliente(cliente_select))
@@ -138,7 +137,7 @@ class AppLojaAberta(AppBase):
                                     command=lambda: abrir_registro_de_carro(self.loja_de_transacao))
 
         self.menu_carros_registrados = tkinter.Menu(self.menu_carro, tearoff=0)
-        for i in self.dicionario_com_listas["carros"]:
+        for i in self.dicionario_da_loja["carros"]:
             self.menu_carros_registrados.add_command(label=f"Carro:{i.montadora}: {i.nome}    ${i.valor_de_aquisicao}",
                                                      command=lambda carro_select=i:
                                                      self.selecionar_carro(carro_select))
@@ -151,7 +150,7 @@ class AppLojaAberta(AppBase):
         self.menu_relatorio_de_vendas = tkinter.Menu(self.menu_relatorios, tearoff=0)
 
         self.menu_detalhes_de_venda = tkinter.Menu(self.menu_relatorio_de_vendas, tearoff=0)
-        for i in self.dicionario_com_listas["vendas"]:
+        for i in self.dicionario_da_loja["vendas"]:
             self.menu_detalhes_de_venda.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
                                                     command=lambda venda_select=i:
                                                     self.exibir_relatorio_de_vendas_existente_na_lista(venda_select))
@@ -226,8 +225,16 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, '\n(-Loja Registrada-)\n\n')
-        self.texto_relatorio.insert("end", loja)
+        self.texto_relatorio.insert(1.0, '\n(-Loja Registrada-)\n')
+        self.texto_relatorio.insert("end", loja.mostrar_dados())
+
+        for tipo in self.dicionario_da_loja:
+            self.texto_relatorio.insert("end", f'\n\n\n\n(({tipo}))\n')
+            self.texto_relatorio.insert("end", f'{"--" * 30}')
+
+            lista = self.dicionario_da_loja[tipo]
+            for conteudo in lista:
+                self.texto_relatorio.insert("end", conteudo.mostrar_dados())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -247,7 +254,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, funcionario_select.mostrar_dados_do_funcionario())
+        self.texto_relatorio.insert(1.0, funcionario_select.mostrar_dados())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -263,7 +270,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0, cliente_select.mostrar_dados_do_cliente())
+        self.texto_relatorio.insert(1.0, cliente_select.mostrar_dados())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -347,7 +354,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.relatorio_de_venda_selecionado = venda_select.mostrar_dados_da_venda()
+        self.relatorio_de_venda_selecionado = venda_select.mostrar_dados()
         self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
@@ -377,7 +384,7 @@ class AppLojaAberta(AppBase):
         self._apagar_relatorio()
         self.texto_relatorio.insert(1.0, "\n       ((Historico de Vendas))\n\n\n")
 
-        for i in self.dicionario_com_listas["vendas"]:
+        for i in self.dicionario_da_loja["vendas"]:
             self.texto_relatorio.insert("end", f""
                                                f"   >>  codigo:{i.codigo}  << \n"
                                                f"\n"

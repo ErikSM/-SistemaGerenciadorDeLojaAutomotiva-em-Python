@@ -113,5 +113,5 @@ class AppCriarFuncionario(AppBase):
 
         self.funcionario = funcionario
 
-        self.mensagem_do_relatorio = self.funcionario.mostrar_dados_do_funcionario()
+        self.mensagem_do_relatorio = self.funcionario.mostrar_dados()
 

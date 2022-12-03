@@ -31,12 +31,9 @@ telefone = "99881343425"
 loja_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista(loja_test_store, "loja_test_store")
 
-# modificar app loja aberta
 
 nome = "Secound Test Store"
 cnpj = "1234990876543"
 telefone = "987655889099"
 loja_secound_test_store = Loja(nome, cnpj, telefone)
 add_loja_na_lista(loja_secound_test_store, "loja_secound_test_store")
-
-

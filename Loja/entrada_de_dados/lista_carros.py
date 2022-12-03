@@ -48,6 +48,7 @@ codigo_de_registro = "988526"
 carro_wolkswagon_gol_988526 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
 add_carro_na_lista(carro_wolkswagon_gol_988526, "carro_wolkswagon_gol_988526", 124134100000)
 
+
 montadora = "Toyota"
 nome = "Corolla"
 ano = "2015"
@@ -55,6 +56,7 @@ valor_de_aquisicao = "50000"
 codigo_de_registro = "78502"
 carro_toyota_corolla_78502 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
 add_carro_na_lista(carro_toyota_corolla_78502, "carro_toyota_corolla_78502", 124134100000)
+
 
 montadora = "Wolkswagen"
 nome = "Golf"
@@ -75,4 +77,7 @@ add_carro_na_lista(carro_toyota_hilux_679209, "carro_toyota_hilux_679209", 12413
 
 
 remover_carro_da_lista(carro_toyota_corolla_78502, "120550")
+
+
+remover_carro_da_lista(carro_wolkswagen_golf_942353, "949530")
 

@@ -52,7 +52,7 @@ class AppLojaStart:
 
         if self.opcoes_de_loja is None:
             for i in lojas_registradas:
-                self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_atributos_sem_pular_linha()}',
+                self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_dados()}',
                                                      width=50, bg="grey")
                 self.opcoes_de_loja.config(command=lambda loja_select=i: self._exibir_loja_selecionada(loja_select))
                 self.opcoes_de_loja.pack()
