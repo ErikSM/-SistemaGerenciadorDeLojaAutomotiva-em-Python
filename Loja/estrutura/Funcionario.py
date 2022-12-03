@@ -28,7 +28,7 @@ class Funcionario:
                f'email = "{self.__email}"    \n' \
                f'cargo = "{self.__cargo["cargo"]}"    \n'
 
-    def mostrar_dados_do_funcionario(self):
+    def mostrar_dados(self):
         return f'\nFuncionario = "{self.__nome}"    \n' \
                f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
                f'telefone = "{Telefone(self.__telefone)}"    \n' \

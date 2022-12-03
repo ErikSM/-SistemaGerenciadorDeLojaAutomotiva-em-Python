@@ -21,7 +21,7 @@ class Cliente:
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n'
 
-    def mostrar_dados_do_cliente(self):
+    def mostrar_dados(self):
         return f'\nnome = "{self.__nome}"    \n' \
                f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
                f'telefone = "{Telefone(self.__telefone)}"    \n' \

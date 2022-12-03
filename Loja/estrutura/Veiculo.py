@@ -23,6 +23,13 @@ class Veiculo(ABC):  # Classe Abstrata
                f'valor_de_aquisicao = "{self.__valor_de_aquisicao}"    \n' \
                f'codigo_de_registro = "{self.__codigo}"    \n'
 
+    def mostrar_dados(self):
+        return f'\nmontadora = "{self.__montadora}"    \n' \
+               f'nome = "{self.__nome}"    \n' \
+               f'ano = "{self.__ano}"    \n' \
+               f'valor_de_aquisicao = "R$:{float(self.__valor_de_aquisicao):.2f}"    \n' \
+               f'codigo_de_registro = "{self.__codigo}"    \n'
+
     @abstractmethod
     def abstractmethod(self):
         pass

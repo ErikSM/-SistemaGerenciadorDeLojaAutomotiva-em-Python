@@ -1,3 +1,5 @@
+from entrada_de_dados.validar_documento import mascarar_cnpj
+from entrada_de_dados.validar_telefone import Telefone
 from estrutura.Funcionario import Funcionario
 from estrutura.Cliente import Cliente
 from estrutura.Loja import Loja
@@ -42,19 +44,19 @@ class Venda:
                f'venda_{self.codigo} = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)\n' \
                f'\n'
 
-    def mostrar_dados_da_venda(self):
+    def mostrar_dados(self):
         return f'codigo:{self.codigo}   data:{self.data}  \n' \
                f'\n' \
                f'((Dados da Venda)):\n' \
-               f'Loja:{self.__loja.nome}     cnpj:{self.__loja.cnpj}  \n' \
+               f'Loja:{self.__loja.nome}     cnpj:{mascarar_cnpj(self.__loja.cnpj)}  \n' \
                f'Funcionario:{self.__funcionario.nome}     cargo:{self.__funcionario.cargo["cargo"]}  \n' \
-               f'Cliente:{self.__cliente.nome}     contato:{self.__cliente.telefone}   \n\n' \
-               f'((Veiculo)):{self.__veiculo.mostrar_atributos_principais()}\n' \
+               f'Cliente:{self.__cliente.nome}     contato:{Telefone(self.__cliente.telefone)}   \n\n' \
+               f'((Veiculo)):{self.__veiculo.mostrar_dados()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
-               f'Preco_R$: "{self.__preco}"\n' \
+               f'Preco_R$: "R$:{float(self.__preco):.2f}"\n' \
                f'\n' \
-               f'Comissao sobre a venda = R$:{self.__comissao_sobre_a_venda}\n' \
+               f'Comissao sobre a venda = R$:{self.__comissao_sobre_a_venda:.2f}\n' \
                f'\n'
 
     def calcular_comissao_sobre_a_venda(self):
