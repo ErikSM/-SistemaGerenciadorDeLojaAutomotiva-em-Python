@@ -27,7 +27,7 @@ class AppLojaStart:
 
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
 
-        if len(lojas_registradas) <= 1:
+        if len(lojas_registradas) <= 2:
             self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
         self.menu_loja.add_command(label="Abrir Loja Existente", command=self.abrir_opcoes_de_loja)
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
@@ -46,9 +46,14 @@ class AppLojaStart:
 
     def abrir_opcoes_de_loja(self):
         self.window.geometry("")
-        self.texto_mensagem.config(text="Loja Registrada:")
-        if len(lojas_registradas) < 1:
+        self.texto_mensagem.config(text="Loja(s) Registrada(s):")
+
+        if len(lojas_registradas) == 0:
             self.texto_mensagem.config(text="Nenhuma loja registrada no momento...")
+        if len(lojas_registradas) >= 3:
+            self.texto_mensagem.config(text="(Limite atingido)\n"
+                                            "Voce pode registrar no maximo tres lojas...\n"
+                                            "Loja(s) Registrada(s):")
 
         if self.opcoes_de_loja is None:
             for i in lojas_registradas:

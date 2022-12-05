@@ -5,7 +5,10 @@ vendas_registradas = list()
 codigos_de_vendas_existentes = list()
 
 
-def add_venda_na_lista(venda: Venda):
+def add_venda_na_lista(venda: Venda, variavel):
+    venda.nome_da_variavel = variavel
+    venda.funcionario.comissoes_recebidas.append(float(venda.comissao_sobre_a_venda))
+    venda.funcionario.total_comissoes_recebidas += float(venda.comissao_sobre_a_venda)
     vendas_registradas.append(venda)
     _add_novo_codigo_na_lista_de_codigos_ja_existentes(venda.codigo)
 
@@ -48,7 +51,7 @@ valor_negociado = "63000"
 venda_120550 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
 
 
-add_venda_na_lista(venda_120550)
+add_venda_na_lista(venda_120550, "venda_120550")
 
 
 # -------------------------------------------------------
@@ -82,7 +85,74 @@ valor_negociado = "39000"
 venda_949530 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
 
 
-add_venda_na_lista(venda_949530)
+add_venda_na_lista(venda_949530, "venda_949530")
+
+
+# -------------------------------------------------------
+
+
+
+# ((Dados da Venda)):
+
+data = "2022-12-03"
+
+codigo = "786778"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_joao_pereira77832209823
+funcionario = funcionario_joao_pereira77832209823
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_erik_miyajima23948729487
+cliente = cliente_erik_miyajima23948729487
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_wolkswagon_gol_988526
+carro = carro_wolkswagon_gol_988526
+
+valor_negociado = "70000"
+
+venda_786778 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_786778, "venda_786778")
+
+
+# -------------------------------------------------------
+
+
+# ((Dados da Venda)):
+
+data = "2022-12-04"
+
+codigo = "854985"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_joao_pereira77832209823
+funcionario = funcionario_joao_pereira77832209823
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_erik_miyajima23948729487
+cliente = cliente_erik_miyajima23948729487
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_toyota_hilux_679209
+carro = carro_toyota_hilux_679209
+
+valor_negociado = "400000"
+
+venda_854985 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_854985, "venda_854985")
 
 
 # -------------------------------------------------------

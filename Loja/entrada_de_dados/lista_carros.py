@@ -81,3 +81,27 @@ remover_carro_da_lista(carro_toyota_corolla_78502, "120550")
 
 remover_carro_da_lista(carro_wolkswagen_golf_942353, "949530")
 
+
+montadora = "WolksWagen"    
+nome = "Gol"    
+ano = "2020"    
+valor_de_aquisicao = "50000"    
+codigo_de_registro = "827583"    
+carro_wolkswagen_gol_827583 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_wolkswagen_gol_827583, "carro_wolkswagen_gol_827583", 124134100000)
+
+
+montadora = "Toyota "    
+nome = "Corolla"    
+ano = "2019"    
+valor_de_aquisicao = "60000"    
+codigo_de_registro = "873311"    
+carro_toyota_corolla_873311 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_toyota_corolla_873311, "carro_toyota_corolla_873311", 124134100000)
+
+
+remover_carro_da_lista(carro_wolkswagon_gol_988526, "786778")
+
+
+remover_carro_da_lista(carro_toyota_hilux_679209, "854985")
+

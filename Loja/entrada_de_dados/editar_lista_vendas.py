@@ -17,7 +17,7 @@ def _escrever_venda(venda: Venda):
     return f'\n' \
            f'{venda}' \
            f'\n' \
-           f'add_venda_na_lista({variavel_da_classe})\n\n' \
+           f'add_venda_na_lista({variavel_da_classe}, "{variavel_da_classe}")\n\n' \
            f'\n' \
            f'# -------------------------------------------------------\n' \
            f'\n'
