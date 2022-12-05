@@ -1,19 +1,20 @@
 import tkinter
 
-from entrada_de_dados.lista_vendas import vendas_registradas
+from estrutura import Loja
 
 
-def criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo():
+def criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(loja: Loja):
     texto_temporario = tkinter.Text()
     texto_temporario.insert(1.0, "\n      ((Lucro por cada venda))\n\n\n")
-    for i in vendas_registradas:
+    for i in loja.dicionario_da_loja["vendas"]:
         codigo = i.codigo
         data = i.data
         valor_gasto = float("".join(i.veiculo.valor_de_aquisicao.split()))
         valor_ganho = float("".join(i.preco.split()))
         comissao = i.comissao_sobre_a_venda
         lucro = i.lucro_sobre_a_venda
-        texto_temporario.insert("end", _escrever_lucro_sobre_a_venda(codigo, data, valor_gasto, valor_ganho, comissao, lucro))
+        texto_temporario.insert("end", _escrever_lucro_sobre_a_venda(codigo, data, valor_gasto,
+                                                                     valor_ganho, comissao, lucro))
     return texto_temporario.get(1.0, "end")
 
 

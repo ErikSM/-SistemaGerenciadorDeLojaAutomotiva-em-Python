@@ -22,6 +22,8 @@ class Venda:
         self.__comissao_sobre_a_venda = self.calcular_comissao_sobre_a_venda()
         self.__lucro_sobre_a_venda = self.calcular_lucro_sobre_a_venda()
 
+        self.nome_da_variavel = ""
+
     def __str__(self):
         return f'# ((Dados da Venda)):\n\n' \
                f'data = "{self.data}"\n\n' \
@@ -45,7 +47,7 @@ class Venda:
                f'\n'
 
     def mostrar_dados(self):
-        return f'codigo:{self.codigo}   data:{self.data}  \n' \
+        return f'\ncodigo:{self.codigo}   data:{self.data}  \n' \
                f'\n' \
                f'((Dados da Venda)):\n' \
                f'Loja:{self.__loja.nome}     cnpj:{mascarar_cnpj(self.__loja.cnpj)}  \n' \

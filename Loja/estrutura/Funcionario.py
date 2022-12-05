@@ -18,6 +18,9 @@ class Funcionario:
         self.__bonus = self.__cargo["bonus"]
         self.__comissao = self.__cargo["comissao"]
 
+        self.comissoes_recebidas = list()
+        self.total_comissoes_recebidas = float()
+
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
 

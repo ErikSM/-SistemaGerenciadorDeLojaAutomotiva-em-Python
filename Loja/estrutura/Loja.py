@@ -31,7 +31,6 @@ class Loja:
                f'cnpj:{mascarar_cnpj(self.__cnpj)}   \n' \
                f'contato:{Telefone(self.__telefone)}   \n'
 
-
     def adicionar_carro(self, carro):
         self.carros_registrados.append(carro)
 

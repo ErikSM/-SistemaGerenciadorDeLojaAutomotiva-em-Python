@@ -1,3 +1,5 @@
+
+
 def _tirar_espacos_de_string(string):
     string_espalhado = string.split()
     string_sem_espaco = "".join(string_espalhado)
@@ -7,10 +9,10 @@ def _tirar_espacos_de_string(string):
     return string_apos_teste
 
 
-def _encontrar_posicao_do_caractere(str, ch):
+def _encontrar_posicao_do_caractere(string, caractere):
     indice = 0
-    while indice < len(str):
-        if str[indice] == ch:
+    while indice < len(string):
+        if string[indice] == caractere:
             return indice
         indice = indice + 1
 

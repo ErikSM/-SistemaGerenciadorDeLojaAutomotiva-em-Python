@@ -1,18 +1,18 @@
-from entrada_de_dados.lista_vendas import vendas_registradas
+from estrutura import Loja
 
 
-def criar_relatorio_de_lucro_total_de_vendas():
-    total_venda = _calcular_total_bruto_de_vendas()
-    total_gasto = _calcular_gastos_totais_com_obtencao_de_veiculos()
-    total_comissao = _calcular_valores_pagos_em_comissao_sobre_a_venda()
-    resultado = _calcular_lucro_total_de_vendas()
+def criar_relatorio_de_lucro_total_de_vendas(loja: Loja):
+    total_venda = _calcular_total_bruto_de_vendas(loja)
+    total_gasto = _calcular_gastos_totais_com_obtencao_de_veiculos(loja)
+    total_comissao = _calcular_valores_pagos_em_comissao_sobre_a_venda(loja)
+    resultado = _calcular_lucro_total_de_vendas(loja)
 
     return _escrever_relatorio_de_lucro(total_venda, total_gasto, total_comissao, resultado)
 
 
-def _calcular_total_bruto_de_vendas():
+def _calcular_total_bruto_de_vendas(loja: Loja):
     total_venda = 0
-    for i in vendas_registradas:
+    for i in loja.dicionario_da_loja["vendas"]:
         variavel = i.preco.split()
         venda_sem_espaco = "".join(variavel)
         venda = float(venda_sem_espaco)
@@ -21,9 +21,9 @@ def _calcular_total_bruto_de_vendas():
     return total_venda
 
 
-def _calcular_gastos_totais_com_obtencao_de_veiculos():
+def _calcular_gastos_totais_com_obtencao_de_veiculos(loja: Loja):
     total_gasto = 0
-    for i in vendas_registradas:
+    for i in loja.dicionario_da_loja["vendas"]:
         variavel = i.veiculo.valor_de_aquisicao.split()
         gasto_sem_espaco = "".join(variavel)
         gasto = float(gasto_sem_espaco)
@@ -32,18 +32,18 @@ def _calcular_gastos_totais_com_obtencao_de_veiculos():
     return total_gasto
 
 
-def _calcular_valores_pagos_em_comissao_sobre_a_venda():
+def _calcular_valores_pagos_em_comissao_sobre_a_venda(loja: Loja):
     total_comissao = 0
-    for i in vendas_registradas:
+    for i in loja.dicionario_da_loja["vendas"]:
         comissao = i.comissao_sobre_a_venda
         total_comissao += comissao
 
     return total_comissao
 
 
-def _calcular_lucro_total_de_vendas():
+def _calcular_lucro_total_de_vendas(loja: Loja):
     total_lucro = 0
-    for i in vendas_registradas:
+    for i in loja.dicionario_da_loja["vendas"]:
         lucro = float(i.lucro_sobre_a_venda)
         total_lucro += lucro
     return total_lucro
