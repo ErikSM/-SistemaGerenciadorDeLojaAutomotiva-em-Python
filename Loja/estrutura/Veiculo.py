@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from entrada_de_dados.mascarar_preco import mascarar_preco
+
 
 class Veiculo(ABC):  # Classe Abstrata
 
@@ -27,8 +29,9 @@ class Veiculo(ABC):  # Classe Abstrata
         return f'\nmontadora = "{self.__montadora}"    \n' \
                f'nome = "{self.__nome}"    \n' \
                f'ano = "{self.__ano}"    \n' \
-               f'valor_de_aquisicao = "R$:{float(self.__valor_de_aquisicao):.2f}"    \n' \
-               f'codigo_de_registro = "{self.__codigo}"    \n'
+               f'valor de aquisicao = "R$:{mascarar_preco(self.__valor_de_aquisicao)}"    \n' \
+               f'codigo de registro = "{self.__codigo}"    \n' \
+               f'loja = {self.__cnpj_loja}' \
 
     @abstractmethod
     def abstractmethod(self):

@@ -24,3 +24,6 @@ class Cpf:
 
         return "{}.{}.{}-{}".format(
             parte_um, parte_dois, parte_tres, parte_quatro)
+
+
+

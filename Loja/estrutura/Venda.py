@@ -1,3 +1,4 @@
+from entrada_de_dados.mascarar_preco import mascarar_preco
 from entrada_de_dados.validar_documento import mascarar_cnpj
 from entrada_de_dados.validar_telefone import Telefone
 from estrutura.Funcionario import Funcionario
@@ -56,9 +57,9 @@ class Venda:
                f'((Veiculo)):{self.__veiculo.mostrar_dados()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
-               f'Preco_R$: "R$:{float(self.__preco):.2f}"\n' \
+               f'Preco: "{mascarar_preco(self.__preco)}"\n' \
                f'\n' \
-               f'Comissao sobre a venda = R$:{self.__comissao_sobre_a_venda:.2f}\n' \
+               f'Comissao sobre a venda = {mascarar_preco(self.__comissao_sobre_a_venda)}\n' \
                f'\n'
 
     def calcular_comissao_sobre_a_venda(self):
