@@ -110,7 +110,7 @@ class AppCriarFuncionario(AppBase):
         email = self.entrada_do_email.get()
         cargo = self.entrada_do_cargo.get()
 
-        if len(nome) or len(cpf) or len(telefone) or len(email) == 0:
+        if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
             funcionario = Funcionario(nome, cpf, telefone, email, cargo)

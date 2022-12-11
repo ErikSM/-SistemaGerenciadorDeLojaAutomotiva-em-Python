@@ -97,7 +97,7 @@ class AppCriarCliente(AppBase):
         telefone = self.entrada_do_telefone.get()
         email = self.entrada_do_email.get()
 
-        if len(nome) or len(cpf) or len(telefone) or len(email) == 0:
+        if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
             cliente = Cliente(nome, cpf, telefone, email)

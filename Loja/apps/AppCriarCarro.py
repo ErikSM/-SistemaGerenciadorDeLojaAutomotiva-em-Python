@@ -101,7 +101,7 @@ class AppCriarCarro(AppBase):
         preco = self.entrada_preco.get()
         codigo = criar_codigo_unico(codigos_de_carros_existentes)
 
-        if len(montadora) or len(nome) or len(ano) or len(preco) == 0:
+        if len(montadora) == 0 or len(nome) == 0 or len(ano) == 0 or len(preco) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
             carro = Carro(montadora, nome, ano, preco, codigo)

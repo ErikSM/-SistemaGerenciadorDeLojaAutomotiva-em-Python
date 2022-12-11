@@ -36,3 +36,11 @@ email = "ayu@hotmail.com"
 cliente_ayumi_mello32489765098 = Cliente(nome, cpf, telefone, email)
 add_cliente_em_lista(cliente_ayumi_mello32489765098, "cliente_ayumi_mello32489765098", 124134100000)
 
+
+nome = "Joao Firmino"    
+cpf = "99087678990"    
+telefone = "889977665478"    
+email = "jfno@hotmail.com"    
+cliente_joao_firmino99087678990 = Cliente(nome, cpf, telefone, email)
+add_cliente_em_lista(cliente_joao_firmino99087678990, "cliente_joao_firmino99087678990", 124134100000)
+

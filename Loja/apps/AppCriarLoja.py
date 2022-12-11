@@ -83,7 +83,7 @@ class AppCriarLoja(AppBase):
         cnpj = self.entrada_do_cnpj.get()
         telefone = self.entrada_do_telefone.get()
 
-        if len(nome) or len(cnpj) or len(telefone) == 0:
+        if len(nome) == 0 or len(cnpj) == 0 or len(telefone) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
             loja = Loja(nome, cnpj, telefone)
