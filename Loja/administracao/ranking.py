@@ -3,14 +3,16 @@ import tkinter
 from estrutura import Loja
 
 
-def organizar_ranking_de_carros_mais_vendidos_da_loja(loja: Loja):
-    lista_de_ordem_rankiado = list()
-
+def organizar_rankings_da_loja(loja: Loja, lista_analisada):
     carros_mais_vendidos = dict()
+    melhores_clientes = dict()
+
     quantidade = 1
 
+    lista_de_ranking_dos_carros = list()
+    lista_de_ranking_dos_clientes = list()
+
     texto_temporario = tkinter.Text()
-    texto_temporario.insert(1.0, "\n      ((RAnking de venda))\n\n\n")
 
     # definindo quantidade
     for venda in loja.dicionario_da_loja["vendas"]:
@@ -18,18 +20,40 @@ def organizar_ranking_de_carros_mais_vendidos_da_loja(loja: Loja):
             carros_mais_vendidos[venda.veiculo.nome] = carros_mais_vendidos[venda.veiculo.nome] + 1
         else:
             carros_mais_vendidos[venda.veiculo.nome] = quantidade
+        if venda.cliente.nome in melhores_clientes:
+            melhores_clientes[venda.cliente.nome] = melhores_clientes[venda.cliente.nome] + 1
+        else:
+            melhores_clientes[venda.cliente.nome] = quantidade
 
     # ordenando ranking
     for carro in carros_mais_vendidos:
-        lista_de_ordem_rankiado.append(f'Quantidade: {carros_mais_vendidos[carro]}  -  Carro: {carro}')
-    lista_de_ordem_rankiado.sort()
-    lista_de_ordem_rankiado.reverse()
+        lista_de_ranking_dos_carros.append(f'Quantidade de vendas do modelo: {carros_mais_vendidos[carro]}  -  Carro: {carro}')
+    lista_de_ranking_dos_carros.sort()
+    lista_de_ranking_dos_carros.reverse()
+    for cliente in melhores_clientes:
+        lista_de_ranking_dos_clientes.append(f'Total de Compras: {melhores_clientes[cliente]}  -  Cliente: {cliente}')
+    lista_de_ranking_dos_clientes.sort()
+    lista_de_ranking_dos_clientes.reverse()
 
     # escrevendo relatorio
-    for i in lista_de_ordem_rankiado:
+    for i in lista_de_ranking_dos_carros:
         texto_temporario.insert("end", f'{i}\n')
+    texto_temporario.insert(1.0, "\n       ((Ranking de Carros mais Vendidos))\n\n\n")
+    string_ranking_de_carros = texto_temporario.get(1.0, "end")
+    texto_temporario.delete(1.0, "end")
 
-    return texto_temporario.get(1.0, "end")
+    for i in lista_de_ranking_dos_clientes:
+        texto_temporario.insert("end", f'{i}\n')
+    texto_temporario.insert(1.0, "\n       ((Ranking Melhores Clientes))\n\n\n")
+    string_ranking_de_clientes = texto_temporario.get(1.0, "end")
+    texto_temporario.delete(1.0, "end")
+
+    if lista_analisada == "carros":
+        return string_ranking_de_carros
+    if lista_analisada == "clientes":
+        return string_ranking_de_clientes
+
+
 
 
 teste = '''
