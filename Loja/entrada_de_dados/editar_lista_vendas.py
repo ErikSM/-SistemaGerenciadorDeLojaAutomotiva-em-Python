@@ -6,9 +6,11 @@ from estrutura.Carro import Carro
 def adicionar_venda_em_lista(venda: Venda):
     endereco_do_arquivo = "entrada_de_dados/lista_vendas"
 
+    formato = "py"
+
     escrever = _escrever_venda(venda)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_venda(venda: Venda):
@@ -26,9 +28,11 @@ def _escrever_venda(venda: Venda):
 def remover_carro_vendido_da_lista_carros(carro: Carro, codigo):
     endereco_do_arquivo = "entrada_de_dados/lista_carros"
 
+    formato = "py"
+
     escrever = _escrever_remocao_de_carro_vendido(carro, codigo)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_remocao_de_carro_vendido(carro: Carro, codigo):

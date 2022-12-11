@@ -13,6 +13,10 @@ class AppCriarLoja(AppBase):
 
         self.texto_temporario = tkinter.Text()
         self.loja = None
+        self.mensagem_do_relatorio = None
+
+        self.texto_relatorio.config(font=("Consolas", 9))
+        self.texto_relatorio.config(width=60, height=20)
 
         # LOJA
         texto_no_nome = tkinter.StringVar()
@@ -61,32 +65,30 @@ class AppCriarLoja(AppBase):
 
         self._apagar_relatorio()
 
-# -----------------------------  --------------   ----------------
-        #if verificar_documento(self.entrada_do_cnpj.get()):
+        # -----------------------------  --------------   ----------------
+        # if verificar_documento(self.entrada_do_cnpj.get()):
         #   self._criar_loja()
-        #else:
+        # else:
         #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CNPJ invalido"
-# --------------  -------------------------  -----------------
+        # --------------  -------------------------  -----------------
 
         self._criar_loja()
 
-        self.texto_relatorio.insert(1.0, self.loja)
-
-        mensagem_final = "\n\n Feche todo o programa e abra novamente"
-        self.texto_relatorio.insert("end", mensagem_final)
+        self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
-
-        self.window.destroy()
 
     def _criar_loja(self):
         nome = self.entrada_do_nome.get()
         cnpj = self.entrada_do_cnpj.get()
         telefone = self.entrada_do_telefone.get()
 
-        loja = Loja(nome, cnpj, telefone)
+        if len(nome) or len(cnpj) or len(telefone) == 0:
+            self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+        else:
+            loja = Loja(nome, cnpj, telefone)
+            salvar_loja_em_lista(nome, cnpj, telefone)
 
-        salvar_loja_em_lista(nome, cnpj, telefone)
+            self.loja = loja
 
-        self.loja = loja
-
+            self.mensagem_do_relatorio = self.loja

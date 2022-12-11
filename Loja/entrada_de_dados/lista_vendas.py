@@ -158,3 +158,36 @@ add_venda_na_lista(venda_854985, "venda_854985")
 # -------------------------------------------------------
 
 
+# ((Dados da Venda)):
+
+data = "2022-12-09"
+
+codigo = "937931"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_ana_julia98767823490
+funcionario = funcionario_ana_julia98767823490
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_ayumi_mello32489765098
+cliente = cliente_ayumi_mello32489765098
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_wolkswagen_gol_492654
+carro = carro_wolkswagen_gol_492654
+
+valor_negociado = "13000"
+
+venda_937931 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_937931, "venda_937931")
+
+
+# -------------------------------------------------------
+
+

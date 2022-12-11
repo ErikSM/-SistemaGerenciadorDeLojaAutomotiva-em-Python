@@ -7,9 +7,11 @@ from estrutura.Carro import Carro
 def salvar_carro_em_lista(carro: Carro, loja: Loja):
     endereco_do_arquivo = "entrada_de_dados/lista_carros"
 
+    formato = "py"
+
     escrever = _escrever_objeto_carro(carro, loja)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_carro(carro: Carro, loja: Loja):

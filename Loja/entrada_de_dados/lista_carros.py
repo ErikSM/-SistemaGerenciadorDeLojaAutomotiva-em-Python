@@ -105,3 +105,42 @@ remover_carro_da_lista(carro_wolkswagon_gol_988526, "786778")
 
 remover_carro_da_lista(carro_toyota_hilux_679209, "854985")
 
+
+montadora = "WolksWagen"    
+nome = "Gol"    
+ano = "2013"    
+valor_de_aquisicao = "12000"    
+codigo_de_registro = "492654"    
+carro_wolkswagen_gol_492654 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_wolkswagen_gol_492654, "carro_wolkswagen_gol_492654", 124134100000)
+
+
+remover_carro_da_lista(carro_wolkswagen_gol_492654, "937931")
+
+
+montadora = "WolksWagen"    
+nome = "Gol"    
+ano = "2022"    
+valor_de_aquisicao = "60000"    
+codigo_de_registro = "719373"    
+carro_wolkswagen_gol_719373 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_wolkswagen_gol_719373, "carro_wolkswagen_gol_719373", 124134100000)
+
+
+montadora = "WolksWagen"    
+nome = "Gol"    
+ano = "2019"    
+valor_de_aquisicao = "30000"    
+codigo_de_registro = "337520"    
+carro_wolkswagen_gol_337520 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_wolkswagen_gol_337520, "carro_wolkswagen_gol_337520", 124134100000)
+
+
+montadora = "WolksWagen"    
+nome = "Gol"    
+ano = "2022"    
+valor_de_aquisicao = "63000"    
+codigo_de_registro = "463315"    
+carro_wolkswagen_gol_463315 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_wolkswagen_gol_463315, "carro_wolkswagen_gol_463315", 124134100000)
+

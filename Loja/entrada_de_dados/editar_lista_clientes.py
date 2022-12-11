@@ -7,9 +7,11 @@ from estrutura.Cliente import Cliente
 def salvar_cliente_em_lista(cliente: Cliente, loja: Loja):
     endereco_do_arquivo = "entrada_de_dados/lista_clientes"
 
+    formato = "py"
+
     escrever = _escrever_objeto_cliente(cliente, loja)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_cliente(cliente: Cliente, loja: Loja):

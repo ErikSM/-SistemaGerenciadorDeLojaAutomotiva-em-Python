@@ -24,14 +24,14 @@ class AppLojaStart:
 
         # \ Menu
         self.menu_principal = tkinter.Menu(self.window)
+        self.window.config(menu=self.menu_principal)
 
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
+        self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
 
+        self.menu_loja.add_command(label="Abrir Loja Existente", command=self.abrir_opcoes_de_loja)
         if len(lojas_registradas) <= 2:
             self.menu_loja.add_command(label="Registrar Nova Loja", command=abrir_registro_de_loja)
-        self.menu_loja.add_command(label="Abrir Loja Existente", command=self.abrir_opcoes_de_loja)
-        self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
-        self.window.config(menu=self.menu_principal)
 
         # Frame
         self.frame = tkinter.Frame(self.window, bg="grey60")

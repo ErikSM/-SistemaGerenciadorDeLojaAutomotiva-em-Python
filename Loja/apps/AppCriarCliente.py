@@ -1,7 +1,7 @@
 import tkinter
 
 from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
-from entrada_de_dados.validar_documento import verificar_documento
+from entrada_de_dados.validar_documento import verificar_documento, mascarar_cnpj
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
@@ -17,6 +17,9 @@ class AppCriarCliente(AppBase):
 
         self.cliente = None
         self.mensagem_do_relatorio = None
+
+        self.texto_relatorio.config(font=("Consolas", 9))
+        self.texto_relatorio.config(width=60, height=20)
 
         # Cliente
         texto_no_nome = tkinter.StringVar()
@@ -94,9 +97,13 @@ class AppCriarCliente(AppBase):
         telefone = self.entrada_do_telefone.get()
         email = self.entrada_do_email.get()
 
-        cliente = Cliente(nome, cpf, telefone, email)
+        if len(nome) or len(cpf) or len(telefone) or len(email) == 0:
+            self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+        else:
+            cliente = Cliente(nome, cpf, telefone, email)
+            salvar_cliente_em_lista(cliente, self.loja)
 
-        salvar_cliente_em_lista(cliente, self.loja)
+            self.cliente = cliente
+            self.cliente.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
 
-        self.cliente = cliente
-        self.mensagem_do_relatorio = self.cliente.mostrar_atributos_principais()
+            self.mensagem_do_relatorio = self.cliente.mostrar_atributos_principais()

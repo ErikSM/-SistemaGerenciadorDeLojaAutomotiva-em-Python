@@ -2,7 +2,7 @@ import tkinter
 
 from administracao.cargos_e_salarios import dicionario_de_cargos
 from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lista
-from entrada_de_dados.validar_documento import verificar_documento
+from entrada_de_dados.validar_documento import verificar_documento, mascarar_cnpj
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
@@ -22,6 +22,9 @@ class AppCriarFuncionario(AppBase):
         self.lista_de_cargos_existentes = list()
         for i in dicionario_de_cargos:
             self.lista_de_cargos_existentes.append(f"{i}")
+
+        self.texto_relatorio.config(font=("Consolas", 9))
+        self.texto_relatorio.config(width=60, height=20)
 
         # Funcionario
         texto_no_nome = tkinter.StringVar()
@@ -107,11 +110,14 @@ class AppCriarFuncionario(AppBase):
         email = self.entrada_do_email.get()
         cargo = self.entrada_do_cargo.get()
 
-        funcionario = Funcionario(nome, cpf, telefone, email, cargo)
+        if len(nome) or len(cpf) or len(telefone) or len(email) == 0:
+            self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+        else:
+            funcionario = Funcionario(nome, cpf, telefone, email, cargo)
+            salvar_funcionario_em_lista(funcionario, self.loja)
 
-        salvar_funcionario_em_lista(funcionario, self.loja)
+            self.funcionario = funcionario
+            self.funcionario.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
 
-        self.funcionario = funcionario
-
-        self.mensagem_do_relatorio = self.funcionario.mostrar_dados()
+            self.mensagem_do_relatorio = self.funcionario.mostrar_dados()
 

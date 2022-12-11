@@ -3,6 +3,7 @@ import tkinter
 import datetime
 
 from administracao.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
+from administracao.ranking import organizar_ranking_de_carros_mais_vendidos_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
 from entrada_de_dados.editar_lista_vendas import adicionar_venda_em_lista, remover_carro_vendido_da_lista_carros
@@ -10,6 +11,7 @@ from entrada_de_dados.lista_carros import carros_registrados
 from entrada_de_dados.lista_clientes import clientes_registrados
 from entrada_de_dados.lista_funcionarios import funcionarios_registrados
 from entrada_de_dados.lista_vendas import codigos_de_vendas_existentes, vendas_registradas
+from entrada_de_dados.mascarar_preco import mascarar_preco
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from apps.AppCriarLoja import AppCriarLoja
@@ -69,16 +71,19 @@ class AppLojaAberta(AppBase):
         self.cliente_comprador = None
         self.carro_escolhido = None
 
-        self.validar = True
+        self.validar = None
 
         self.relatorio_de_venda_selecionado = None
 
         self.texto_temporario = ""
 
+        self.window.title(loja.mostrar_dados())
         self.window.geometry("+350+100")
-        self.window.resizable(2, 2)
+        self.window.resizable(False, False)
         self.frame_dados.pack(fill="y", side="top")
         self.texto_relatorio.config(width=70, height=20, font=("Consolas", 10))
+
+        self.retornar_data_e_hora()
 
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()
@@ -173,6 +178,12 @@ class AppLojaAberta(AppBase):
         self.menu_relatorio_comissao.add_command(label="Comissoes pagas",
                                                  command=self.exibir_relatorio_de_comissoes)
         self.menu_relatorios.add_cascade(label="Relatorio de desempenho", menu=self.menu_relatorio_comissao)
+
+        # \ ranking
+        self.menu_relatorio_ranking = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorio_ranking.add_command(label="Carros mais vendidos",
+                                                 command=self.exibir_relatorio_de_ranking_de_carros)
+        self.menu_relatorios.add_cascade(label="Ranking", menu=self.menu_relatorio_ranking)
 
         # Titulo da Loja Aberta
         self.label_title = tkinter.Label(self.frame_dados, text=f"Loja:({self.loja_de_transacao.nome})".title(),
@@ -324,7 +335,8 @@ class AppLojaAberta(AppBase):
     def _criar_venda(self):
         try:
             float(self.valor_de_venda_digitado.get())
-        except:
+            self.validar = True
+        except ValueError:
             self.validar = False
 
         if self.validar:
@@ -362,7 +374,7 @@ class AppLojaAberta(AppBase):
                f"\n" \
                f"Responsavel pela venda:{self.venda.funcionario.nome} cargo:{self.venda.funcionario.cargo['cargo']}\n" \
                f"\n" \
-               f"Valor Negociado: ${self.venda.preco}"
+               f"Valor Negociado: {mascarar_preco(self.venda.preco)}"
 
     def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select):
         self.texto_relatorio.config(state=tkinter.NORMAL)
@@ -389,6 +401,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
+
         self.texto_relatorio.insert(1.0,
                                     criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(self.loja_de_transacao))
 
@@ -419,5 +432,15 @@ class AppLojaAberta(AppBase):
         self._apagar_relatorio()
         self.texto_relatorio.insert(1.0,
                                     criar_relatorio_de_comissoes_pagas_por_cada_funcionario(self.loja_de_transacao))
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def exibir_relatorio_de_ranking_de_carros(self):
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        self.texto_relatorio.insert(1.0,
+                                    organizar_ranking_de_carros_mais_vendidos_da_loja(self.loja_de_transacao))
 
         self.texto_relatorio.config(state=tkinter.DISABLED)

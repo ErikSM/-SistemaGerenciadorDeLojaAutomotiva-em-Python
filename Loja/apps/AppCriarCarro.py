@@ -3,6 +3,7 @@ import tkinter
 from entrada_de_dados.editar_lista_carros import salvar_carro_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_carros import codigos_de_carros_existentes
+from entrada_de_dados.validar_documento import mascarar_cnpj
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Carro import Carro
@@ -18,6 +19,9 @@ class AppCriarCarro(AppBase):
 
         self.carro = None
         self.mensagem_do_relatorio = None
+
+        self.texto_relatorio.config(font=("Consolas", 9))
+        self.texto_relatorio.config(width=60, height=20)
 
         # Montadora
         texto_montadora = tkinter.StringVar()
@@ -61,6 +65,8 @@ class AppCriarCarro(AppBase):
         self.label_ano.grid(row=3, column=1)
         self.entrada_ano.grid(row=3, column=2)
 
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
         # Preco
         texto_preco = tkinter.StringVar()
         texto_preco.set("preco do veiculo")
@@ -76,6 +82,7 @@ class AppCriarCarro(AppBase):
         self.entrada_preco.grid(row=4, column=2)
 
     def criar_relatorio(self):
+
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
@@ -87,15 +94,20 @@ class AppCriarCarro(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def _criar_carro(self):
+
         montadora = self.entrada_montadora.get()
         nome = self.entrada_do_nome.get()
         ano = self.entrada_ano.get()
         preco = self.entrada_preco.get()
         codigo = criar_codigo_unico(codigos_de_carros_existentes)
 
-        carro = Carro(montadora, nome, ano, preco, codigo)
+        if len(montadora) or len(nome) or len(ano) or len(preco) == 0:
+            self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+        else:
+            carro = Carro(montadora, nome, ano, preco, codigo)
+            salvar_carro_em_lista(carro, self.loja)
 
-        salvar_carro_em_lista(carro, self.loja)
+            self.carro = carro
+            self.carro.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
 
-        self.carro = carro
-        self.mensagem_do_relatorio = self.carro.mostrar_atributos_principais()
+            self.mensagem_do_relatorio = self.carro.mostrar_dados()

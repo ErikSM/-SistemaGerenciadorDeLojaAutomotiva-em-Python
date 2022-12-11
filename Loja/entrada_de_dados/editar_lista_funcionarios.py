@@ -6,9 +6,11 @@ from estrutura.Funcionario import Funcionario
 def salvar_funcionario_em_lista(funcionario: Funcionario, loja: Loja):
     endereco_do_arquivo = "entrada_de_dados/lista_funcionarios"
 
+    formato = "py"
+
     escrever = _escrever_objeto_funcionario(funcionario, loja)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, escrever)
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_funcionario(funcionario: Funcionario, loja: Loja):
