@@ -18,7 +18,7 @@ def _adicinar_profissao_em_dicionario_de_cargos(profissao):
 nome_cargo_gerente = "gerente"
 salario_gerente = "5000"
 bonus_gerente = 0.25
-comissao_gerente = 0.20
+comissao_gerente = 0.07
 
 criar_profissao(nome_cargo_gerente, salario_gerente,
                 bonus_gerente, comissao_gerente)

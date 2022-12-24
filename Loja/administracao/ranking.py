@@ -1,5 +1,6 @@
 import tkinter
 
+from administracao.graficos import construir_grafico_barras
 from estrutura import Loja
 
 
@@ -14,6 +15,9 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
 
     texto_temporario = tkinter.Text()
 
+    eixo_x = list()
+    eixo_y = list()
+
     # definindo quantidade
     for venda in loja.dicionario_da_loja["vendas"]:
         if venda.veiculo.nome in carros_mais_vendidos:
@@ -27,7 +31,8 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
 
     # ordenando ranking
     for carro in carros_mais_vendidos:
-        lista_de_ranking_dos_carros.append(f'Quantidade de vendas do modelo: {carros_mais_vendidos[carro]}  -  Carro: {carro}')
+        lista_de_ranking_dos_carros.append(
+            f'Quantidade de vendas do modelo: {carros_mais_vendidos[carro]}  -  Carro: {carro}')
     lista_de_ranking_dos_carros.sort()
     lista_de_ranking_dos_carros.reverse()
     for cliente in melhores_clientes:
@@ -48,11 +53,14 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
     string_ranking_de_clientes = texto_temporario.get(1.0, "end")
     texto_temporario.delete(1.0, "end")
 
+    # mostrando grafico e imprimindo resultado
     if lista_analisada == "carros":
+        construir_grafico_barras(carros_mais_vendidos, "Modelos", "Quantidade de vendas", "Mais vendidos")
         return string_ranking_de_carros
-    if lista_analisada == "clientes":
-        return string_ranking_de_clientes
 
+    if lista_analisada == "clientes":
+        construir_grafico_barras(melhores_clientes, "clientes", "Quantidade de compras", "Melhores clientes")
+        return string_ranking_de_clientes
 
 
 
@@ -67,9 +75,3 @@ ordem decrescente com a funcao reverse()
 em uma linha por vez
 
 '''
-
-
-
-
-
-
