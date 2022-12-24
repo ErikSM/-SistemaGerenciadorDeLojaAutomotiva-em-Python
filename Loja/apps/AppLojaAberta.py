@@ -182,7 +182,7 @@ class AppLojaAberta(AppBase):
         # \ ranking
         self.menu_relatorio_ranking = tkinter.Menu(self.menu_relatorios, tearoff=0)
         self.menu_relatorio_ranking.add_command(label="Carros mais vendidos",
-                                                 command=self.exibir_relatorio_de_ranking_de_carros)
+                                                command=self.exibir_relatorio_de_ranking_de_carros)
         self.menu_relatorio_ranking.add_command(label="Melhores clientes",
                                                 command=self.exibir_relatorio_de_ranking_de_clientes)
         self.menu_relatorios.add_cascade(label="Ranking", menu=self.menu_relatorio_ranking)
@@ -230,7 +230,7 @@ class AppLojaAberta(AppBase):
         # vendedor selecionado
         self.label_funcionario_pre_selecionado = tkinter.Label(self.frame_dados,
                                                                font=('Verdanna', 10, 'italic', 'bold'),
-                                                               text="Funcionario vendedor:   ", bg="white", fg="red")
+                                                               text="Funcionario vendedor:   ", bg="grey90", fg="red")
         self.label_funcionario_pre_selecionado.grid(row=4, column=0)
 
         self.funcionario_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110, bg="grey",
@@ -350,14 +350,11 @@ class AppLojaAberta(AppBase):
             veiculo = self.carro_escolhido
             preco = self.valor_negociado
             data = datetime.date.today()
-
             codigo = criar_codigo_unico(codigos_de_vendas_existentes)
 
             venda = Venda(data, codigo, loja, funcionario, cliente, veiculo, preco)
-
             adicionar_venda_em_lista(venda)
             remover_carro_vendido_da_lista_carros(veiculo.nome_da_variavel, codigo)
-
             self.venda = venda
 
             self.funcionario_vendedor = None
@@ -403,7 +400,6 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-
         self.texto_relatorio.insert(1.0,
                                     criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(self.loja_de_transacao))
 
@@ -414,7 +410,6 @@ class AppLojaAberta(AppBase):
 
         self._apagar_relatorio()
         self.texto_relatorio.insert(1.0, "\n       ((Historico de Vendas))\n\n\n")
-
         for i in self.dicionario_da_loja["vendas"]:
             self.texto_relatorio.insert("end", f""
                                                f"(codigo:{i.codigo}): "
@@ -442,25 +437,21 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-
-        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao,
-                                                           "carros")
+        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao, "carros")
         self.texto_relatorio.insert(1.0, self.texto_temporario)
 
-        self.texto_temporario = None
-
         self.texto_relatorio.config(state=tkinter.DISABLED)
+
+        self.texto_temporario = None
 
     def exibir_relatorio_de_ranking_de_clientes(self):
 
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-
-        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao,
-                                                           "clientes")
+        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao, "clientes")
         self.texto_relatorio.insert(1.0, self.texto_temporario)
 
-        self.texto_temporario = None
-
         self.texto_relatorio.config(state=tkinter.DISABLED)
+
+        self.texto_temporario = None

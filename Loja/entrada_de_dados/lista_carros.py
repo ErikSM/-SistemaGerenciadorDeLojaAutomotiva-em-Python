@@ -144,3 +144,18 @@ codigo_de_registro = "463315"
 carro_wolkswagen_gol_463315 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
 add_carro_na_lista(carro_wolkswagen_gol_463315, "carro_wolkswagen_gol_463315", 124134100000)
 
+
+remover_carro_da_lista(carro_wolkswagen_gol_463315, "903983")
+
+
+montadora = "Ferrari"    
+nome = "Ferrari X"    
+ano = "2022"    
+valor_de_aquisicao = "1000000"    
+codigo_de_registro = "917"    
+carro_ferrari_ferrari_x_917 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_ferrari_ferrari_x_917, "carro_ferrari_ferrari_x_917", 124134100000)
+
+
+remover_carro_da_lista(carro_ferrari_ferrari_x_917, "716205")
+
