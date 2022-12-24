@@ -1,13 +1,13 @@
 import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
 
-x = [2000, 3000, 1000, 2000, 2000, 3000]
 
-y = [1, 2, 3, 4, 5, 6]
-nomes = ["carlos", "alberto", "luiz", "carlos", "luiz", "carlos"]
+n_bins = 20
+x = ("carlos", "carlos", "joao", "maria")
+y = (1, 2, 3, 4, 5)
 
-plt.yticks(y, nomes)
 
-plt.hist(x, y, figsize=(10, 6))
-
-plt.title("histograma")
+plt.hist(x)
 plt.show()

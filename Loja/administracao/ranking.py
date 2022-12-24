@@ -15,9 +15,6 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
 
     texto_temporario = tkinter.Text()
 
-    eixo_x = list()
-    eixo_y = list()
-
     # definindo quantidade
     for venda in loja.dicionario_da_loja["vendas"]:
         if venda.veiculo.nome in carros_mais_vendidos:
