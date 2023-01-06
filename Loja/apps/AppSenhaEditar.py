@@ -13,15 +13,22 @@ class AppSenhaEditar(AppSenha):
         self.loja = loja
         self.encerrado = False
 
-        self.botao_adicionar.config(text="  Editar...", bd=3, command=self.modificar_senha)
+        self.frame_dados.pack(fill="both", side="top")
+
+        self.botao_executar.config(text="  Editar...", bd=3, command=self.modificar_senha)
+        self.botao_executar.grid(row=0, column=2)
+
+        self.label.grid(row=0, column=0)
+        self.captura_senha.grid(row=0, column=1)
+
+        self.texto_relatorio.pack(fill="both", side="bottom")
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+        self.texto_relatorio.insert(1.0, "\n   Digite a senha no campo acima para registra-la!!")
+        self.texto_relatorio.config(state=tkinter.DISABLED)
 
         self.botao_remover = tkinter.Button(self.frame_dados, text="Deletar atual", bd=3,
                                             command=self.deletar_senha_atual)
         self.botao_remover.grid(row=0, column=3)
-
-        self.texto_relatorio.config(state=tkinter.NORMAL)
-        self.texto_relatorio.insert(1.0, "\n   Digite a senha no campo acima para registra-la!!")
-        self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def modificar_senha(self):
         self.loja.senha = self.captura_senha.get()

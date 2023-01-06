@@ -58,3 +58,15 @@ add_loja_na_lista(loja_test_store_3, "loja_test_store_3")
 
 remover_loja_da_lista(loja_test_store_3)
 
+
+loja_test_store.senha = "123"
+
+
+loja_test_store.senha = None
+
+
+loja_test_store.senha = "123"
+
+
+loja_test_store.senha = None
+

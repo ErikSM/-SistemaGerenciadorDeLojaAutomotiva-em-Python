@@ -2,6 +2,8 @@ import tkinter
 
 from administracao.cargos_e_salarios import dicionario_de_cargos
 from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lista
+from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from entrada_de_dados.lista_funcionarios import codigos_de_funcionarios_existentes
 from entrada_de_dados.validar_documento import verificar_documento, mascarar_cnpj
 from estrutura import Loja
 from estrutura.AppBase import AppBase
@@ -15,7 +17,6 @@ class AppCriarFuncionario(AppBase):
 
         self.loja = loja
         self.texto_temporario = tkinter.Text()
-
         self.cliente = None
         self.mensagem_do_relatorio = None
 
@@ -23,8 +24,11 @@ class AppCriarFuncionario(AppBase):
         for i in dicionario_de_cargos:
             self.lista_de_cargos_existentes.append(f"{i}")
 
-        self.texto_relatorio.config(font=("Consolas", 9))
-        self.texto_relatorio.config(width=60, height=20)
+        self.frame_dados.pack(fill="both", side="top")
+        self.botao_executar.grid(row=0, column=1)
+
+        self.texto_relatorio.config(font=("Consolas", 9), width=60, height=20)
+        self.texto_relatorio.pack(fill="both", side="bottom")
 
         # Funcionario
         texto_no_nome = tkinter.StringVar()
@@ -90,12 +94,12 @@ class AppCriarFuncionario(AppBase):
 
         self._apagar_relatorio()
 
-# -----------------------------  --------------   ----------------
-        #if verificar_documento(self.entrada_do_cpf.get()):
+        # -----------------------------  --------------   ----------------
+        # if verificar_documento(self.entrada_do_cpf.get()):
         #    self._criar_funcionario()
-        #else:
+        # else:
         #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
-# -----------------------------  --------------   ----------------
+        # -----------------------------  --------------   ----------------
 
         self._criar_funcionario()
 
@@ -108,16 +112,16 @@ class AppCriarFuncionario(AppBase):
         cpf = self.entrada_do_cpf.get()
         telefone = self.entrada_do_telefone.get()
         email = self.entrada_do_email.get()
+        codigo = criar_codigo_unico(codigos_de_funcionarios_existentes)
         cargo = self.entrada_do_cargo.get()
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
-            funcionario = Funcionario(nome, cpf, telefone, email, cargo)
+            funcionario = Funcionario(nome, cpf, telefone, email, codigo, cargo)
             salvar_funcionario_em_lista(funcionario, self.loja)
 
             self.funcionario = funcionario
             self.funcionario.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
 
             self.mensagem_do_relatorio = self.funcionario.mostrar_dados()
-

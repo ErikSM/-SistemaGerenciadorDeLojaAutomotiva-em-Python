@@ -21,6 +21,7 @@ from apps.AppCriarFuncionario import AppCriarFuncionario
 from apps.AppSenhaEditar import AppSenhaEditar
 from administracao.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
 from administracao.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
+from apps.AppOpcoesAvancadas import AppOpcoesAvancadas
 from estrutura.Venda import Venda
 
 
@@ -74,17 +75,21 @@ class AppLojaAberta(AppBase):
         self.validar = None
 
         self.relatorio_de_venda_selecionado = None
-
         self.texto_temporario = None
 
         self.window.title(loja.mostrar_dados())
         self.window.geometry("+350+100")
         self.window.resizable(False, False)
-        self.frame_dados.pack(fill="y", side="top")
-        self.texto_relatorio.config(width=70, height=20, font=("Consolas", 10))
 
+        self.frame_dados.pack(fill="y", side="top")
+        self.frame_dados_2.pack(fill="x", side="top")
+        self.botao_executar.grid(row=0, column=1)
+
+        self.label_calendario.pack(side="right")
         self.retornar_data_e_hora()
 
+        self.texto_relatorio.config(width=70, height=20, font=("Consolas", 10))
+        self.texto_relatorio.pack(fill="both", side="bottom")
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()
         self.texto_relatorio.insert(1.0, f"\n  (( Loja {loja.nome} ))\n\n\n"
@@ -92,11 +97,11 @@ class AppLojaAberta(AppBase):
                                          f"\n  Login na loja confirmado...")
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-        # \\\ MENU
+        # \\\ (MENU)
         self.menu_principal = tkinter.Menu(self.window)
         self.window.config(menu=self.menu_principal)
 
-        # \\ Menu loja
+        # \\ MENU LOJA
         self.menu_loja = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_principal.add_cascade(label="Loja", menu=self.menu_loja)
         # \ informacoes
@@ -104,13 +109,13 @@ class AppLojaAberta(AppBase):
                                    command=lambda: self.mostrar_detalhes_da_loja(self.loja_de_transacao))
         # \ editar
         self.menu_loja_editar = tkinter.Menu(self.menu_loja, tearoff=0)
+        self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
         self.menu_loja_editar.add_command(label=f"Deletar Loja",
                                           command=lambda loja_select=loja: self.deletar_loja_aberta(loja_select))
         self.menu_loja_editar.add_command(label=f"Criar/Modificar Senha",
                                           command=lambda: abrir_alterador_de_senha(loja))
-        self.menu_loja.add_cascade(label=f"Editar Loja (( {loja.nome} ))", menu=self.menu_loja_editar)
 
-        # \\ Menu funcionario
+        # \\ MENU FUNCIONARIO
         self.menu_funcionario = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_principal.add_cascade(label="Funcionario", menu=self.menu_funcionario)
         # \ registrar
@@ -118,27 +123,33 @@ class AppLojaAberta(AppBase):
                                           command=lambda: abrir_registro_de_funcionario(self.loja_de_transacao))
         # \ selecionar
         self.menu_funcionarios_registrados = tkinter.Menu(self.menu_funcionario, tearoff=0)
+        self.menu_funcionario.add_cascade(label="Funcionarios Registrados", menu=self.menu_funcionarios_registrados)
         for i in self.dicionario_da_loja["funcionarios"]:
             self.menu_funcionarios_registrados.add_command(label=f"Funcionario:{i.nome} (({i.cargo['cargo']}))",
                                                            command=lambda funcionario_select=i:
                                                            self.selecionar_funcionario(funcionario_select))
-        self.menu_funcionario.add_cascade(label="Funcionarios Registrados", menu=self.menu_funcionarios_registrados)
+        # \ opcoes avancadas
+        self.menu_funcionario.add_command(label="Opcoes avancadas(teste)",
+                                          command=lambda: self.abrir_opcoes_avancadas("funcionarios"))
 
-        # \\ Menu cliente
+        # \\ MENU CLIENTE
         self.menu_cliente = tkinter.Menu(self.menu_principal, tearoff=0)
+        self.menu_principal.add_cascade(label="Cliente", menu=self.menu_cliente)
         # \ registrar
         self.menu_cliente.add_command(label="Registrar Cliente",
                                       command=lambda: abrir_registro_de_cliente(self.loja_de_transacao))
         # \ selecionar
         self.menu_clientes_registrados = tkinter.Menu(self.menu_cliente, tearoff=0)
+        self.menu_cliente.add_cascade(label="Clientes Registrados", menu=self.menu_clientes_registrados)
         for i in self.dicionario_da_loja["clientes"]:
             self.menu_clientes_registrados.add_command(label=f"Cliente:{i.nome}  Cpf:{i.cpf}",
                                                        command=lambda cliente_select=i:
                                                        self.selecionar_cliente(cliente_select))
-        self.menu_cliente.add_cascade(label="Clientes Registrados", menu=self.menu_clientes_registrados)
-        self.menu_principal.add_cascade(label="Cliente", menu=self.menu_cliente)
+        # \ opcoes avancadas
+        self.menu_cliente.add_command(label="Opcoes avancadas(teste)",
+                                      command=lambda: self.abrir_opcoes_avancadas("clientes"))
 
-        # \\ Menu carro
+        # \\ MENU CARRO
         self.menu_carro = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_principal.add_cascade(label="Carro", menu=self.menu_carro)
         # \ registrar
@@ -146,74 +157,76 @@ class AppLojaAberta(AppBase):
                                     command=lambda: abrir_registro_de_carro(self.loja_de_transacao))
         # \ selecionar
         self.menu_carros_registrados = tkinter.Menu(self.menu_carro, tearoff=0)
+        self.menu_carro.add_cascade(label="Carros Registrados", menu=self.menu_carros_registrados)
         for i in self.dicionario_da_loja["carros"]:
-            self.menu_carros_registrados.add_command(label=f"Carro:{i.montadora}: {i.nome}    ${i.valor_de_aquisicao}",
+            self.menu_carros_registrados.add_command(label=f"Carro:{i.montadora}: {i.nome}   R$:{i.valor_de_aquisicao}",
                                                      command=lambda carro_select=i:
                                                      self.selecionar_carro(carro_select))
-        self.menu_carro.add_cascade(label="Carros Registrados", menu=self.menu_carros_registrados)
+        # \ opcoes avancadas
+        self.menu_carro.add_command(label="Opcoes avancadas(teste)",
+                                    command=lambda: self.abrir_opcoes_avancadas("carros"))
 
-        # \\ Menu relatorios
+        # \\ MENU RELATORIOS
         self.menu_relatorios = tkinter.Menu(self.menu_principal, tearoff=0)
         self.menu_principal.add_cascade(label="Relatorios", menu=self.menu_relatorios)
         # \ vendas
         self.menu_relatorio_de_vendas = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
         self.menu_detalhes_de_venda = tkinter.Menu(self.menu_relatorio_de_vendas, tearoff=0)
+        self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de cada Venda", menu=self.menu_detalhes_de_venda)
         for i in self.dicionario_da_loja["vendas"]:
             self.menu_detalhes_de_venda.add_command(label=f"(Venda)  codigo:{i.codigo}  data:{i.data}",
                                                     command=lambda venda_select=i:
                                                     self.exibir_relatorio_de_vendas_existente_na_lista(venda_select))
-        self.menu_relatorio_de_vendas.add_cascade(label="Detalhes de cada Venda", menu=self.menu_detalhes_de_venda)
         self.menu_relatorio_de_vendas.add_command(label="Historico de vendas",
                                                   command=self.exibir_relatorio_de_historico_de_vendas)
-        self.menu_relatorios.add_cascade(label="Relatorio de Vendas", menu=self.menu_relatorio_de_vendas)
         #  \ financeiro
         self.menu_relatorio_financeiro = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorios.add_cascade(label="Relatorio financeiro", menu=self.menu_relatorio_financeiro)
         self.menu_relatorio_financeiro.add_command(label="Lucro Total",
                                                    command=self.exibir_relatorio_do_total_de_lucro_das_vendas)
         self.menu_relatorio_financeiro.add_command(label="Historico de lucro",
                                                    command=self.exibir_relatorio_de_lucro_por_venda)
-        self.menu_relatorios.add_cascade(label="Relatorio financeiro", menu=self.menu_relatorio_financeiro)
         # \ comissoes
         self.menu_relatorio_comissao = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorios.add_cascade(label="Relatorio de desempenho", menu=self.menu_relatorio_comissao)
         self.menu_relatorio_comissao.add_command(label="Comissoes pagas",
                                                  command=self.exibir_relatorio_de_comissoes)
-        self.menu_relatorios.add_cascade(label="Relatorio de desempenho", menu=self.menu_relatorio_comissao)
-
         # \ ranking
         self.menu_relatorio_ranking = tkinter.Menu(self.menu_relatorios, tearoff=0)
+        self.menu_relatorios.add_cascade(label="Ranking", menu=self.menu_relatorio_ranking)
         self.menu_relatorio_ranking.add_command(label="Carros mais vendidos",
                                                 command=self.exibir_relatorio_de_ranking_de_carros)
         self.menu_relatorio_ranking.add_command(label="Melhores clientes",
                                                 command=self.exibir_relatorio_de_ranking_de_clientes)
-        self.menu_relatorios.add_cascade(label="Ranking", menu=self.menu_relatorio_ranking)
 
         # Titulo da Loja Aberta
-        self.label_title = tkinter.Label(self.frame_dados, text=f"Loja:({self.loja_de_transacao.nome})".title(),
-                                         bg="white")
+        self.label_title = tkinter.Label(self.frame_dados,
+                                         text=f"Loja:({self.loja_de_transacao.nome})".title(), bg="white")
         self.label_title.config(font="Times 22 bold")
         self.label_title.grid(row=2, rowspan=2, column=0, columnspan=2)
 
         # Botao Venda (reescrevendo AppBase)
-        self.botao_adicionar.config(command=self.criar_relatorio, text="Efetivar Venda")
-        self.botao_adicionar.grid(row=2, column=3)
+        self.botao_executar.config(command=self.criar_relatorio, text="Efetivar Venda")
+        self.botao_executar.grid(row=2, column=3)
 
         # valor da venda
-        self.label_valor_de_venda = tkinter.Label(self.frame_dados, text="  Digite o valor da negociacao  ->",
-                                                  bg="white")
+        self.label_valor_de_venda = tkinter.Label(self.frame_dados,
+                                                  text="  Digite o valor da negociacao  ->", bg="white")
         self.label_valor_de_venda.grid(row=2, column=4)
 
-        self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados, font="Verdanna 10 bold", width=30, bg="grey70",
-                                                     fg="black", bd=4)
+        self.valor_de_venda_digitado = tkinter.Entry(self.frame_dados, font="Verdanna 10 bold",
+                                                     width=30, bg="grey70", fg="black", bd=4)
         self.valor_de_venda_digitado.insert("end", "0")
         self.valor_de_venda_digitado.grid(row=2, column=5)
 
         # cliente selecionado
-        self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
+        self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados,  font=('Verdanna', 10, 'italic', 'bold'),
                                                            text="Cliente Selecionado:", bg="white")
         self.label_cliente_pre_selecionado.grid(row=5, column=0)
 
-        self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
-                                                     disabledforeground="black")
+        self.cliente_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10),
+                                                     width=110, disabledforeground="black")
         self.cliente_pre_selecionado.config(state=tkinter.DISABLED)
         self.cliente_pre_selecionado.grid(row=5, column=1, columnspan=5)
 
@@ -222,8 +235,8 @@ class AppLojaAberta(AppBase):
                                                          text="Carro Selecionado:", bg="white")
         self.label_carro_pre_selecionado.grid(row=6, column=0)
 
-        self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110,
-                                                   disabledforeground="black")
+        self.carro_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10),
+                                                   width=110, disabledforeground="black")
         self.carro_pre_selecionado.config(state=tkinter.DISABLED)
         self.carro_pre_selecionado.grid(row=6, column=1, columnspan=5)
 
@@ -233,8 +246,8 @@ class AppLojaAberta(AppBase):
                                                                text="Funcionario vendedor:   ", bg="grey90", fg="red")
         self.label_funcionario_pre_selecionado.grid(row=4, column=0)
 
-        self.funcionario_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10), width=110, bg="grey",
-                                                         disabledbackground="grey")
+        self.funcionario_pre_selecionado = tkinter.Entry(self.frame_dados, font=('Consolas', 10),
+                                                         width=110, bg="grey", disabledbackground="grey")
         self.funcionario_pre_selecionado.config(state=tkinter.DISABLED)
         self.funcionario_pre_selecionado.grid(row=4, column=1, columnspan=5)
 
@@ -308,7 +321,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def criar_relatorio(self):
-        if self.carro_escolhido is None or self.cliente_comprador is None:
+        if self.carro_escolhido is None or self.cliente_comprador is None or self.funcionario_vendedor is None:
             self.texto_relatorio.config(state=tkinter.NORMAL)
 
             self._apagar_relatorio()
@@ -455,3 +468,7 @@ class AppLojaAberta(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
         self.texto_temporario = None
+
+    def abrir_opcoes_avancadas(self, nome_da_lista):
+        AppOpcoesAvancadas(f'Opcoes avancadas de {nome_da_lista}', self.loja_de_transacao, nome_da_lista)
+        self.window.destroy()

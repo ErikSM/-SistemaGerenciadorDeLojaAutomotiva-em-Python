@@ -16,12 +16,14 @@ class AppCriarCarro(AppBase):
 
         self.loja = loja
         self.texto_temporario = tkinter.Text()
-
         self.carro = None
         self.mensagem_do_relatorio = None
 
-        self.texto_relatorio.config(font=("Consolas", 9))
-        self.texto_relatorio.config(width=60, height=20)
+        self.frame_dados.pack(fill="both", side="top")
+        self.botao_executar.grid(row=0, column=1)
+
+        self.texto_relatorio.config(font=("Consolas", 9), width=60, height=20)
+        self.texto_relatorio.pack(fill="both", side="bottom")
 
         # Montadora
         texto_montadora = tkinter.StringVar()

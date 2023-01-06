@@ -20,8 +20,15 @@ class AppSenhaLogin(AppSenha):
         self.__senha_da_loja = loja.senha
         self.__senha_digitada = None
 
-        self.botao_adicionar.config(text="  Logar...", command=self.validar_senha)
+        self.frame_dados.pack(fill="both", side="top")
 
+        self.botao_executar.config(text="  Logar...", command=self.validar_senha)
+        self.botao_executar.grid(row=0, column=2)
+
+        self.label.grid(row=0, column=0)
+        self.captura_senha.grid(row=0, column=1)
+
+        self.texto_relatorio.pack(fill="both", side="bottom")
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self.texto_relatorio.insert(1.0, "\n   Digite a senha no campo acima!!")
         self.texto_relatorio.config(state=tkinter.DISABLED)

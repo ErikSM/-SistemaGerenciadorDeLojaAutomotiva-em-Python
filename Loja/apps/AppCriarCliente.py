@@ -1,6 +1,8 @@
 import tkinter
 
 from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
+from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from entrada_de_dados.lista_clientes import codigos_de_clientes_existentes
 from entrada_de_dados.validar_documento import verificar_documento, mascarar_cnpj
 from estrutura import Loja
 from estrutura.AppBase import AppBase
@@ -14,12 +16,14 @@ class AppCriarCliente(AppBase):
 
         self.loja = loja
         self.texto_temporario = tkinter.Text()
-
         self.cliente = None
         self.mensagem_do_relatorio = None
 
-        self.texto_relatorio.config(font=("Consolas", 9))
-        self.texto_relatorio.config(width=60, height=20)
+        self.frame_dados.pack(fill="both", side="top")
+        self.botao_executar.grid(row=0, column=1)
+
+        self.texto_relatorio.config(font=("Consolas", 9), width=60, height=20)
+        self.texto_relatorio.pack(fill="both", side="bottom")
 
         # Cliente
         texto_no_nome = tkinter.StringVar()
@@ -96,11 +100,12 @@ class AppCriarCliente(AppBase):
         cpf = self.entrada_do_cpf.get()
         telefone = self.entrada_do_telefone.get()
         email = self.entrada_do_email.get()
+        codigo = criar_codigo_unico(codigos_de_clientes_existentes)
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
         else:
-            cliente = Cliente(nome, cpf, telefone, email)
+            cliente = Cliente(nome, cpf, telefone, email, codigo)
             salvar_cliente_em_lista(cliente, self.loja)
 
             self.cliente = cliente

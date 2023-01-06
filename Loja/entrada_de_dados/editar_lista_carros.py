@@ -1,5 +1,6 @@
 from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivo, \
-    tirar_espacos_e_maiusculas
+    contar_linhas_de_um_arquivo
+
 from estrutura import Loja
 from estrutura.Carro import Carro
 
@@ -9,20 +10,20 @@ def salvar_carro_em_lista(carro: Carro, loja: Loja):
 
     formato = "py"
 
-    escrever = _escrever_objeto_carro(carro, loja)
+    linha_no_arquivo = contar_linhas_de_um_arquivo(endereco_do_arquivo, formato) + 2
+
+    escrever = _escrever_objeto_carro(carro, loja, linha_no_arquivo)
 
     abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
-def _escrever_objeto_carro(carro: Carro, loja: Loja):
-    montadora_do_carro = tirar_espacos_e_maiusculas(carro.montadora)
-    nome_do_carro = tirar_espacos_e_maiusculas(carro.nome)
-
-    variavel_da_classe = f'carro_{montadora_do_carro}_{nome_do_carro}_{carro.codigo}'
+def _escrever_objeto_carro(carro: Carro, loja: Loja, linha_no_arquivo):
+    variavel = f'carro_{carro.codigo}'
     classe = 'Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)'
 
     return f'' \
            f'{carro.mostrar_atributos_principais()}' \
-           f'{variavel_da_classe} = {classe}\n' \
-           f'add_carro_na_lista({variavel_da_classe}, "{variavel_da_classe}", {int(loja.cnpj)})' \
+           f'{variavel} = {classe}\n' \
+           f'add_carro_na_lista({variavel}, "{variavel}", {int(loja.cnpj)}, {linha_no_arquivo})' \
            f'\n'
+

@@ -1,13 +1,17 @@
 from estrutura.Cliente import Cliente
 
+
 clientes_registrados = list()
+codigos_de_clientes_existentes = list()
 
 
-def add_cliente_em_lista(cliente: Cliente, variavel, cnpj_loja_vinculada):
+def add_cliente_em_lista(cliente: Cliente, variavel, cnpj_loja_vinculada, linha_no_arquivo):
     cliente.nome_da_variavel = variavel
     cliente.cnpj_loja = cnpj_loja_vinculada
+    cliente.linha_no_arquivo = linha_no_arquivo
     clientes_registrados.append(cliente)
     _atualizar_contador_da_lista()
+    _add_novo_codigo_na_lista_de_codigos_ja_existentes(cliente.codigo)
 
 
 def _atualizar_contador_da_lista():
@@ -18,6 +22,11 @@ def _atualizar_contador_da_lista():
         variavel_contador_de_posicao_na_lista += 1
 
 
+def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
+    codigo_int = int(codigo)
+    codigos_de_clientes_existentes.append(codigo_int)
+
+
 # ------------  --------------    ------------  ---------------   --------
 
 
@@ -25,22 +34,29 @@ nome = "Erik Miyajima"
 cpf = "23948729487"
 telefone = "7539579"
 email = "sjfojfo@com"
-cliente_erik_miyajima23948729487 = Cliente(nome, cpf, telefone, email)
-add_cliente_em_lista(cliente_erik_miyajima23948729487, "cliente_erik_miyajima23948729487", 124134100000)
+codigo = "251752"
+cliente_251752 = Cliente(nome, cpf, telefone, email, codigo)
+add_cliente_em_lista(cliente_251752, "cliente_251752 ", 124134100000, 33)
 
 
-nome = "Ayumi Mello"    
-cpf = "32489765098"    
-telefone = "990834562345"    
-email = "ayu@hotmail.com"    
-cliente_ayumi_mello32489765098 = Cliente(nome, cpf, telefone, email)
-add_cliente_em_lista(cliente_ayumi_mello32489765098, "cliente_ayumi_mello32489765098", 124134100000)
+nome = "Ayumi Mello"
+cpf = "32489765098"
+telefone = "990834562345"
+email = "ayu@hotmail.com"
+codigo = "749240"
+cliente_749240 = Cliente(nome, cpf, telefone, email, codigo)
+add_cliente_em_lista(cliente_749240, "cliente_749240", 124134100000, 42)
 
 
-nome = "Joao Firmino"    
-cpf = "99087678990"    
-telefone = "889977665478"    
-email = "jfno@hotmail.com"    
-cliente_joao_firmino99087678990 = Cliente(nome, cpf, telefone, email)
-add_cliente_em_lista(cliente_joao_firmino99087678990, "cliente_joao_firmino99087678990", 124134100000)
+nome = "Tatiana Lopez"
+cpf = "99087678950"
+telefone = "889972265478"
+email = "tatalo@hotmail.com"
+codigo = "417257"
+cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
+add_cliente_em_lista(cliente_417257, "cliente_417257", 124134100000, 51)
+
+
+
+
 
