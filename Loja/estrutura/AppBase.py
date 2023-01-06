@@ -14,24 +14,22 @@ class AppBase(metaclass=ABCMeta):
         self.window.resizable(False, False)
         self.window.geometry("+500+200")
 
-        # frame
+        # frames
         self.frame_dados = tkinter.Frame(self.window, bg="white", bd=4)
-        self.frame_dados.pack(fill="both", side="top")
 
-        # relatorio
-        self.texto_relatorio = tkinter.Text(self.window, font=("Consolas", 12), bg="black", fg="white", bd=12)
-        self.texto_relatorio.config(width=40, height=10)
-        self.texto_relatorio.config(state=tkinter.NORMAL)
-        self.texto_relatorio.pack(fill="both", side="bottom")
-
-        self.label_calendario = tkinter.Label(self.window, font=('calibri', 10), background='grey90',
-                                              foreground='black')
-        self.label_calendario.pack(side="right")
+        self.frame_dados_2 = tkinter.Frame(self.window, bg="white", bd=4)
 
         # botao
-        self.botao_adicionar = tkinter.Button(self.frame_dados, text="Registrar", bg="grey")
-        self.botao_adicionar.config(command=self.criar_relatorio)
-        self.botao_adicionar.grid(row=0, column=1)
+        self.botao_executar = tkinter.Button(self.frame_dados, text="Registrar", bg="grey",
+                                             command=self.criar_relatorio)
+
+        # data e hora
+        self.label_calendario = tkinter.Label(self.frame_dados_2, font=('calibri', 10), background='grey90',
+                                              foreground='black')
+
+        # relatorio
+        self.texto_relatorio = tkinter.Text(self.window, font=("Consolas", 12), bg="black", fg="white", bd=12, width=40,
+                                            height=10, state=tkinter.NORMAL)
 
     def criar_relatorio(self):
         pass

@@ -14,6 +14,8 @@ class Veiculo(ABC):  # Classe Abstrata
 
         self.__cnpj_loja = None
 
+        self.linha_no_arquivo = int()
+
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
         self.codigo_de_venda = " "

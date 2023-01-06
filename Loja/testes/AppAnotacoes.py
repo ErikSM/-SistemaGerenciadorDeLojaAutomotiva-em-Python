@@ -12,7 +12,7 @@ class Anotacoes(AppBase):
 
         self.window.geometry("+500+100")
 
-        self.botao_adicionar.config(text="Adicionar anotacao")
+        self.botao_executar.config(text="Adicionar anotacao")
         self.texto_relatorio.config(bg="white", fg="black", bd=1)
 
         self.label_anotacoes = tkinter.Label(self.window, font=('Arial', 11),

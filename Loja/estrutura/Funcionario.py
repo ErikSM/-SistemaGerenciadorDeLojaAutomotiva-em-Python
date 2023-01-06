@@ -5,21 +5,24 @@ from entrada_de_dados.validar_telefone import Telefone
 
 class Funcionario:
 
-    def __init__(self, nome, cpf, telefone, email, cargo):
+    def __init__(self, nome, cpf, telefone, email, codigo, cargo):
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
         self.__email = email
-
-        self.__cnpj_loja = None
+        self.__codigo = codigo
 
         self.__cargo = cargos_e_salarios.dicionario_de_cargos[cargo]
         self.__salario = self.__cargo["salario"]
         self.__bonus = self.__cargo["bonus"]
         self.__comissao = self.__cargo["comissao"]
 
+        self.__cnpj_loja = None
+
         self.comissoes_recebidas = list()
         self.total_comissoes_recebidas = float()
+
+        self.linha_no_arquivo = int()
 
         self.posicao_na_lista = " "
         self.nome_da_variavel = " "
@@ -29,6 +32,7 @@ class Funcionario:
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
+               f'codigo = "{self.__codigo}"    \n' \
                f'cargo = "{self.__cargo["cargo"]}"    \n'
 
     def mostrar_dados(self):
@@ -66,12 +70,12 @@ class Funcionario:
         self.__email = email
 
     @property
-    def cnpj_loja(self):
-        return self.__cnpj_loja
+    def codigo(self):
+        return self.__codigo
 
-    @cnpj_loja.setter
-    def cnpj_loja(self, cnpj_loja):
-        self.__cnpj_loja = cnpj_loja
+    @codigo.setter
+    def codigo(self, codigo):
+        self.__codigo = codigo
 
     @property
     def cargo(self):
@@ -105,4 +109,10 @@ class Funcionario:
     def comissao(self, comissao):
         self.__comissao = comissao
 
+    @property
+    def cnpj_loja(self):
+        return self.__cnpj_loja
 
+    @cnpj_loja.setter
+    def cnpj_loja(self, cnpj_loja):
+        self.__cnpj_loja = cnpj_loja
