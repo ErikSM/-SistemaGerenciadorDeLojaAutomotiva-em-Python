@@ -2,8 +2,8 @@ import tkinter
 
 import datetime
 
-from administracao.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
-from administracao.ranking import organizar_rankings_da_loja
+from entrada_de_dados.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
+from relatorios.ranking import organizar_rankings_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
 from entrada_de_dados.editar_lista_vendas import adicionar_venda_em_lista, remover_carro_vendido_da_lista_carros
@@ -19,8 +19,8 @@ from apps.AppCriarCarro import AppCriarCarro
 from apps.AppCriarCliente import AppCriarCliente
 from apps.AppCriarFuncionario import AppCriarFuncionario
 from apps.AppSenhaEditar import AppSenhaEditar
-from administracao.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
-from administracao.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
+from relatorios.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
+from relatorios.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
 from apps.AppOpcoesAvancadas import AppOpcoesAvancadas
 from estrutura.Venda import Venda
 

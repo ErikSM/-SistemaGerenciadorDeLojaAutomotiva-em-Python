@@ -9,6 +9,7 @@ def add_funcionario_na_lista(funcionario: Funcionario, variavel, cnpj_loja_vincu
     funcionario.nome_da_variavel = variavel
     funcionario.cnpj_loja = cnpj_loja_vinculada
     funcionario.linha_no_arquivo = linha_no_arquivo
+    funcionario.preencher_cargos_e_salarios()
     funcionarios_registrados.append(funcionario)
     _atualizar_contador_da_lista()
     _add_novo_codigo_na_lista_de_codigos_ja_existentes(funcionario.codigo)
@@ -41,7 +42,7 @@ add_funcionario_na_lista(funcionario_267707, "funcionario_267707", 124134100000,
 
 
 nome = "Armando Silveira"
-cpf = "88776540902"
+cpf = "88776540980"
 telefone = "998876673232"
 email = "arman@gmail.com"
 codigo = "379018"
@@ -62,12 +63,14 @@ add_funcionario_na_lista(funcionario_984713, "funcionario_984713", 124134100000,
 
 nome = "Edson Arantes"
 cpf = "87654678930"
-telefone = "888866663322"
+telefone = "888866663321"
 email = "edara@hotmail.com"
 codigo = "46643"
 cargo = "zelador"    
 funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
 add_funcionario_na_lista(funcionario_46643, "funcionario_46643", 124134100000, 63)
+
+
 
 
 
