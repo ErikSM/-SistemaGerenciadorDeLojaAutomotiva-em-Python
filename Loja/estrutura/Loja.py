@@ -2,7 +2,7 @@ from entrada_de_dados.validar_documento import mascarar_cnpj
 from entrada_de_dados.validar_telefone import Telefone
 
 
-class Loja:
+class Loja():
 
     def __init__(self, nome, cnpj, telefone):
         self.__nome = nome

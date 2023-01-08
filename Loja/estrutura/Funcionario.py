@@ -1,4 +1,4 @@
-from administracao import cargos_e_salarios
+from entrada_de_dados import cargos_e_salarios
 from entrada_de_dados.validar_documento import mascarar_cpf
 from entrada_de_dados.validar_telefone import Telefone
 
@@ -12,12 +12,12 @@ class Funcionario:
         self.__email = email
         self.__codigo = codigo
 
-        self.__cargo = cargos_e_salarios.dicionario_de_cargos[cargo]
-        self.__salario = self.__cargo["salario"]
-        self.__bonus = self.__cargo["bonus"]
-        self.__comissao = self.__cargo["comissao"]
+        self.__cargo = cargo
+        self.__salario = None
+        self.__bonus = None
+        self.__comissao = None
 
-        self.__cnpj_loja = None
+        self.__cnpj_loja = int()
 
         self.comissoes_recebidas = list()
         self.total_comissoes_recebidas = float()
@@ -44,6 +44,13 @@ class Funcionario:
                f'salario = "{self.__salario}"    \n' \
                f'bonus = "{int(self.__bonus * 100)}"%    \n' \
                f'comissao = "{int(self.__comissao * 100)}%" \n'
+
+    def preencher_cargos_e_salarios(self):
+        cargo = self.__cargo
+        self.__cargo = cargos_e_salarios.dicionario_de_cargos_da_loja[f'{self.__cnpj_loja}'][cargo]
+        self.__salario = self.__cargo["salario"]
+        self.__bonus = self.__cargo["bonus"]
+        self.__comissao = self.__cargo["comissao"]
 
     @property
     def nome(self):

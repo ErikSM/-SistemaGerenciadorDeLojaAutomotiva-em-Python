@@ -43,4 +43,5 @@ class AppBase(metaclass=ABCMeta):
         string_hora = strftime('%H:%M:%S')
         self.label_calendario.config(text=f'{string_data}{" " * 7}{string_hora}')
         self.label_calendario.after(1000, self.retornar_data_e_hora)
+
     # ------------------------------------------------
