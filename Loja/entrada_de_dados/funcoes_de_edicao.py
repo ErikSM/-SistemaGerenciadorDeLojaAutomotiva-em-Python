@@ -84,3 +84,5 @@ def contar_linhas_de_um_arquivo(endereco, formato):
     separando_em_linhas = arquivo.readlines()
     total_linhas = len(separando_em_linhas)
     return total_linhas
+
+

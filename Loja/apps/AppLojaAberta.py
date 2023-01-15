@@ -2,6 +2,7 @@ import tkinter
 
 import datetime
 
+from apps.AppConfigDeAdmin import AppConfigDeAdmin
 from entrada_de_dados.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
 from relatorios.ranking import organizar_rankings_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
@@ -43,6 +44,10 @@ def abrir_registro_de_carro(loja: Loja):
 
 def abrir_alterador_de_senha(loja: Loja):
     AppSenhaEditar("Editar Senha", loja).window.mainloop()
+
+
+def abrir_configuracoes_de_administrador(loja: Loja):
+    AppConfigDeAdmin("Configuracoes de Administrador", loja).window.mainloop()
 
 
 class AppLojaAberta(AppBase):
@@ -114,6 +119,9 @@ class AppLojaAberta(AppBase):
                                           command=lambda loja_select=loja: self.deletar_loja_aberta(loja_select))
         self.menu_loja_editar.add_command(label=f"Criar/Modificar Senha",
                                           command=lambda: abrir_alterador_de_senha(loja))
+        # \ Configuracoes de administrador
+        self.menu_loja.add_command(label=f"Configuracoes de Administrador",
+                                   command=lambda: abrir_configuracoes_de_administrador(loja))
 
         # \\ MENU FUNCIONARIO
         self.menu_funcionario = tkinter.Menu(self.menu_principal, tearoff=0)
