@@ -56,7 +56,3 @@ codigo = "417257"
 cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
 add_cliente_em_lista(cliente_417257, "cliente_417257", 124134100000, 51)
 
-
-
-
-

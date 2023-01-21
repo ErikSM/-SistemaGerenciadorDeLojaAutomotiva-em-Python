@@ -18,8 +18,8 @@ def adicionar_cargo_em_cargos_e_salarios(cargo: Cargo):
 def _escrever_cargo_em_arquivo(cargo: Cargo, linha_no_arquivo):
     return f'\n' \
            f'# {cargo.nome}    \n' \
-           f'nome = "{cargo.nome}"    \n' \
-           f'salario = "{cargo.salario}"    \n' \
+           f'nome = "{str(cargo.nome)}"    \n' \
+           f'salario = "{str(cargo.salario)}"    \n' \
            f'bonus = {float(cargo.bonus)}    \n' \
            f'comissao = {float(cargo.comissao)}    \n' \
            f'cnpj = "{str(cargo.cnpj)}"    \n' \

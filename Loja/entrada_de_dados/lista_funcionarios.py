@@ -70,9 +70,3 @@ cargo = "zelador"
 funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
 add_funcionario_na_lista(funcionario_46643, "funcionario_46643", 124134100000, 63)
 
-
-
-
-
-
-
