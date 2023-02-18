@@ -47,7 +47,7 @@ def abrir_alterador_de_senha(loja: Loja):
 
 
 def abrir_configuracoes_de_administrador(loja: Loja):
-    AppConfigDeAdmin("Configuracoes de Administrador", loja).window.mainloop()
+    AppConfigDeAdmin("Administrador", loja).window.mainloop()
 
 
 class AppLojaAberta(AppBase):
@@ -137,7 +137,7 @@ class AppLojaAberta(AppBase):
                                                            command=lambda funcionario_select=i:
                                                            self.selecionar_funcionario(funcionario_select))
         # \ opcoes avancadas
-        self.menu_funcionario.add_command(label="Opcoes avancadas(teste)",
+        self.menu_funcionario.add_command(label="Opcoes avancadas",
                                           command=lambda: self.abrir_opcoes_avancadas("funcionarios"))
 
         # \\ MENU CLIENTE
@@ -154,7 +154,7 @@ class AppLojaAberta(AppBase):
                                                        command=lambda cliente_select=i:
                                                        self.selecionar_cliente(cliente_select))
         # \ opcoes avancadas
-        self.menu_cliente.add_command(label="Opcoes avancadas(teste)",
+        self.menu_cliente.add_command(label="Opcoes avancadas",
                                       command=lambda: self.abrir_opcoes_avancadas("clientes"))
 
         # \\ MENU CARRO
@@ -171,7 +171,7 @@ class AppLojaAberta(AppBase):
                                                      command=lambda carro_select=i:
                                                      self.selecionar_carro(carro_select))
         # \ opcoes avancadas
-        self.menu_carro.add_command(label="Opcoes avancadas(teste)",
+        self.menu_carro.add_command(label="Opcoes avancadas",
                                     command=lambda: self.abrir_opcoes_avancadas("carros"))
 
         # \\ MENU RELATORIOS

@@ -158,7 +158,8 @@ class AppOpcoesAvancadas(AppBase):
         if self.item_selecionado_da_listbox == '':
             self.texto_relatorio.insert(1.0, self.mensagem_de_erro)
         else:
-            self.texto_relatorio.insert(1.0, self.dicionario_de_objetos_para_editar[self.item_selecionado_da_listbox].mostrar_dados())
+            dados_do_objeto = self.dicionario_de_objetos_para_editar[self.item_selecionado_da_listbox].mostrar_dados()
+            self.texto_relatorio.insert(1.0, dados_do_objeto)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
