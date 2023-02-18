@@ -63,12 +63,12 @@ linha = 55
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
-# advogado    
-nome = "advogado"    
-salario = "6000"    
-bonus = 0.0    
-comissao = 0.0    
-cnpj = "124134100000"    
-linha = 66    
-criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)    
+# advogado
+nome = "advogado"
+salario = "6000"
+bonus = 0.0
+comissao = 0.0
+cnpj = "124134100000"
+linha = 66
+criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
