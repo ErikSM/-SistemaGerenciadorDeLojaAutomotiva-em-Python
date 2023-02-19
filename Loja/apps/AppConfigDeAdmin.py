@@ -197,12 +197,10 @@ class AppConfigDeAdmin(AppBase):
             janela_de_erro(ex)
 
     def _editar_iten_selecionado(self, variavel_para_editar, novo_conteudo, cargo_selecionado):
+        editar_cargos_e_salarios(
+            self.dicionario_de_cargos[f"{cargo_selecionado}"],
+            variavel_para_editar,
+            novo_conteudo
+        )
 
-        editar_cargos_e_salarios(self.dicionario_de_cargos[f"{cargo_selecionado}"], variavel_para_editar, novo_conteudo)
-
-
-        print(self.dicionario_de_cargos[f"{cargo_selecionado}"])
-
-        print(cargo_selecionado)
-        print(variavel_para_editar)
-        print(novo_conteudo)
+        self.sub_window.destroy()

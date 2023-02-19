@@ -72,12 +72,12 @@ def editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, 
 
 def editar_cargos_e_salarios(cargo_selecionado, variavel_editada, novo_conteudo):
     texto_temporario = tkinter.Text()
+    texto_final = tkinter.Text()
 
     escrever_titulo = str()
 
     ultima_linha_do_arquivo = int(contar_linhas_de_um_arquivo("entrada_de_dados/cargos_e_salarios", "py"))
-    ul_parametro_um = f"{ultima_linha_do_arquivo}.0"
-    ul_parametro_dois = f"{ultima_linha_do_arquivo}.99"
+    parametro_ultima_linha = f"{ultima_linha_do_arquivo}.99"
 
     parametro_um_do_titulo = None
     parametro_dois_do_titulo = None
@@ -110,31 +110,25 @@ def editar_cargos_e_salarios(cargo_selecionado, variavel_editada, novo_conteudo)
     if variavel_editada == "cargo":
         variavel_editada = "nome"
         escrever_titulo = f'# {novo_conteudo}'
-        escrever_variavel_1 = f'{variavel_editada} = "{novo_conteudo}"'
+        escrever_variavel = f'{variavel_editada} = "{novo_conteudo}"'
     elif variavel_editada == "bonus" or variavel_editada == "comissao":
-        escrever_variavel_1 = f'{variavel_editada} = {float(novo_conteudo)}'
+        escrever_variavel = f'{variavel_editada} = {float(novo_conteudo)}'
     else:
-        escrever_variavel_1 = f'{variavel_editada} = "{novo_conteudo}"'
+        escrever_variavel = f'{variavel_editada} = "{novo_conteudo}"'
 
     file = open(f"entrada_de_dados/cargos_e_salarios.py", "w")
     if variavel_editada == "cargo" or variavel_editada == "nome":
         texto_temporario.delete(float(parametro_um_do_titulo), float(parametro_dois_do_titulo))
-        texto_temporario.delete(float(parametro_um), float(parametro_dois))
         texto_temporario.insert(float(parametro_um_do_titulo), escrever_titulo)
-        texto_temporario.insert(float(parametro_um), escrever_variavel_1)
+        texto_temporario.delete(float(parametro_um), float(parametro_dois))
+        texto_temporario.insert(float(parametro_um), escrever_variavel)
 
-        texto_temporario.delete(float(ul_parametro_um), float(ul_parametro_dois))
     else:
         texto_temporario.delete(float(parametro_um), float(parametro_dois))
-        texto_temporario.insert(float(parametro_um), escrever_variavel_1)
+        texto_temporario.insert(float(parametro_um), escrever_variavel)
 
-        texto_temporario.delete(float(ul_parametro_um), float(ul_parametro_dois))
-
-
-    # OBS: esta adicionando uma linha no arqruivo ao executar o codigo(corrigir)
-
-    file.write(texto_temporario.get(1.0, "end"))
-
+    texto_final.insert(1.0, texto_temporario.get(1.0, parametro_ultima_linha))
+    file.write(texto_final.get(1.0, "end"))
 
     atualizar_informacoes(arquivo, file)
 
