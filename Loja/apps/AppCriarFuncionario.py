@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.cargos_e_salarios import dicionario_de_cargos
+from entrada_de_dados.dicionario_cargos import dicionario_de_cargos
 from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_funcionarios import codigos_de_funcionarios_existentes

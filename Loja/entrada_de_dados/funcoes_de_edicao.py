@@ -70,7 +70,7 @@ def editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, 
     file.close()
 
 
-def editar_cargos_e_salarios(cargo_selecionado, variavel_editada, novo_conteudo):
+def editar_arquivo_em_config_de_admim(cargo_selecionado, variavel_editada, novo_conteudo):
     texto_temporario = tkinter.Text()
     texto_final = tkinter.Text()
 
@@ -103,7 +103,7 @@ def editar_cargos_e_salarios(cargo_selecionado, variavel_editada, novo_conteudo)
         parametro_um = f"{cargo_selecionado['linha no arquivo'] + 4}.0"
         parametro_dois = f"{cargo_selecionado['linha no arquivo'] + 4}.99"
 
-    arquivo = open(f"entrada_de_dados/cargos_e_salarios.py", "r")
+    arquivo = open(f"entrada_de_dados/dicionario_cargos.py", "r")
     arquivo_lido = arquivo.read()
     texto_temporario.insert(1.0, arquivo_lido)
 
@@ -116,7 +116,7 @@ def editar_cargos_e_salarios(cargo_selecionado, variavel_editada, novo_conteudo)
     else:
         escrever_variavel = f'{variavel_editada} = "{novo_conteudo}"'
 
-    file = open(f"entrada_de_dados/cargos_e_salarios.py", "w")
+    file = open(f"entrada_de_dados/dicionario_cargos.py", "w")
     if variavel_editada == "cargo" or variavel_editada == "nome":
         texto_temporario.delete(float(parametro_um_do_titulo), float(parametro_dois_do_titulo))
         texto_temporario.insert(float(parametro_um_do_titulo), escrever_titulo)

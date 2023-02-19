@@ -1,8 +1,8 @@
 import tkinter
 
-from entrada_de_dados.cargos_e_salarios import dicionario_de_cargos_da_loja
-from entrada_de_dados.edicoes_de_administrador import adicionar_cargo_em_cargos_e_salarios
-from entrada_de_dados.funcoes_de_edicao import editar_cargos_e_salarios
+from entrada_de_dados.dicionario_cargos import dicionario_de_cargos_da_loja
+from entrada_de_dados.editar_dicionario_cargos import adicionar_cargo_em_cargos_e_salarios
+from entrada_de_dados.funcoes_de_edicao import editar_arquivo_em_config_de_admim
 from estrutura.AppBase import AppBase
 from estrutura.Cargo import Cargo
 from estrutura.Loja import Loja
@@ -197,7 +197,7 @@ class AppConfigDeAdmin(AppBase):
             janela_de_erro(ex)
 
     def _editar_iten_selecionado(self, variavel_para_editar, novo_conteudo, cargo_selecionado):
-        editar_cargos_e_salarios(
+        editar_arquivo_em_config_de_admim(
             self.dicionario_de_cargos[f"{cargo_selecionado}"],
             variavel_para_editar,
             novo_conteudo
