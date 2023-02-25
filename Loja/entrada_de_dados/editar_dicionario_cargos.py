@@ -1,10 +1,11 @@
 
 from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivo, contar_linhas_de_um_arquivo
 from estrutura.Cargo import Cargo
+from estrutura.Loja import Loja
 
 
-def adicionar_cargo_em_cargos_e_salarios(cargo: Cargo):
-    endereco_do_arquivo = "entrada_de_dados/cargos_e_salarios"
+def adicionar_cargo_em_dicionario_cargos(cargo: Cargo):
+    endereco_do_arquivo = "entrada_de_dados/dicionario_cargos"
 
     formato = "py"
 
@@ -26,4 +27,21 @@ def _escrever_cargo_em_arquivo(cargo: Cargo, linha_no_arquivo):
            f'linha = {int(linha_no_arquivo)}    \n' \
            f'criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)    \n' \
            f''
+
+
+def criar_chave_da_loja_em_dicionario_cargos(loja: Loja):
+    endereco_do_arquivo = "entrada_de_dados/dicionario_cargos"
+
+    formato = "py"
+
+    escrever = _escrever_chave_em_dicionario(loja)
+
+    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+
+
+def _escrever_chave_em_dicionario(loja: Loja):
+    return f'\n' \
+           f'dicionario_de_cargos_da_loja["{loja.cnpj}"] = None' \
+           f'\n'
+
 

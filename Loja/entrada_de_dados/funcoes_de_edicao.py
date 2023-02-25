@@ -76,14 +76,17 @@ def editar_arquivo_em_config_de_admim(cargo_selecionado, variavel_editada, novo_
 
     escrever_titulo = str()
 
-    ultima_linha_do_arquivo = int(contar_linhas_de_um_arquivo("entrada_de_dados/cargos_e_salarios", "py"))
-    parametro_ultima_linha = f"{ultima_linha_do_arquivo}.99"
-
     parametro_um_do_titulo = None
     parametro_dois_do_titulo = None
 
     parametro_um = None
     parametro_dois = None
+
+    arquivo = open(f"entrada_de_dados/dicionario_cargos.py", "r")
+    separando_em_linhas = arquivo.readlines()
+    total_linhas = len(separando_em_linhas)
+    ultima_linha_do_arquivo = int(total_linhas)
+    parametro_ultima_linha = f"{ultima_linha_do_arquivo}.99"
 
     if variavel_editada == "cargo":
         parametro_um_do_titulo = f"{cargo_selecionado['linha no arquivo']}.0"
@@ -144,9 +147,9 @@ def tirar_espacos_e_maiusculas(string):
     return string_em_minuscula
 
 
-#  ainda nao utlizado
 def contar_linhas_de_um_arquivo(endereco, formato):
     arquivo = open(f"{endereco}.{formato}", "r")
     separando_em_linhas = arquivo.readlines()
     total_linhas = len(separando_em_linhas)
     return total_linhas
+

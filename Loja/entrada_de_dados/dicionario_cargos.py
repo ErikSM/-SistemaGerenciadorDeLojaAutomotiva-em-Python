@@ -23,13 +23,16 @@ def criar_profissao(cargo: Cargo, linha):
 # ----------------  -------------   --------------------  ---------------
 
 
+dicionario_de_cargos_da_loja["124134100000"] = None
+
+
 # gerente
 nome = "gerente"
 salario = "5000"
 bonus = 0.25
 comissao = 0.07
 cnpj = "124134100000"
-linha = 25
+linha = 29
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
@@ -39,7 +42,7 @@ salario = "1200"
 bonus = 0.10
 comissao = 0.05
 cnpj = "124134100000"
-linha = 35
+linha = 39
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
@@ -47,19 +50,19 @@ criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 nome = "secretaria"
 salario = "1500"
 bonus = 0.10
-comissao = 0
+comissao = 0.0
 cnpj = "124134100000"
-linha = 45
+linha = 49
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
 # zelador
 nome = "zelador"
 salario = "1200"
-bonus = 0
-comissao = 0
+bonus = 0.0
+comissao = 0.0
 cnpj = "124134100000"
-linha = 55
+linha = 59
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
@@ -69,6 +72,9 @@ salario = "6000"
 bonus = 0.0
 comissao = 0.0
 cnpj = "124134100000"
-linha = 66
+linha = 69
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
+
+##  em Construcao
+dicionario_de_cargos_da_loja["8769990600000"] = None
 
