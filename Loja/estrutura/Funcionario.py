@@ -1,4 +1,4 @@
-from entrada_de_dados import cargos_e_salarios
+from entrada_de_dados import dicionario_cargos
 from entrada_de_dados.validar_documento import mascarar_cpf
 from entrada_de_dados.validar_telefone import Telefone
 
@@ -47,7 +47,7 @@ class Funcionario:
 
     def preencher_cargos_e_salarios(self):
         cargo = self.__cargo
-        self.__cargo = cargos_e_salarios.dicionario_de_cargos_da_loja[f'{self.__cnpj_loja}'][cargo]
+        self.__cargo = dicionario_cargos.dicionario_de_cargos_da_loja[f'{self.__cnpj_loja}'][f'{cargo} {self.cnpj_loja}']
         self.__salario = self.__cargo["salario"]
         self.__bonus = self.__cargo["bonus"]
         self.__comissao = self.__cargo["comissao"]
