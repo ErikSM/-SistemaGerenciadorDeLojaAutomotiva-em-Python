@@ -29,19 +29,20 @@ def _escrever_cargo_em_arquivo(cargo: Cargo, linha_no_arquivo):
            f''
 
 
+#  kCriando #########
 def criar_chave_da_loja_em_dicionario_cargos(loja: Loja):
     endereco_do_arquivo = "entrada_de_dados/dicionario_cargos"
 
     formato = "py"
 
-    escrever = _escrever_chave_em_dicionario(loja)
+    escrever = _escrever_chave_da_loja_em_dicionario(loja)
 
     abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
 
 
-def _escrever_chave_em_dicionario(loja: Loja):
+def _escrever_chave_da_loja_em_dicionario(loja: Loja):
     return f'\n' \
-           f'dicionario_de_cargos_da_loja["{loja.cnpj}"] = None' \
-           f'\n'
-
+           f'# loja criada    \n' \
+           f'dicionario_de_cargos_da_loja["{loja.cnpj}"] = None    \n' \
+           f''
 

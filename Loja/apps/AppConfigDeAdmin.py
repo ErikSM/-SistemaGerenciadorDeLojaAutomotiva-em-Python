@@ -1,7 +1,7 @@
 import tkinter
 
 from entrada_de_dados.dicionario_cargos import dicionario_de_cargos_da_loja
-from entrada_de_dados.editar_dicionario_cargos import adicionar_cargo_em_cargos_e_salarios
+from entrada_de_dados.editar_dicionario_cargos import adicionar_cargo_em_dicionario_cargos
 from entrada_de_dados.funcoes_de_edicao import editar_arquivo_em_config_de_admim
 from estrutura.AppBase import AppBase
 from estrutura.Cargo import Cargo
@@ -54,7 +54,9 @@ class AppConfigDeAdmin(AppBase):
         super().__init__(title)
 
         self.loja = loja
+
         self.dicionario_de_cargos = dicionario_de_cargos_da_loja[self.loja.cnpj]
+
         self.sub_window = None
         self.cargo_criado = None
 
@@ -80,8 +82,14 @@ class AppConfigDeAdmin(AppBase):
         self.label_listbox.pack(fill="x")
         self.listbox = tkinter.Listbox(self.frame_dados_2)
         self.listbox.pack(fill="both")
-        for i in self.dicionario_de_cargos:
-            self.listbox.insert("end", i)
+
+        try:
+            for i in self.dicionario_de_cargos:
+                if self.dicionario_de_cargos[i]["cnpj"] == loja.cnpj:
+                    self.listbox.insert("end", i)
+        except Exception as ex:
+            self.botao_editar_cargo.destroy()
+            janela_de_erro(ex)
 
     def abrir_janela_de_cargo_novo(self):
         self.window.destroy()
@@ -139,7 +147,7 @@ class AppConfigDeAdmin(AppBase):
                     int(salario)
                     float(bonus)
                     float(comissao)
-                    adicionar_cargo_em_cargos_e_salarios(self.cargo_criado)
+                    adicionar_cargo_em_dicionario_cargos(self.cargo_criado)
                     window.destroy()
                     return ex
                 except Exception as ex:

@@ -26,7 +26,7 @@ def _escrever_objeto_loja(nome, cnpj, telefone):
            f'{variavel_da_classe} = {classe}' \
            f'\n' \
            f'add_loja_na_lista({variavel_da_classe}, "{variavel_da_classe}")\n' \
-           f'\n'
+           f''
 
 
 def remover_loja_da_lista(loja: Loja):

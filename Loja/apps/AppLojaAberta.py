@@ -3,7 +3,7 @@ import tkinter
 import datetime
 
 from apps.AppConfigDeAdmin import AppConfigDeAdmin
-from entrada_de_dados.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
+from relatorios.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
 from relatorios.ranking import organizar_rankings_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista

@@ -1,5 +1,6 @@
 import tkinter
 
+from entrada_de_dados.editar_dicionario_cargos import criar_chave_da_loja_em_dicionario_cargos
 from entrada_de_dados.editar_lista_lojas import salvar_loja_em_lista
 from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.AppBase import AppBase
@@ -93,5 +94,5 @@ class AppCriarLoja(AppBase):
             salvar_loja_em_lista(nome, cnpj, telefone)
 
             self.loja = loja
-
             self.mensagem_do_relatorio = self.loja
+            criar_chave_da_loja_em_dicionario_cargos(self.loja)
