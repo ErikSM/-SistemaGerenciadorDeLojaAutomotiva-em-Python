@@ -31,15 +31,15 @@ def criar_janela_de_edicoes(tilulo, tamanho="300x200+400+200"):
     return janela
 
 
-def janela_de_erro(ex):
-    tipo_de_erro = ex
+def janela_de_erro(ex, msg="XXX"):
+    tipo_de_erro = msg
 
     erro = tkinter.Toplevel()
     erro.title("Mensagem de ERRo")
     erro.resizable(False, False)
     erro.geometry("300x200+400+200")
 
-    tkinter.Label(erro, text=f'{tipo_de_erro}').pack(side=tkinter.BOTTOM)
+    tkinter.Label(erro, text=f'{ex}\n\n{tipo_de_erro}').pack(side=tkinter.BOTTOM)
 
     tkinter.Label(erro,
                   text=f"\n\n\n\nErro ao Executar Acao \n\n\n\n"
@@ -169,31 +169,31 @@ class AppConfigDeAdmin(AppBase):
             spinbox_de_variaveis_para_editar.pack()
 
             tkinter.Label(frame_esq, text="\nNovo conteudo:").pack()
-            Entry_conteudo_novo = tkinter.Entry(frame_esq, bd=7)
-            Entry_conteudo_novo.pack()
+            entry_conteudo_novo = tkinter.Entry(frame_esq, bd=7)
+            entry_conteudo_novo.pack()
 
             editar_atributo = criar_botao(frame_esq, "Modificar", 15)
             editar_atributo.config(bd=9, bg="grey",
                                    command=lambda: self._editar_iten_selecionado(spinbox_de_variaveis_para_editar.get(),
-                                                                                 Entry_conteudo_novo.get(),
-                                                                                 cargo_selecionado_para_listbox))
+                                                                                 entry_conteudo_novo.get(),
+                                                                                 cargo_selecionado_para_edicao))
             editar_atributo.pack()
 
             tkinter.Label(frame_dir, text="Detalhes do Cargo Selecionado:").pack()
-            listbox_de_exibicao = tkinter.Listbox(frame_dir, font="Consolas 10", width=35, height=10, fg="black")
-            listbox_de_exibicao.pack(fill='both')
+            listbox_para_exibicao = tkinter.Listbox(frame_dir, font="Consolas 10", width=35, height=10, fg="black")
+            listbox_para_exibicao.pack(fill='both')
 
             lista_para_spinbox = list()
-            cargo_selecionado_para_listbox = self.listbox.get(tkinter.ANCHOR)
-            for i in self.dicionario_de_cargos[cargo_selecionado_para_listbox]:
-                if i == "linha no arquivo":
+            cargo_selecionado_para_edicao = self.listbox.get(tkinter.ANCHOR)
+            for i in self.dicionario_de_cargos[cargo_selecionado_para_edicao]:
+                if i == "linha no arquivo" or i == "cnpj":
                     pass
                 else:
                     lista_para_spinbox.append(i)
-                    listbox_de_exibicao.config(state=tkinter.NORMAL)
-                    listbox_de_exibicao.insert("end",
-                                               f' {i}:  {self.dicionario_de_cargos[cargo_selecionado_para_listbox][i]}')
-                    listbox_de_exibicao.config(state=tkinter.DISABLED)
+                    listbox_para_exibicao.config(state=tkinter.NORMAL)
+                    listbox_para_exibicao.insert("end",
+                                                 f' {i}:  {self.dicionario_de_cargos[cargo_selecionado_para_edicao][i]}')
+                    listbox_para_exibicao.config(state=tkinter.DISABLED)
 
             spinbox_de_variaveis_para_editar.config(values=lista_para_spinbox)
             self.window.destroy()
@@ -205,10 +205,31 @@ class AppConfigDeAdmin(AppBase):
             janela_de_erro(ex)
 
     def _editar_iten_selecionado(self, variavel_para_editar, novo_conteudo, cargo_selecionado):
-        editar_arquivo_em_config_de_admim(
-            self.dicionario_de_cargos[f"{cargo_selecionado}"],
-            variavel_para_editar,
-            novo_conteudo
-        )
 
-        self.sub_window.destroy()
+        modificacao_valida = bool()
+
+        if variavel_para_editar == "cargo":
+            try:
+                novo_conteudo = novo_conteudo.lower()
+                modificacao_valida = True
+            except Exception as ex:
+                modificacao_valida = False
+                janela_de_erro(ex)
+
+        if variavel_para_editar == "bonus" or variavel_para_editar == "comissao" or variavel_para_editar == "salario":
+            try:
+                float(novo_conteudo)
+                modificacao_valida = True
+            except Exception as ex:
+                modificacao_valida = False
+                janela_de_erro(ex, "conteudo do campo deve numerico")
+
+        if modificacao_valida:
+            editar_arquivo_em_config_de_admim(
+                    self.dicionario_de_cargos[f"{cargo_selecionado}"],
+                    variavel_para_editar,
+                    novo_conteudo
+                )
+            self.sub_window.destroy()
+        else:
+            pass
