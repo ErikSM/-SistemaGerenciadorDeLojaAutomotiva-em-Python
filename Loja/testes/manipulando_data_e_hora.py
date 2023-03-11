@@ -4,8 +4,11 @@ data = datetime.date.today()
 
 hora = datetime.datetime.now()
 
+ano = datetime.date.today().year
+
 print(data)
 print(hora)
+print(ano)
 
 from tkinter import *
 from time import strftime
