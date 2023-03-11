@@ -1,5 +1,7 @@
 import tkinter
+from datetime import datetime
 
+from entrada_de_dados import validar_email
 from entrada_de_dados.funcoes_de_edicao import editar_arquivo_em_opcoes_avancadas
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
@@ -72,10 +74,11 @@ class AppOpcoesAvancadas(AppBase):
     def ativar_modo_edicao(self):
         self.item_selecionado_da_listbox = self.listbox.get(tkinter.ANCHOR)
         if self.item_selecionado_da_listbox == "":
-            self._executar_mensagem_de_erro()
+            self._executar_mensagem_de_erro("selecione uma opcao na lista")
         else:
             self.clique_no_botao_editar = True
-            self.objeto_selecionado_para_edicao = self.dicionario_de_objetos_para_editar[self.item_selecionado_da_listbox]
+            self.objeto_selecionado_para_edicao = self.dicionario_de_objetos_para_editar[
+                self.item_selecionado_da_listbox]
 
             self.vizualizar_objeto()
 
@@ -188,12 +191,52 @@ class AppOpcoesAvancadas(AppBase):
 
     def _executar_edicao_do_conteudo(self, window, objeto, tipo_de_lista, variavel_editada):
         novo_conteudo = self.string_nova_para_edicao.get()
-        editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, novo_conteudo)
-        self.window.quit()
-        window.destroy()
 
-    def _executar_mensagem_de_erro(self):
-        self.mensagem_de_erro = "  ERRor  \n\nSelecione uma opcao na lista..."
+        self.execucao_permitida = bool()
+
+        if variavel_editada == "valor_de_aquisicao":
+            try:
+                float(novo_conteudo)
+                self.execucao_permitida = True
+            except Exception as ex:
+                self.execucao_permitida = False
+                ex = f'{ex}:  campo deve conter conteudo numerico'
+                self._executar_mensagem_de_erro(ex)
+
+        if variavel_editada == "ano":
+            try:
+                int(novo_conteudo)
+                self.execucao_permitida = True
+            except Exception as ex:
+                self.execucao_permitida = False
+                ex = f'{ex}: campo deve conter conteudo numerico'
+                self._executar_mensagem_de_erro(ex)
+
+            if self.execucao_permitida:
+                ano = datetime.today().year
+                if 1970 <= int(novo_conteudo) <= ano:
+                    self.execucao_permitida = True
+                else:
+                    self.execucao_permitida = False
+                    self._executar_mensagem_de_erro("Ano do veiculo deve ser entre 1970 ate o ano atual")
+
+        if variavel_editada == "email":
+            checagem = validar_email.checar_email(novo_conteudo)
+            if checagem == "erro_final" or checagem == "erro_formato" or checagem == "erro_operadora":
+                self.execucao_permitida = False
+                self._executar_mensagem_de_erro(checagem)
+            else:
+                self.execucao_permitida = True
+
+        if self.execucao_permitida:
+            editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, novo_conteudo)
+            self.window.quit()
+            window.destroy()
+        else:
+            pass
+
+    def _executar_mensagem_de_erro(self, mensagem="erro"):
+        self.mensagem_de_erro = f"  ERRor  \n\nErro de execucao...\n\n{mensagem}"
 
         self.texto_relatorio.config(state=tkinter.NORMAL)
         self._apagar_relatorio()

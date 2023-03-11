@@ -70,7 +70,7 @@ criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 # advogado
 nome = "advogado"
 salario = "6500"
-bonus = 0.0
+bonus = 0.01
 comissao = 0.0
 cnpj = "124134100000"
 linha = 70

@@ -105,7 +105,7 @@ add_carro_na_lista(carro_492654, "carro_492654", 124134100000, 97)
 
 montadora = "Nissan"
 nome = "Fairlady Z"
-ano = "2010"
+ano = "2020"
 valor_de_aquisicao = "120000"
 codigo_de_registro = "719373"
 carro_719373 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
@@ -116,4 +116,7 @@ remover_carro_da_lista(carro_873311, "384399")
 
 
 remover_carro_da_lista(carro_988526, "387595")
+
+
+
 
