@@ -33,7 +33,7 @@ class Funcionario:
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
                f'codigo = "{self.__codigo}"    \n' \
-               f'cargo = "{self.__cargo["cargo"]}"    \n'
+               f'cargo = "{self.__cargo}"    \n'
 
     def mostrar_dados(self):
         return f'\nFuncionario = "{self.__nome}"    \n' \
