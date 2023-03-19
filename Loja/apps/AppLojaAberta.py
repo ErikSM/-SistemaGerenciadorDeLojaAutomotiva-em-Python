@@ -479,4 +479,3 @@ class AppLojaAberta(AppBase):
 
     def abrir_opcoes_avancadas(self, nome_da_lista):
         AppOpcoesAvancadas(f'Opcoes avancadas de {nome_da_lista}', self.loja_de_transacao, nome_da_lista)
-        self.window.destroy()

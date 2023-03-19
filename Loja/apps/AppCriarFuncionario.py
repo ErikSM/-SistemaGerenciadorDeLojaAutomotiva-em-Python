@@ -1,10 +1,11 @@
 import tkinter
 
+from entrada_de_dados import validar_telefone, validar_email
 from entrada_de_dados.dicionario_cargos import dicionario_de_cargos
 from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_funcionarios import codigos_de_funcionarios_existentes
-from entrada_de_dados.validar_documento import mascarar_cnpj
+from entrada_de_dados.validar_documento import mascarar_cnpj, verificar_documento
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Funcionario import Funcionario
@@ -14,6 +15,8 @@ class AppCriarFuncionario(AppBase):
 
     def __init__(self, title, loja: Loja):
         super().__init__(title)
+
+        self.criacao_de_funcionario_autorizada = bool()
 
         self.loja = loja
         self.texto_temporario = tkinter.Text()
@@ -94,13 +97,6 @@ class AppCriarFuncionario(AppBase):
 
         self._apagar_relatorio()
 
-        # -----------------------------  --------------   ----------------
-        # if verificar_documento(self.entrada_do_cpf.get()):
-        #    self._criar_funcionario()
-        # else:
-        #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
-        # -----------------------------  --------------   ----------------
-
         self._criar_funcionario()
 
         self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
@@ -113,15 +109,32 @@ class AppCriarFuncionario(AppBase):
         telefone = self.entrada_do_telefone.get()
         email = self.entrada_do_email.get()
         codigo = criar_codigo_unico(codigos_de_funcionarios_existentes)
-        cargo = self.entrada_do_cargo.get()
+        cargo = dicionario_de_cargos[f"{self.entrada_do_cargo.get()}"]["cargo"]
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+
+        elif not verificar_documento(self.entrada_do_cpf.get()):
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
+
+        elif not validar_telefone.Telefone(telefone).validar():
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   TELEFONE invalido"
+
+        elif validar_email.checar_email(email) == "erro_final" \
+                or validar_email.checar_email(email) == "erro_formato" \
+                or validar_email.checar_email(email) == "erro_operadora":
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
         else:
+            self.criacao_de_funcionario_autorizada = True
+
+        if self.criacao_de_funcionario_autorizada:
             funcionario = Funcionario(nome, cpf, telefone, email, codigo, cargo)
             salvar_funcionario_em_lista(funcionario, self.loja)
 
             self.funcionario = funcionario
             self.funcionario.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
 
-            self.mensagem_do_relatorio = self.funcionario.mostrar_dados()
+            self.mensagem_do_relatorio = self.funcionario.mostrar_atributos_principais()

@@ -117,6 +117,3 @@ remover_carro_da_lista(carro_873311, "384399")
 
 remover_carro_da_lista(carro_988526, "387595")
 
-
-
-

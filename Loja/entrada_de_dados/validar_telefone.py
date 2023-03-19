@@ -1,31 +1,34 @@
 
-# teste
-'''
-def validar(numero):
-    numero = str(numero)
-    if len(numero) == 13 or len(numero) == 12:
-        return True
-    else:
-        return False
-        '''
-
-
 class Telefone:
     def __init__(self, numero):
 
         self.telefone = numero
 
-        # Teste
-        '''if validar(numero):
-            self.telefone = numero
-        else:
-            raise ValueError("Numero invalido!")'''
+        self.telefone_valido = bool()
+        self.mensagem_de_erro = str()
 
     def __str__(self):
         if len(self.telefone) == 13:
             return self.mascarar_telefone_movel()
         else:
             return self.mascarar_telefone_fixo()
+
+    def validar(self):
+        numero = str(self.telefone)
+
+        try:
+            int(numero)
+        except Exception as ex:
+            self.mensagem_de_erro = ex
+            self.telefone_valido = False
+            return self.telefone_valido
+
+        if len(numero) == 13 or len(numero) == 12:
+            self.telefone_valido = True
+            return self.telefone_valido
+        else:
+            self.telefone_valido = False
+            return self.telefone_valido
 
     def mascarar_telefone_fixo(self):
         parte_um = "55"
@@ -44,4 +47,3 @@ class Telefone:
 
         return "+{}({}){}-{}".format(
             parte_um, parte_dois, parte_tres, parte_quatro)
-

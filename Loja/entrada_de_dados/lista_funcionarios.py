@@ -32,7 +32,7 @@ def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
 
 
 nome = "Joao Pereira"
-cpf = "77832209823"
+cpf = "52998224725"
 telefone = "909876567898"
 email = "jpere@gmail.com"
 codigo = "267707"
@@ -42,7 +42,7 @@ add_funcionario_na_lista(funcionario_267707, "funcionario_267707", 124134100000,
 
 
 nome = "Armando Silveira"
-cpf = "88776540980"
+cpf = "52998224725"
 telefone = "998876673232"
 email = "arman@gmail.com"
 codigo = "379018"
@@ -52,7 +52,7 @@ add_funcionario_na_lista(funcionario_379018, "funcionario_379018", 124134100000,
 
 
 nome = "Ana Julia"    
-cpf = "98767823490"    
+cpf = "52998224725"
 telefone = "889923487634"    
 email = "anaj@outlook.com"
 codigo = "984713"
@@ -62,11 +62,21 @@ add_funcionario_na_lista(funcionario_984713, "funcionario_984713", 124134100000,
 
 
 nome = "Edson Arantes"
-cpf = "87654678930"
+cpf = "52998224725"
 telefone = "888866663321"
 email = "edara@hotmail.com"
 codigo = "46643"
 cargo = "zelador"    
 funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
 add_funcionario_na_lista(funcionario_46643, "funcionario_46643", 124134100000, 63)
+
+
+nome = "Fernanda Silva"    
+cpf = "52998224725"    
+telefone = "998866663445"    
+email = "fesilva@hotmail.com"
+codigo = "367715"    
+cargo = "advogado"    
+funcionario_367715 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+add_funcionario_na_lista(funcionario_367715, "funcionario_367715", 124134100000, 74)
 

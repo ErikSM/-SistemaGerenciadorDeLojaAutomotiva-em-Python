@@ -31,7 +31,7 @@ def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
 
 
 nome = "Erik Miyajima"
-cpf = "23948729487"
+cpf = "52998224725"
 telefone = "7539579"
 email = "sjfojfo@com"
 codigo = "251752"
@@ -40,7 +40,7 @@ add_cliente_em_lista(cliente_251752, "cliente_251752 ", 124134100000, 33)
 
 
 nome = "Ayumi Mello"
-cpf = "32489765098"
+cpf = "52998224725"
 telefone = "990834562345"
 email = "ayu@hotmail.com"
 codigo = "749240"
@@ -48,13 +48,11 @@ cliente_749240 = Cliente(nome, cpf, telefone, email, codigo)
 add_cliente_em_lista(cliente_749240, "cliente_749240", 124134100000, 42)
 
 
-nome = "Tatiana Lopez"
-cpf = "99087678950"
-telefone = "889972265478"
-email = "tatilo@gmail.com"
+nome = "Fernanda Lopez"
+cpf = "52998224725"
+telefone = "990830582388"
+email = "ferlo@gmail.com"
 codigo = "417257"
 cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
 add_cliente_em_lista(cliente_417257, "cliente_417257", 124134100000, 51)
-
-
 

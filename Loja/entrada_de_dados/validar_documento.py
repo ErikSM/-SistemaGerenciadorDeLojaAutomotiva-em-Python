@@ -2,6 +2,8 @@ from validate_docbr import CPF
 from validate_docbr import CNPJ
 
 
+# exemplo de cpf valido: 52998224725
+# exemplo de cnpj valido: 43217051000182
 def verificar_documento(numero):
     if len(numero) == 14 or len(numero) == 11:
 
@@ -48,4 +50,3 @@ def mascarar_cnpj(numero):
 def _validar_cnpj(numero_mascarado):
     validar = CNPJ()
     return validar.validate(numero_mascarado)
-

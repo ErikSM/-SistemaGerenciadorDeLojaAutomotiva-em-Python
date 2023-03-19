@@ -106,6 +106,8 @@ class AppOpcoesAvancadas(AppBase):
         self.botao_visualizar.destroy()
         self.botao_modo_editar.destroy()
         self.botao_fechar_app.destroy()
+        if self.tipo_de_lista == "clientes":
+            self._botao_deletar_cliente.destroy()
 
     def _excluir_botoes_de_edicao(self):
         self.botao_sair_de_edicao.destroy()
@@ -148,6 +150,11 @@ class AppOpcoesAvancadas(AppBase):
                                                 width=19, command=self.ativar_modo_edicao)
         self.botao_modo_editar.pack()
 
+        self._botao_deletar_cliente = tkinter.Button(self.sub_frame_dados_esq, text="Deletar", bg="grey", width=19,
+                                                     command=self.deletar_cliente_substituindo_conteudo_do_objeto)
+        if self.tipo_de_lista == "clientes":
+            self._botao_deletar_cliente.pack()
+
         self.botao_fechar_app = tkinter.Button(self.sub_frame_dados_esq, text="Fechar", bg="grey90", bd=6,
                                                width=18, command=self.fechar)
         self.botao_fechar_app.pack()
@@ -159,26 +166,25 @@ class AppOpcoesAvancadas(AppBase):
 
         self._apagar_relatorio()
         if self.item_selecionado_da_listbox == '':
-            self.texto_relatorio.insert(1.0, self.mensagem_de_erro)
+            self._executar_mensagem_de_erro("Selecione uma opcao na lista")
         else:
             dados_do_objeto = self.dicionario_de_objetos_para_editar[self.item_selecionado_da_listbox].mostrar_dados()
             self.texto_relatorio.insert(1.0, dados_do_objeto)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-    def editar_variavel(self, tipo_de_lista, variavel_editada):
-
+    def editar_variavel(self, tipo_de_lista, variavel_para_editar):
         if self.item_selecionado_da_listbox == '':
-            self._executar_mensagem_de_erro()
+            self._executar_mensagem_de_erro("Selecione uma opcao na lista...")
         else:
             objeto = self.objeto_selecionado_para_edicao
 
             window = tkinter.Toplevel()
-            window.title(f'Editar {variavel_editada}')
+            window.title(f'Editar {variavel_para_editar}')
             window.resizable(False, False)
             window.geometry("300x200+300+200")
 
-            label = tkinter.Label(window, text=f'Editar {variavel_editada}', pady=30)
+            label = tkinter.Label(window, text=f'Editar {variavel_para_editar}', pady=30)
             label.pack()
 
             self.string_nova_para_edicao = tkinter.Entry(window)
@@ -186,15 +192,15 @@ class AppOpcoesAvancadas(AppBase):
 
             botao_de_execucao = tkinter.Button(window, text="OK")
             botao_de_execucao.config(
-                command=lambda: self._executar_edicao_do_conteudo(window, objeto, tipo_de_lista, variavel_editada))
+                command=lambda: self._executar_edicao_do_conteudo(window, objeto, tipo_de_lista, variavel_para_editar))
             botao_de_execucao.pack()
 
-    def _executar_edicao_do_conteudo(self, window, objeto, tipo_de_lista, variavel_editada):
+    def _executar_edicao_do_conteudo(self, window, objeto, tipo_de_lista, variavel_para_editar):
         novo_conteudo = self.string_nova_para_edicao.get()
 
         self.execucao_permitida = bool()
 
-        if variavel_editada == "valor_de_aquisicao":
+        if variavel_para_editar == "valor_de_aquisicao":
             try:
                 float(novo_conteudo)
                 self.execucao_permitida = True
@@ -203,7 +209,7 @@ class AppOpcoesAvancadas(AppBase):
                 ex = f'{ex}:  campo deve conter conteudo numerico'
                 self._executar_mensagem_de_erro(ex)
 
-        if variavel_editada == "ano":
+        if variavel_para_editar == "ano":
             try:
                 int(novo_conteudo)
                 self.execucao_permitida = True
@@ -220,7 +226,7 @@ class AppOpcoesAvancadas(AppBase):
                     self.execucao_permitida = False
                     self._executar_mensagem_de_erro("Ano do veiculo deve ser entre 1970 ate o ano atual")
 
-        if variavel_editada == "email":
+        if variavel_para_editar == "email":
             checagem = validar_email.checar_email(novo_conteudo)
             if checagem == "erro_final" or checagem == "erro_formato" or checagem == "erro_operadora":
                 self.execucao_permitida = False
@@ -229,11 +235,58 @@ class AppOpcoesAvancadas(AppBase):
                 self.execucao_permitida = True
 
         if self.execucao_permitida:
-            editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, novo_conteudo)
+            editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_para_editar, novo_conteudo)
             self.window.quit()
             window.destroy()
         else:
             pass
+
+    # /////   Em construcao     //////
+    def deletar_cliente_substituindo_conteudo_do_objeto(self):
+        self.item_selecionado_da_listbox = self.listbox.get(tkinter.ANCHOR)
+
+        self.texto_relatorio.config(state=tkinter.NORMAL)
+
+        self._apagar_relatorio()
+        if self.item_selecionado_da_listbox == '':
+            self._executar_mensagem_de_erro("Selecione uma opcao na lista")
+        else:
+            self.objeto_selecionado_para_edicao = self.dicionario_de_objetos_para_editar[
+                self.item_selecionado_da_listbox]
+            objeto = self.objeto_selecionado_para_edicao
+            dados_do_objeto = objeto.mostrar_dados()
+            self.texto_relatorio.insert(1.0, dados_do_objeto)
+
+            window = tkinter.Toplevel()
+            window.title(f'Deletar Cliente')
+            window.resizable(False, False)
+            window.geometry("300x200+300+200")
+
+            label = tkinter.Label(window, text=f'(ALERTA!)\n\nTem Certeza que Deseja \nDeletar Conteudo do Cliente'
+                                               f'\n\n Isso pode ser prejudicial para o historico da loja', pady=30)
+            label.pack()
+
+            botao_de_execucao = tkinter.Button(window, text="Deletar Cliente")
+            botao_de_execucao.config(
+                command=lambda: self._executar_substituicao_do_conteudo_do_objeto_cliente(window,
+                                                                                          objeto))
+            botao_de_execucao.pack()
+
+        self.texto_relatorio.config(state=tkinter.DISABLED)
+
+    def _executar_substituicao_do_conteudo_do_objeto_cliente(self, window, objeto):
+        tipo_de_lista = "clientes"
+
+        editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, "nome", "deletado")
+        editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, "cpf", "deletado")
+        editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, "telefone", "deletado")
+        editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, "email", "deletado")
+
+        window.destroy()
+        self.window.destroy()
+        #self.window.quit()
+
+    #  /////////////////////////////////
 
     def _executar_mensagem_de_erro(self, mensagem="erro"):
         self.mensagem_de_erro = f"  ERRor  \n\nErro de execucao...\n\n{mensagem}"
@@ -244,5 +297,5 @@ class AppOpcoesAvancadas(AppBase):
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
     def fechar(self):
-        self.window.quit()
+        #self.window.quit()
         self.window.destroy()

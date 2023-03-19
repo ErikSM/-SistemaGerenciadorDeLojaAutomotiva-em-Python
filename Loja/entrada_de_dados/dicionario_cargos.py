@@ -4,12 +4,12 @@ dicionario_de_cargos = dict()
 dicionario_de_cargos_da_loja = dict()
 
 
-def _atualizar_dicionario_de_cargos_da_loja(cnpj):
-    dicionario_de_cargos_da_loja[cnpj] = dicionario_de_cargos
+def _atualizar_dicionario_de_cargos_da_loja(cnpj_da_loja):
+    dicionario_de_cargos_da_loja[cnpj_da_loja] = dicionario_de_cargos
 
 
-def _adicinar_profissao_em_dicionario_de_cargos(profissao, cnpj):
-    dicionario_de_cargos[f'{profissao["cargo"]} {cnpj}'] = profissao
+def _adicinar_profissao_em_dicionario_de_cargos(profissao, cnpj_da_loja):
+    dicionario_de_cargos[f'{profissao["cargo"]} {cnpj_da_loja}'] = profissao
 
 
 def criar_profissao(cargo: Cargo, linha):

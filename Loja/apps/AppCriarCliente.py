@@ -1,5 +1,6 @@
 import tkinter
 
+from entrada_de_dados import validar_telefone, validar_email
 from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_clientes import codigos_de_clientes_existentes
@@ -13,6 +14,8 @@ class AppCriarCliente(AppBase):
 
     def __init__(self, title, loja: Loja):
         super().__init__(title)
+
+        self.criacao_de_cliente_autorizada = bool()
 
         self.loja = loja
         self.texto_temporario = tkinter.Text()
@@ -81,13 +84,6 @@ class AppCriarCliente(AppBase):
 
         self._apagar_relatorio()
 
-# -----------------------------  --------------   ----------------
-        #if verificar_documento(self.entrada_do_cpf.get()):
-        #    self._criar_cliente()
-        #else:
-        #    self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
-# -----------------------------  --------------   ----------------
-
         self._criar_cliente()
 
         self.texto_relatorio.insert(1.0, self.mensagem_do_relatorio)
@@ -103,8 +99,26 @@ class AppCriarCliente(AppBase):
         codigo = criar_codigo_unico(codigos_de_clientes_existentes)
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
+            self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+
+        elif not verificar_documento(self.entrada_do_cpf.get()):
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
+
+        elif not validar_telefone.Telefone(telefone).validar():
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   TELEFONE invalido"
+
+        elif validar_email.checar_email(email) == "erro_final" \
+                or validar_email.checar_email(email) == "erro_formato" \
+                or validar_email.checar_email(email) == "erro_operadora":
+            self.criacao_de_cliente_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
         else:
+            self.criacao_de_cliente_autorizada = True
+
+        if self.criacao_de_cliente_autorizada:
             cliente = Cliente(nome, cpf, telefone, email, codigo)
             salvar_cliente_em_lista(cliente, self.loja)
 

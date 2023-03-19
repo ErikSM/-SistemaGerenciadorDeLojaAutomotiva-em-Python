@@ -18,11 +18,12 @@ def salvar_funcionario_em_lista(funcionario: Funcionario, loja: Loja):
 
 def _escrever_objeto_funcionario(funcionario: Funcionario, loja: Loja, linha_no_arquivo):
     variavel_da_classe = f'funcionario_{funcionario.codigo}'
-    classe = 'Funcionario(nome, cpf, telefone, email, cargo)'
+    classe = 'Funcionario(nome, cpf, telefone, email, codigo, cargo)'
 
     return f'' \
            f'{funcionario.mostrar_atributos_principais()}' \
            f'{variavel_da_classe} = {classe}\n' \
-           f'add_funcionario_na_lista({variavel_da_classe}, \n' \
-           f'                         "{variavel_da_classe }", {int(loja.cnpj)}, {linha_no_arquivo})' \
-           f'\n'
+           f'add_funcionario_na_lista({variavel_da_classe}, "{variavel_da_classe}", ' \
+           f'{int(loja.cnpj)}, {linha_no_arquivo})' \
+           f''
+
