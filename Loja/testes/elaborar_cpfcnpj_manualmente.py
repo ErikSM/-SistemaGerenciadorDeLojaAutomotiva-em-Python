@@ -5,6 +5,8 @@ def validar(numero):
         return False
 
 
+# exemplo de cpf valido: 52998224725
+# exemplo de cnpj valido: 43217051000182
 class Cpf:
     def __init__(self, numero):
         numero = str(numero)
@@ -24,6 +26,3 @@ class Cpf:
 
         return "{}.{}.{}-{}".format(
             parte_um, parte_dois, parte_tres, parte_quatro)
-
-
-
