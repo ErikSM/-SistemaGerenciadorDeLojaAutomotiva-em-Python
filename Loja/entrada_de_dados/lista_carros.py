@@ -117,3 +117,12 @@ remover_carro_da_lista(carro_873311, "384399")
 
 remover_carro_da_lista(carro_988526, "387595")
 
+
+remover_carro_da_lista(carro_719373, "678358")
+
+
+remover_carro_da_lista(carro_827583, "33373")
+
+
+remover_carro_da_lista(carro_492654, "40082")
+
