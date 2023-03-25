@@ -1,6 +1,6 @@
 import tkinter
 
-from relatorios.graficos import construir_grafico_barras
+from relatorios.graficos import construir_grafico_barras, construir_grafico_linhas
 from estrutura import Loja
 
 
@@ -22,7 +22,7 @@ def criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(loja: Loja):
 
         # construindo grafico
         dicionario_do_grafico[venda.codigo] = venda.lucro_sobre_a_venda
-    construir_grafico_barras(dicionario_do_grafico, "Codigo da venda", "Lucro com a venda", "Historico de lucro", "R$")
+    construir_grafico_linhas(dicionario_do_grafico, "Codigo da venda", "Lucro com a venda", "Historico de lucro", "R$")
 
     return texto_temporario.get(1.0, "end")
 
