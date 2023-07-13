@@ -24,6 +24,6 @@ def _escrever_objeto_carro(carro: Carro, loja: Loja, linha_no_arquivo):
     return f'' \
            f'{carro.mostrar_atributos_principais()}' \
            f'{variavel} = {classe}\n' \
-           f'add_carro_na_lista({variavel}, "{variavel}", {int(loja.cnpj)}, {linha_no_arquivo})' \
+           f'add_carro_na_lista({variavel}, {int(loja.cnpj)}, {linha_no_arquivo})' \
            f'\n'
 

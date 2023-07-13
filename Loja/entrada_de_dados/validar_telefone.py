@@ -1,5 +1,6 @@
 
 class Telefone:
+
     def __init__(self, numero):
 
         self.telefone = numero

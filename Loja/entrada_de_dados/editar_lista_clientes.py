@@ -23,5 +23,5 @@ def _escrever_objeto_cliente(cliente: Cliente, loja: Loja, linha_no_arquivo):
     return f'' \
            f'{cliente.mostrar_atributos_principais()}' \
            f'{variavel} = {classe}\n' \
-           f'add_cliente_em_lista({variavel}, "{variavel}", {int(loja.cnpj)}, {linha_no_arquivo})' \
+           f'add_cliente_em_lista({variavel}, {int(loja.cnpj)}, {linha_no_arquivo})' \
            f'\n'

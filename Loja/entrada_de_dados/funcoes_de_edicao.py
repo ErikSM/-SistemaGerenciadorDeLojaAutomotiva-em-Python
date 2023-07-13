@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import END
 
 from entrada_de_dados.salvar_modificacoes import atualizar_informacoes
 
@@ -14,7 +15,7 @@ def abrir_modificar_e_salvar_arquivo(endereco, formato, escrever):
 
     file = open(f"{endereco}.{formato}", "w")
     texto_temporario.insert("end", arquivo_escrito)
-    file.write(texto_temporario.get(1.0, "end"))
+    file.write(texto_temporario.get(1.0, END))
 
     atualizar_informacoes(arquivo, file)
 
@@ -23,8 +24,9 @@ def abrir_modificar_e_salvar_arquivo(endereco, formato, escrever):
     file.close()
 
 
-def editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, novo_conteudo):
+def editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, conteudo_para_editar: tuple):
     texto_temporario = tkinter.Text()
+    variavel_editada, novo_conteudo = conteudo_para_editar[0], conteudo_para_editar[1]
 
     parametro_um = None
     parametro_dois = None
@@ -61,7 +63,9 @@ def editar_arquivo_em_opcoes_avancadas(objeto, tipo_de_lista, variavel_editada, 
     file = open(f"entrada_de_dados/lista_{tipo_de_lista}.py", "w")
     texto_temporario.delete(float(parametro_um), float(parametro_dois))
     texto_temporario.insert(float(parametro_um), escrever_variavel_1)
-    file.write(texto_temporario.get(1.0, "end"))
+    total_de_linhas = contar_linhas_de_um_arquivo(f"entrada_de_dados/lista_{tipo_de_lista}", "py")
+    ultima_linha = f"{total_de_linhas}.0"
+    file.write(texto_temporario.get(1.0, float(ultima_linha) + 1.0))
 
     atualizar_informacoes(arquivo, file)
 
@@ -152,4 +156,3 @@ def contar_linhas_de_um_arquivo(endereco, formato):
     separando_em_linhas = arquivo.readlines()
     total_linhas = len(separando_em_linhas)
     return total_linhas
-

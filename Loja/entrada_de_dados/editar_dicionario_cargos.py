@@ -43,6 +43,5 @@ def criar_chave_da_loja_em_dicionario_cargos(loja: Loja):
 def _escrever_chave_da_loja_em_dicionario(loja: Loja):
     return f'\n' \
            f'# loja criada    \n' \
-           f'dicionario_de_cargos_da_loja["{loja.cnpj}"] = None    \n' \
+           f'dicionario_de_cargos_da_loja["{loja.cnpj}"] = dict()    \n' \
            f''
-

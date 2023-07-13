@@ -184,3 +184,36 @@ add_venda_na_lista(venda_40082, "venda_40082")
 
 # -------------------------------------------------------
 
+
+# ((Dados da Venda)):
+
+data = "2023-07-13"
+
+codigo = "92254"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_267707
+funcionario = funcionario_267707
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_251752
+cliente = cliente_251752
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_78502
+carro = carro_78502
+
+valor_negociado = "78000"
+
+venda_92254 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_92254, "venda_92254")
+
+
+# -------------------------------------------------------
+

@@ -23,7 +23,7 @@ def _escrever_objeto_funcionario(funcionario: Funcionario, loja: Loja, linha_no_
     return f'' \
            f'{funcionario.mostrar_atributos_principais()}' \
            f'{variavel_da_classe} = {classe}\n' \
-           f'add_funcionario_na_lista({variavel_da_classe}, "{variavel_da_classe}", ' \
+           f'add_funcionario_na_lista({variavel_da_classe}, ' \
            f'{int(loja.cnpj)}, {linha_no_arquivo})' \
            f''
 
