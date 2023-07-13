@@ -11,8 +11,8 @@ class Funcionario:
         self.__telefone = telefone
         self.__email = email
         self.__codigo = codigo
-
         self.__cargo = cargo
+
         self.__salario = None
         self.__bonus = None
         self.__comissao = None

@@ -17,8 +17,8 @@ class Veiculo(ABC):  # Classe Abstrata
         self.linha_no_arquivo = int()
 
         self.posicao_na_lista = " "
-        self.nome_da_variavel = " "
         self.codigo_de_venda = " "
+        self.nome_da_variavel = " "
 
     def mostrar_atributos_principais(self):
         return f'\nmontadora = "{self.__montadora}"    \n' \
@@ -33,7 +33,7 @@ class Veiculo(ABC):  # Classe Abstrata
                f'ano = "{self.__ano}"    \n' \
                f'valor de aquisicao = "R$:{mascarar_preco(self.__valor_de_aquisicao)}"    \n' \
                f'codigo de registro = "{self.__codigo}"    \n' \
-               f'loja = {self.__cnpj_loja}    \n' \
+               f'loja = {self.__cnpj_loja}    \n'
 
     @abstractmethod
     def abstractmethod(self):
