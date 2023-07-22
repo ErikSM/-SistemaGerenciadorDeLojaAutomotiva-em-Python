@@ -3,6 +3,9 @@ import tkinter
 import datetime
 
 from apps.AppAdmin import AppAdmin
+from estrutura.Carro import Carro
+from estrutura.Cliente import Cliente
+from estrutura.Funcionario import Funcionario
 from relatorios.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
 from relatorios.ranking import organizar_rankings_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
@@ -12,7 +15,6 @@ from entrada_de_dados.lista_carros import carros_registrados
 from entrada_de_dados.lista_clientes import clientes_registrados
 from entrada_de_dados.lista_funcionarios import funcionarios_registrados
 from entrada_de_dados.lista_vendas import codigos_de_vendas_existentes, vendas_registradas
-from entrada_de_dados.mascarar_preco import mascarar_preco
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from apps.AppLoja import AppLoja
@@ -79,7 +81,6 @@ class AppPrincipal(AppBase):
 
         self.validar = None
 
-        self.relatorio_de_venda_selecionado = None
         self.texto_temporario = None
 
         self.window.title(loja.mostrar_dados())
@@ -208,7 +209,7 @@ class AppPrincipal(AppBase):
         self.menu_relatorio_ranking.add_command(label="Melhores clientes",
                                                 command=self.exibir_relatorio_de_ranking_de_clientes)
 
-        # Titulo da Loja Aberta
+        # Titulo da Loja
         self.label_title = tkinter.Label(self.frame_dados,
                                          text=f"Loja:({self.loja_de_transacao.nome})".title(), bg="white")
         self.label_title.config(font="Times 22 bold")
@@ -266,13 +267,13 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.insert(1.0, '\n(-Loja Registrada-)\n')
         self.texto_relatorio.insert("end", loja.mostrar_dados())
 
-        for tipo in self.dicionario_da_loja:
-            self.texto_relatorio.insert("end", f'\n\n\n\n(({tipo}))\n')
+        for i in self.dicionario_da_loja:
+            self.texto_relatorio.insert("end", f'\n\n\n\n(({i}))\n')
             self.texto_relatorio.insert("end", f'{"--" * 30}')
 
-            lista = self.dicionario_da_loja[tipo]
-            for conteudo in lista:
-                self.texto_relatorio.insert("end", conteudo.mostrar_dados())
+            lista = self.dicionario_da_loja[i]
+            for j in lista:
+                self.texto_relatorio.insert("end", j.mostrar_dados())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -280,7 +281,7 @@ class AppPrincipal(AppBase):
         remover_loja_da_lista(loja.nome_da_variavel)
         return self.window.destroy()
 
-    def selecionar_funcionario(self, funcionario_select):
+    def selecionar_funcionario(self, funcionario_select: Funcionario):
         self.funcionario_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.funcionario_pre_selecionado.delete(1, "end")
@@ -296,7 +297,7 @@ class AppPrincipal(AppBase):
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-    def selecionar_cliente(self, cliente_select):
+    def selecionar_cliente(self, cliente_select: Cliente):
         self.cliente_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.cliente_pre_selecionado.delete(1, "end")
@@ -312,7 +313,7 @@ class AppPrincipal(AppBase):
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
-    def selecionar_carro(self, carro_select):
+    def selecionar_carro(self, carro_select: Carro):
         self.carro_pre_selecionado.config(state=tkinter.NORMAL)
 
         self.carro_pre_selecionado.delete(1, "end")
@@ -346,7 +347,7 @@ class AppPrincipal(AppBase):
             self._apagar_relatorio()
             self._criar_venda()
             if self.validar:
-                self.texto_relatorio.insert(1.0, self._escrever_relatorio_de_venda_criada())
+                self.texto_relatorio.insert(1.0, self.venda.relatorio_de_venda())
             else:
                 self.texto_relatorio.insert(1.0, "ErRor\n valor digitado invalido!")
 
@@ -363,13 +364,13 @@ class AppPrincipal(AppBase):
             self.validar = False
 
         if self.validar:
-            self.valor_negociado = self.valor_de_venda_digitado.get()
+            valor_negociado = self.valor_de_venda_digitado.get()
 
             loja = self.loja_de_transacao
             funcionario = self.funcionario_vendedor
             cliente = self.cliente_comprador
             veiculo = self.carro_escolhido
-            preco = self.valor_negociado
+            preco = valor_negociado
             data = datetime.date.today()
             codigo = criar_codigo_unico(codigos_de_vendas_existentes)
 
@@ -384,28 +385,13 @@ class AppPrincipal(AppBase):
             self.valor_de_venda_digitado.insert("end", "0")
             self.valor_de_venda_digitado.delete(0, "end")
 
-    def _escrever_relatorio_de_venda_criada(self):
-        return f"codigo:{self.venda.codigo}   " \
-               f"data:{self.venda.data}" \
-               f"\n" \
-               f"{self.venda.loja}" \
-               f"{self.venda.cliente.mostrar_atributos_principais()}" \
-               f"{self.venda.veiculo.mostrar_atributos_principais()}" \
-               f"\n" \
-               f"Responsavel pela venda:{self.venda.funcionario.nome} cargo:{self.venda.funcionario.cargo['cargo']}\n" \
-               f"\n" \
-               f"Valor Negociado: {mascarar_preco(self.venda.preco)}"
-
-    def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select):
+    def exibir_relatorio_de_vendas_existente_na_lista(self, venda_select: Venda):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.relatorio_de_venda_selecionado = venda_select.mostrar_dados()
-        self.texto_relatorio.insert(1.0, self.relatorio_de_venda_selecionado)
+        self.texto_relatorio.insert(1.0, venda_select.mostrar_dados())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
-
-        self.relatorio_de_venda_selecionado = None
 
     def exibir_relatorio_do_total_de_lucro_das_vendas(self):
         self.texto_relatorio.config(state=tkinter.NORMAL)
@@ -432,14 +418,7 @@ class AppPrincipal(AppBase):
         self._apagar_relatorio()
         self.texto_relatorio.insert(1.0, "\n       ((Historico de Vendas))\n\n\n")
         for i in self.dicionario_da_loja["vendas"]:
-            self.texto_relatorio.insert("end", f""
-                                               f"(codigo:{i.codigo}): "
-                                               f"data:{i.data}  "
-                                               f"Loja:{i.loja.nome}  "
-                                               f"Cliente:{i.cliente.nome}  "
-                                               f"**Valor Negociado:{i.preco}**\n"
-                                        # f"{'-' * 98}\n"
-                                        )
+            self.texto_relatorio.insert("end", i.relatorio_resumido())
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 

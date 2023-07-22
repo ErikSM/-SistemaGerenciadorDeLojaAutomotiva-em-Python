@@ -217,3 +217,69 @@ add_venda_na_lista(venda_92254, "venda_92254")
 
 # -------------------------------------------------------
 
+
+# ((Dados da Venda)):
+
+data = "2023-07-22"
+
+codigo = "693294"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_379018
+funcionario = funcionario_379018
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_251752
+cliente = cliente_251752
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_942353
+carro = carro_942353
+
+valor_negociado = "38000"
+
+venda_693294 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_693294, "venda_693294")
+
+
+# -------------------------------------------------------
+
+
+# ((Dados da Venda)):
+
+data = "2023-07-22"
+
+codigo = "375453"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_267707
+funcionario = funcionario_267707
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_749240
+cliente = cliente_749240
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_561458
+carro = carro_561458
+
+valor_negociado = "33000"
+
+venda_375453 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+
+
+add_venda_na_lista(venda_375453, "venda_375453")
+
+
+# -------------------------------------------------------
+

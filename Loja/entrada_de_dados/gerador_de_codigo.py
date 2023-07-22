@@ -3,13 +3,13 @@ from random import sample
 
 def criar_codigo_unico(lista):
     codigo = _gerador_de_codigo_aleatorio()
-    variavel = True
+    criando_codigo = True
 
-    while variavel:
+    while criando_codigo:
         if codigo in lista:
             codigo = _gerador_de_codigo_aleatorio()
         if codigo not in lista:
-            variavel = False
+            criando_codigo = False
 
     return codigo
 

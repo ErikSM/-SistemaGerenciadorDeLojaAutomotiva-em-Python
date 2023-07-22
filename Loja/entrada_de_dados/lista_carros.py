@@ -26,15 +26,15 @@ def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
     codigos_de_carros_existentes.append(codigo_int)
 
 
-def _remover_codigo_da_lista_de_codigos_existentes(codigo):
-    codigos_de_carros_existentes.remove(int(codigo))
-
-
 def remover_carro_da_lista(carro: Carro, codigo):
     carros_registrados.remove(carro)
     carro.codigo_de_venda = str(codigo)
     _remover_codigo_da_lista_de_codigos_existentes(carro.codigo)
     _atualizar_contador_da_lista()
+
+
+def _remover_codigo_da_lista_de_codigos_existentes(codigo):
+    codigos_de_carros_existentes.remove(int(codigo))
 
 
 # --------------------  -----------------   ------------   ------------   ----
@@ -128,4 +128,19 @@ remover_carro_da_lista(carro_492654, "40082")
 
 
 remover_carro_da_lista(carro_78502, "92254")
+
+
+remover_carro_da_lista(carro_942353, "693294")
+
+
+montadora = "Wolkswagen"    
+nome = "Gol"    
+ano = "2019"    
+valor_de_aquisicao = "30000"    
+codigo_de_registro = "561458"    
+carro_561458 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_561458, 124134100000, 136)
+
+
+remover_carro_da_lista(carro_561458, "375453")
 
