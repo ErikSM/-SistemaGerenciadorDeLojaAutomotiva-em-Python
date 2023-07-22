@@ -17,7 +17,8 @@ def criar_relatorio_de_lucro_total_de_vendas(loja: Loja):
     resultado_lucro = _calcular_lucro_total_de_vendas(loja)
     dicionario_do_grafico["Lucro com vendas"] = resultado_lucro
 
-    construir_grafico_barras(dicionario_do_grafico, "", "Valores:", "Numeros Totais de Gastos e Lucros", "R$")
+    definicoes_do_grafico = ("", "Valores:", "Numeros Totais de Gastos e Lucros")
+    construir_grafico_barras(dicionario_do_grafico, definicoes_do_grafico, "R$")
 
     return _escrever_relatorio_de_lucro(total_venda, total_gasto, total_comissao, resultado_lucro)
 

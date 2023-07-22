@@ -8,32 +8,33 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
     carros_mais_vendidos = dict()
     melhores_clientes = dict()
 
-    quantidade = 1
-
     lista_de_ranking_dos_carros = list()
     lista_de_ranking_dos_clientes = list()
 
     texto_temporario = tkinter.Text()
+    quantidade = 1
 
     # definindo quantidade
-    for venda in loja.dicionario_da_loja["vendas"]:
-        if venda.veiculo.nome in carros_mais_vendidos:
-            carros_mais_vendidos[venda.veiculo.nome] = carros_mais_vendidos[venda.veiculo.nome] + 1
+    for i in loja.dicionario_da_loja["vendas"]:
+        if i.veiculo.nome in carros_mais_vendidos:
+            carros_mais_vendidos[i.veiculo.nome] = carros_mais_vendidos[i.veiculo.nome] + 1
         else:
-            carros_mais_vendidos[venda.veiculo.nome] = quantidade
-        if venda.cliente.nome in melhores_clientes:
-            melhores_clientes[venda.cliente.nome] = melhores_clientes[venda.cliente.nome] + 1
+            carros_mais_vendidos[i.veiculo.nome] = quantidade
+
+        if i.cliente.nome in melhores_clientes:
+            melhores_clientes[i.cliente.nome] = melhores_clientes[i.cliente.nome] + 1
         else:
-            melhores_clientes[venda.cliente.nome] = quantidade
+            melhores_clientes[i.cliente.nome] = quantidade
 
     # ordenando ranking
-    for carro in carros_mais_vendidos:
+    for i in carros_mais_vendidos:
         lista_de_ranking_dos_carros.append(
-            f'Quantidade de vendas do modelo: {carros_mais_vendidos[carro]}  -  Carro: {carro}')
+            f'Quantidade de vendas do modelo: {carros_mais_vendidos[i]}  -  Carro: {i}')
     lista_de_ranking_dos_carros.sort()
     lista_de_ranking_dos_carros.reverse()
-    for cliente in melhores_clientes:
-        lista_de_ranking_dos_clientes.append(f'Total de Compras: {melhores_clientes[cliente]}  -  Cliente: {cliente}')
+
+    for i in melhores_clientes:
+        lista_de_ranking_dos_clientes.append(f'Total de Compras: {melhores_clientes[i]}  -  Cliente: {i}')
     lista_de_ranking_dos_clientes.sort()
     lista_de_ranking_dos_clientes.reverse()
 
@@ -52,23 +53,13 @@ def organizar_rankings_da_loja(loja: Loja, lista_analisada):
 
     # mostrando grafico e imprimindo resultado
     if lista_analisada == "carros":
-        construir_grafico_barras(carros_mais_vendidos, "Modelos", "Quantidade de vendas", "Mais vendidos")
+        definicoes_do_grafico = ("Modelos", "Quantidade de vendas", "Mais vendidos")
+        construir_grafico_barras(carros_mais_vendidos, definicoes_do_grafico)
+
         return string_ranking_de_carros
 
-    if lista_analisada == "clientes":
-        construir_grafico_barras(melhores_clientes, "clientes", "Quantidade de compras", "Melhores clientes")
+    elif lista_analisada == "clientes":
+        definicoes_do_grafico = ("clientes", "Quantidade de compras", "Melhores clientes")
+        construir_grafico_barras(melhores_clientes, definicoes_do_grafico)
+
         return string_ranking_de_clientes
-
-
-
-teste = '''
-- Passo 1: criando um dicionario de quantidade com uma condicional que em caso de ja
-haver a chave com algum determinado valor, ira adicionar a soma de +1 ao valor da chave
-- Passo 2: criando uma lista que contem uma string que comeca com o valor do dicionario
-criado e em seguida o nome do veiculo(String ja editada conforme o texto desejado no relatorio).
-- Passo 3: ordenando a lista com a funcao sort() e em seguida invertendo a ordem para uma 
-ordem decrescente com a funcao reverse()
-- Passo 4: criando um laco "for" que imprime cada String da lista que ja esta na ordem desejada 
-em uma linha por vez
-
-'''

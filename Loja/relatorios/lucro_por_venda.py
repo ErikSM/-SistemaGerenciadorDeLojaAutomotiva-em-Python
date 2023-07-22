@@ -22,7 +22,9 @@ def criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(loja: Loja):
 
         # construindo grafico
         dicionario_do_grafico[venda.codigo] = venda.lucro_sobre_a_venda
-    construir_grafico_linhas(dicionario_do_grafico, "Codigo da venda", "Lucro com a venda", "Historico de lucro", "R$")
+
+    definicoes_do_grafico = ("Codigo da venda", "Lucro com a venda", "Historico de lucro")
+    construir_grafico_linhas(dicionario_do_grafico, definicoes_do_grafico, "R$")
 
     return texto_temporario.get(1.0, "end")
 

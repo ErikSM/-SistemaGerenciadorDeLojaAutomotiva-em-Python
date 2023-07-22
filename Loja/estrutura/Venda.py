@@ -62,6 +62,25 @@ class Venda:
                f'Comissao sobre a venda = {mascarar_preco(self.__comissao_sobre_a_venda)}\n' \
                f'\n'
 
+    def relatorio_de_venda(self):
+        return f'codigo:{self.codigo}   ' \
+               f'data:{self.data}   ' \
+               f'\n' \
+               f'{self.__loja}' \
+               f'{self.__cliente.mostrar_atributos_principais()}' \
+               f'{self.__veiculo.mostrar_atributos_principais()}' \
+               f'\n' \
+               f'Responsavel pela venda:{self.__funcionario.nome} cargo:{self.__funcionario.cargo["cargo"]}\n' \
+               f'\n' \
+               f'Valor Negociado: {mascarar_preco(self.__preco)}'
+
+    def relatorio_resumido(self):
+        return f'(codigo:{self.codigo}): ' \
+               f'data:{self.data}  ' \
+               f'Loja:{self.__loja.nome}  ' \
+               f'Cliente:{self.__cliente.nome}  ' \
+               f'**Valor Negociado:{self.__preco}**\n'
+
     def calcular_comissao_sobre_a_venda(self):
         valor_calculado = float("".join(self.__preco.split())) * float(self.__funcionario.comissao)
         return valor_calculado
