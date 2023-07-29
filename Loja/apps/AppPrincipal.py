@@ -6,7 +6,7 @@ from apps.AppAdmin import AppAdmin
 from estrutura.Carro import Carro
 from estrutura.Cliente import Cliente
 from estrutura.Funcionario import Funcionario
-from relatorios.desempenho_funcionarios import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
+from relatorios.desempenhos import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
 from relatorios.ranking import organizar_rankings_da_loja
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
@@ -22,8 +22,8 @@ from apps.AppCarro import AppCarro
 from apps.AppCliente import AppCliente
 from apps.AppFuncionario import AppFuncionario
 from apps.AppSenhaEditar import AppSenhaEditar
-from relatorios.lucro_por_venda import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
-from relatorios.total_de_lucro import criar_relatorio_de_lucro_total_de_vendas
+from relatorios.historicos import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
+from relatorios.financeiros import criar_relatorio_de_lucro_total_de_vendas
 from apps.AppEdicoes import AppEdicoes
 from estrutura.Venda import Venda
 
@@ -374,9 +374,12 @@ class AppPrincipal(AppBase):
             data = datetime.date.today()
             codigo = criar_codigo_unico(codigos_de_vendas_existentes)
 
-            venda = Venda(data, codigo, loja, funcionario, cliente, veiculo, preco)
+            info_de_registro = (data, codigo, preco)
+            venda = Venda(loja, funcionario, cliente, veiculo, info_de_registro)
+
             adicionar_venda_em_lista(venda)
             remover_carro_vendido_da_lista_carros(veiculo.nome_da_variavel, codigo)
+
             self.venda = venda
 
             self.funcionario_vendedor = None

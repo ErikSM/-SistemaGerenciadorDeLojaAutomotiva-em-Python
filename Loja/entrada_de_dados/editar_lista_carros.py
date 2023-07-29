@@ -1,4 +1,4 @@
-from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivo, \
+from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivos_em_geral, \
     contar_linhas_de_um_arquivo
 
 from estrutura import Loja
@@ -14,7 +14,7 @@ def salvar_carro_em_lista(carro: Carro, loja: Loja):
 
     escrever = _escrever_objeto_carro(carro, loja, linha_no_arquivo)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+    abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_carro(carro: Carro, loja: Loja, linha_no_arquivo):

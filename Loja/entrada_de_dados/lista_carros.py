@@ -144,3 +144,24 @@ add_carro_na_lista(carro_561458, 124134100000, 136)
 
 remover_carro_da_lista(carro_561458, "375453")
 
+
+montadora = "Fiat"    
+nome = "Uno"    
+ano = "2019"    
+valor_de_aquisicao = "30000"    
+codigo_de_registro = "525054"    
+carro_525054 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_525054, 124134100000, 148)
+
+
+montadora = "Wolkswagen"    
+nome = "Golf"    
+ano = "2019"    
+valor_de_aquisicao = "50000"    
+codigo_de_registro = "805403"    
+carro_805403 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
+add_carro_na_lista(carro_805403, 124134100000, 157)
+
+
+remover_carro_da_lista(carro_525054, "953711")
+

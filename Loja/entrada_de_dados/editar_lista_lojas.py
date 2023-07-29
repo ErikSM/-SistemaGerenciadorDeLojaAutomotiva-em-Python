@@ -1,4 +1,4 @@
-from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivo, tirar_espacos_e_maiusculas
+from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivos_em_geral, tirar_espacos_e_maiusculas
 from estrutura.Loja import Loja
 
 
@@ -9,7 +9,7 @@ def salvar_loja_em_lista(nome, cnpj, telefone):
 
     escrever = _escrever_objeto_loja(nome, cnpj, telefone)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+    abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_loja(nome, cnpj, telefone):
@@ -36,7 +36,7 @@ def remover_loja_da_lista(loja: Loja):
 
     escrever = _escrever_remocao_de_loja(loja)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+    abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_remocao_de_loja(loja: Loja):

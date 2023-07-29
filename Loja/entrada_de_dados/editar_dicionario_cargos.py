@@ -1,5 +1,5 @@
 
-from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivo, contar_linhas_de_um_arquivo
+from entrada_de_dados.funcoes_de_edicao import abrir_modificar_e_salvar_arquivos_em_geral, contar_linhas_de_um_arquivo
 from estrutura.Cargo import Cargo
 from estrutura.Loja import Loja
 
@@ -13,7 +13,7 @@ def adicionar_cargo_em_dicionario_cargos(cargo: Cargo):
 
     escrever = _escrever_cargo_em_arquivo(cargo, linha_no_arquivo)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+    abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_cargo_em_arquivo(cargo: Cargo, linha_no_arquivo):
@@ -37,7 +37,7 @@ def criar_chave_da_loja_em_dicionario_cargos(loja: Loja):
 
     escrever = _escrever_chave_da_loja_em_dicionario(loja)
 
-    abrir_modificar_e_salvar_arquivo(endereco_do_arquivo, formato, escrever)
+    abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_chave_da_loja_em_dicionario(loja: Loja):

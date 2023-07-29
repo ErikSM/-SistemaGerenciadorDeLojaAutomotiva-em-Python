@@ -4,16 +4,16 @@ vendas_registradas = list()
 codigos_de_vendas_existentes = list()
 
 
-def add_venda_na_lista(venda: Venda, variavel):
-    venda.nome_da_variavel = variavel
+def add_venda_na_lista(venda: Venda):
+    venda.nome_da_variavel = f'venda_{venda.codigo}'
     venda.funcionario.comissoes_recebidas.append(float(venda.comissao_sobre_a_venda))
     venda.funcionario.total_comissoes_recebidas += float(venda.comissao_sobre_a_venda)
     vendas_registradas.append(venda)
     _add_novo_codigo_na_lista_de_codigos_ja_existentes(venda.codigo)
 
 
-def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
-    codigo_int = int(codigo)
+def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo_novo):
+    codigo_int = int(codigo_novo)
     codigos_de_vendas_existentes.append(codigo_int)
 
 
@@ -44,10 +44,11 @@ carro = carro_873311
 
 valor_negociado = "75000"
 
-venda_384399 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_384399 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_384399, "venda_384399")
+add_venda_na_lista(venda_384399)
 
 
 # -------------------------------------------------------
@@ -77,10 +78,11 @@ carro = carro_988526
 
 valor_negociado = "47000"
 
-venda_387595 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_387595 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_387595, "venda_387595")
+add_venda_na_lista(venda_387595)
 
 
 # -------------------------------------------------------
@@ -110,10 +112,11 @@ carro = carro_719373
 
 valor_negociado = "250000"
 
-venda_678358 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_678358 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_678358, "venda_678358")
+add_venda_na_lista(venda_678358)
 
 
 # -------------------------------------------------------
@@ -143,10 +146,11 @@ carro = carro_827583
 
 valor_negociado = "0"
 
-venda_33373 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_33373 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_33373, "venda_33373")
+add_venda_na_lista(venda_33373)
 
 
 # -------------------------------------------------------
@@ -176,10 +180,11 @@ carro = carro_492654
 
 valor_negociado = "15000"
 
-venda_40082 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_40082 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_40082, "venda_40082")
+add_venda_na_lista(venda_40082)
 
 
 # -------------------------------------------------------
@@ -209,10 +214,11 @@ carro = carro_78502
 
 valor_negociado = "78000"
 
-venda_92254 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_92254 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_92254, "venda_92254")
+add_venda_na_lista(venda_92254)
 
 
 # -------------------------------------------------------
@@ -242,10 +248,11 @@ carro = carro_942353
 
 valor_negociado = "38000"
 
-venda_693294 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_693294 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_693294, "venda_693294")
+add_venda_na_lista(venda_693294)
 
 
 # -------------------------------------------------------
@@ -275,10 +282,45 @@ carro = carro_561458
 
 valor_negociado = "33000"
 
-venda_375453 = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)
+info_de_registro = (data, codigo, valor_negociado)
+venda_375453 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 
 
-add_venda_na_lista(venda_375453, "venda_375453")
+add_venda_na_lista(venda_375453)
+
+
+# -------------------------------------------------------
+
+
+# ((Dados da Venda)):
+
+data = "2023-07-29"
+
+codigo = "953711"
+
+# (loja)
+from entrada_de_dados.lista_lojas import loja_test_store
+loja = loja_test_store
+
+# (funcionario)
+from entrada_de_dados.lista_funcionarios import funcionario_267707
+funcionario = funcionario_267707
+
+# (cliente)
+from entrada_de_dados.lista_clientes import cliente_417257
+cliente = cliente_417257
+
+# (veiculo)
+from entrada_de_dados.lista_carros import carro_525054
+carro = carro_525054
+
+valor_negociado = "33000"
+
+info_de_registro = (data, codigo, valor_negociado)
+venda_953711 = Venda(loja, funcionario, cliente, carro, info_de_registro)
+
+
+add_venda_na_lista(venda_953711)
 
 
 # -------------------------------------------------------

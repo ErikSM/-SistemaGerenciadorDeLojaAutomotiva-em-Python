@@ -4,7 +4,7 @@ from tkinter import END
 from entrada_de_dados.salvar_modificacoes import atualizar_informacoes
 
 
-def abrir_modificar_e_salvar_arquivo(endereco, formato, escrever):
+def abrir_modificar_e_salvar_arquivos_em_geral(endereco, formato, escrever):
     texto_temporario = tkinter.Text()
 
     arquivo = open(f"{endereco}.{formato}", "r")

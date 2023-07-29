@@ -24,7 +24,6 @@ class AppFuncionario(AppBase):
         self.mensagem_do_relatorio = None
 
         self.lista_de_cargos_existentes = list()
-        print(dicionario_de_cargos)
         for i in dicionario_de_cargos:
             if dicionario_de_cargos[i]['cnpj'] == loja.cnpj:
                 self.lista_de_cargos_existentes.append(f"{i}")
@@ -133,7 +132,8 @@ class AppFuncionario(AppBase):
             self.criacao_de_funcionario_autorizada = True
 
         if self.criacao_de_funcionario_autorizada:
-            funcionario = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+            funcionario = Funcionario(nome, cpf, telefone, email, codigo)
+            funcionario.cargo = cargo
             salvar_funcionario_em_lista(funcionario, self.loja)
 
             self.funcionario = funcionario

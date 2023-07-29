@@ -23,8 +23,8 @@ def _atualizar_contador_da_lista():
         variavel_contador_de_posicao_na_lista += 1
 
 
-def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
-    codigo_int = int(codigo)
+def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo_novo):
+    codigo_int = int(codigo_novo)
     codigos_de_funcionarios_existentes.append(codigo_int)
 
 
@@ -36,8 +36,8 @@ cpf = "52998224725"
 telefone = "909876567898"
 email = "jpere@gmail.com"
 codigo = "267707"
-cargo = "gerente"
-funcionario_267707 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+funcionario_267707 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_267707.cargo = "gerente"
 add_funcionario_na_lista(funcionario_267707, 124134100000, 34)
 
 
@@ -46,8 +46,8 @@ cpf = "52998224725"
 telefone = "998876673232"
 email = "arman@gmail.com"
 codigo = "379018"
-cargo = "vendedor"
-funcionario_379018 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+funcionario_379018 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_379018.cargo = "vendedor"
 add_funcionario_na_lista(funcionario_379018, 124134100000, 44)
 
 
@@ -56,8 +56,8 @@ cpf = "52998224725"
 telefone = "889923487634"
 email = "anaj@outlook.com"
 codigo = "984713"
-cargo = "secretaria"
-funcionario_984713 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+funcionario_984713 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_984713.cargo = "secretaria"
 add_funcionario_na_lista(funcionario_984713, 124134100000, 54)
 
 
@@ -66,8 +66,8 @@ cpf = "52998224725"
 telefone = "888866663321"
 email = "edara@hotmail.com"
 codigo = "46643"
-cargo = "zelador"
-funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_46643.cargo = "zelador"
 add_funcionario_na_lista(funcionario_46643, 124134100000, 64)
 
 
@@ -76,7 +76,17 @@ cpf = "52998224725"
 telefone = "998866663445"
 email = "fesilva@hotmail.com"
 codigo = "367715"
-cargo = "advogado"
-funcionario_367715 = Funcionario(nome, cpf, telefone, email, codigo, cargo)
+funcionario_367715 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_367715.cargo = "advogado"
 add_funcionario_na_lista(funcionario_367715, 124134100000, 74)
+
+
+nome = "Joao Batista"    
+cpf = "52998224725"    
+telefone = "978874673232"    
+email = "joaob@gmail.com"    
+codigo = "633018"    
+funcionario_633018 = Funcionario(nome, cpf, telefone, email, codigo)
+funcionario_633018.cargo = "vendedor"
+add_funcionario_na_lista(funcionario_633018, 124134100000, 84)
 
