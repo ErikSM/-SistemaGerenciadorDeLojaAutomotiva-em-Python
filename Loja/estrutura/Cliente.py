@@ -5,6 +5,7 @@ from entrada_de_dados.validar_telefone import Telefone
 class Cliente:
 
     def __init__(self, nome, cpf, telefone, email, codigo):
+
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone

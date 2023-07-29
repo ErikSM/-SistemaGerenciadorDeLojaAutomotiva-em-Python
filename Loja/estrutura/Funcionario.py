@@ -5,13 +5,15 @@ from entrada_de_dados.validar_telefone import Telefone
 
 class Funcionario:
 
-    def __init__(self, nome, cpf, telefone, email, codigo, cargo):
+    def __init__(self, nome, cpf, telefone, email, codigo):
+
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
         self.__email = email
         self.__codigo = codigo
-        self.__cargo = cargo
+
+        self.__cargo: dict
 
         self.__salario = None
         self.__bonus = None
@@ -33,7 +35,6 @@ class Funcionario:
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
                f'codigo = "{self.__codigo}"    \n' \
-               f'cargo = "{self.__cargo}"    \n'
 
     def mostrar_dados(self):
         return f'\nFuncionario = "{self.__nome}"    \n' \

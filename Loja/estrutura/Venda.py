@@ -9,16 +9,16 @@ from estrutura.Veiculo import Veiculo
 
 class Venda:
 
-    def __init__(self, data, codigo, loja: Loja, funcionario: Funcionario, cliente: Cliente, veiculo: Veiculo, preco):
-        self.data = data
-        self.codigo = codigo
+    def __init__(self, loja: Loja, funcionario: Funcionario, cliente: Cliente, veiculo: Veiculo, informacoes: tuple):
+
+        self.data = informacoes[0]
+        self.codigo = informacoes[1]
+        self.__preco = informacoes[2]
 
         self.__loja = loja
         self.__funcionario = funcionario
         self.__cliente = cliente
         self.__veiculo = veiculo
-
-        self.__preco = preco
 
         self.__comissao_sobre_a_venda = self.calcular_comissao_sobre_a_venda()
         self.__lucro_sobre_a_venda = self.calcular_lucro_sobre_a_venda()
@@ -44,7 +44,8 @@ class Venda:
                f'\n' \
                f'valor_negociado = "{self.__preco}"\n' \
                f'\n' \
-               f'venda_{self.codigo} = Venda(data, codigo, loja, funcionario, cliente, carro, valor_negociado)\n' \
+               f'info_de_registro = (data, codigo, valor_negociado)\n' \
+               f'venda_{self.codigo} = Venda(loja, funcionario, cliente, carro, info_de_registro)\n' \
                f'\n'
 
     def mostrar_dados(self):

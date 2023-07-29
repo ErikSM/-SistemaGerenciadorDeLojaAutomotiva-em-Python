@@ -6,6 +6,7 @@ from entrada_de_dados.mascarar_preco import mascarar_preco
 class Veiculo(ABC):  # Classe Abstrata
 
     def __init__(self, montadora, nome, ano, valor_de_aquisicao, codigo):
+
         self.__montadora = montadora
         self.__nome = nome
         self.__ano = ano
