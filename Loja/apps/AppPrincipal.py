@@ -6,8 +6,8 @@ from apps.AppAdmin import AppAdmin
 from estrutura.Carro import Carro
 from estrutura.Cliente import Cliente
 from estrutura.Funcionario import Funcionario
-from relatorios.desempenhos import criar_relatorio_de_comissoes_pagas_por_cada_funcionario
-from relatorios.ranking import organizar_rankings_da_loja
+from relatorios.desempenhos import comissoes_pagas_por_cada_funcionario
+from relatorios.ranking import ranking_de_vendas_e_compras
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
 from entrada_de_dados.editar_lista_vendas import adicionar_venda_em_lista, remover_carro_vendido_da_lista_carros
@@ -22,8 +22,8 @@ from apps.AppCarro import AppCarro
 from apps.AppCliente import AppCliente
 from apps.AppFuncionario import AppFuncionario
 from apps.AppSenhaEditar import AppSenhaEditar
-from relatorios.historicos import criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo
-from relatorios.financeiros import criar_relatorio_de_lucro_total_de_vendas
+from relatorios.historicos import lucro_sobre_a_venda_por_cada_veiculo
+from relatorios.financeiros import lucro_total_de_vendas
 from apps.AppEdicoes import AppEdicoes
 from estrutura.Venda import Venda
 
@@ -400,8 +400,7 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0,
-                                    criar_relatorio_de_lucro_total_de_vendas(self.loja_de_transacao))
+        self.texto_relatorio.insert(1.0, lucro_total_de_vendas(self.loja_de_transacao))
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -410,8 +409,7 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0,
-                                    criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(self.loja_de_transacao))
+        self.texto_relatorio.insert(1.0, lucro_sobre_a_venda_por_cada_veiculo(self.loja_de_transacao))
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -430,8 +428,7 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_relatorio.insert(1.0,
-                                    criar_relatorio_de_comissoes_pagas_por_cada_funcionario(self.loja_de_transacao))
+        self.texto_relatorio.insert(1.0, comissoes_pagas_por_cada_funcionario(self.loja_de_transacao))
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
 
@@ -440,7 +437,7 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao, "carros")
+        self.texto_temporario = ranking_de_vendas_e_compras(self.loja_de_transacao, "carros")
         self.texto_relatorio.insert(1.0, self.texto_temporario)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)
@@ -452,7 +449,7 @@ class AppPrincipal(AppBase):
         self.texto_relatorio.config(state=tkinter.NORMAL)
 
         self._apagar_relatorio()
-        self.texto_temporario = organizar_rankings_da_loja(self.loja_de_transacao, "clientes")
+        self.texto_temporario = ranking_de_vendas_e_compras(self.loja_de_transacao, "clientes")
         self.texto_relatorio.insert(1.0, self.texto_temporario)
 
         self.texto_relatorio.config(state=tkinter.DISABLED)

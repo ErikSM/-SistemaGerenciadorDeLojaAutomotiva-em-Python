@@ -13,13 +13,14 @@ class AppStart:
     def __init__(self, title):
 
         self.opcoes_de_loja = None
+        self.mostrar_opcoes = True
 
         # App
         self.window = tkinter.Tk()
         self.window.title(title)
         self.window.config(bg="white", bd=30)
         self.window.minsize(width=500, height=100)
-        self.window.resizable(0, 0)
+        self.window.resizable(False, False)
         self.window.geometry("200x100+500+300")
 
         # \ Menu
@@ -45,17 +46,26 @@ class AppStart:
         self.texto_mensagem.pack()
 
     def abrir_opcoes_de_loja(self):
+
         self.window.geometry("")
         self.texto_mensagem.config(text="Loja(s) Registrada(s):")
 
+        mostrar_opcoes: bool
+
         if len(lojas_registradas) == 0:
             self.texto_mensagem.config(text="Nenhuma loja registrada no momento...")
-        if len(lojas_registradas) >= 3:
+            mostrar_opcoes = False
+
+        elif len(lojas_registradas) >= 3:
             self.texto_mensagem.config(text="(Limite atingido)\n"
                                             "Voce pode registrar no maximo tres lojas...\n"
                                             "Loja(s) Registrada(s):")
+            mostrar_opcoes = True
 
-        if self.opcoes_de_loja is None:
+        else:
+            mostrar_opcoes = True
+
+        if mostrar_opcoes:
             for i in lojas_registradas:
                 self.opcoes_de_loja = tkinter.Button(self.frame_2, text=f'{i.mostrar_dados()}',
                                                      width=50, bg="grey")
@@ -63,6 +73,7 @@ class AppStart:
                 self.opcoes_de_loja.pack()
 
     def _exibir_loja_selecionada(self, loja_select):
+
         self.window.destroy()
         loja = loja_select
 
