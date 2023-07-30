@@ -4,7 +4,8 @@ from relatorios.graficos import construir_grafico_barras
 from estrutura import Loja
 
 
-def organizar_rankings_da_loja(loja: Loja, lista_analisada):
+def ranking_de_vendas_e_compras(loja: Loja, lista_analisada):
+
     carros_mais_vendidos = dict()
     melhores_clientes = dict()
 

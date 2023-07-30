@@ -3,7 +3,8 @@ from relatorios.graficos import construir_grafico_barras
 from estrutura import Loja
 
 
-def criar_relatorio_de_lucro_total_de_vendas(loja: Loja):
+def lucro_total_de_vendas(loja: Loja):
+
     dicionario_do_grafico = dict()
 
     total_venda = _calcular_total_bruto_de_vendas(loja)

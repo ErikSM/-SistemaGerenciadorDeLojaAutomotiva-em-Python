@@ -5,7 +5,8 @@ from relatorios.graficos import construir_grafico_linhas
 from estrutura import Loja
 
 
-def criar_relatorio_de_lucro_sobre_a_venda_por_cada_veiculo(loja: Loja):
+def lucro_sobre_a_venda_por_cada_veiculo(loja: Loja):
+
     texto_temporario = tkinter.Text()
     texto_temporario.insert(1.0, "\n      ((Lucro por cada venda))\n\n\n")
 
