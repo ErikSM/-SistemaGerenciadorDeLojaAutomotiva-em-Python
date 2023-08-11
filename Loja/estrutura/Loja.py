@@ -1,3 +1,4 @@
+
 from entrada_de_dados.validar_documento import mascarar_cnpj
 from entrada_de_dados.validar_telefone import Telefone
 
