@@ -58,19 +58,6 @@ class AppPrincipal(AppBase):
 
         super().__init__(loja)
 
-        for carro in carros_registrados:
-            if carro.cnpj_loja == int(loja.cnpj):
-                loja.adicionar_carro(carro)
-        for cliente in clientes_registrados:
-            if cliente.cnpj_loja == int(loja.cnpj):
-                loja.adicionar_cliente(cliente)
-        for funcionario in funcionarios_registrados:
-            if funcionario.cnpj_loja == int(loja.cnpj):
-                loja.adicionar_funcionario(funcionario)
-        for venda in vendas_registradas:
-            if int(venda.loja.cnpj) == int(loja.cnpj):
-                loja.adicionar_venda(venda)
-
         self.loja_de_transacao = loja
         self.dicionario_da_loja = self.loja_de_transacao.dicionario_da_loja
 
@@ -230,7 +217,7 @@ class AppPrincipal(AppBase):
         self.valor_de_venda_digitado.grid(row=2, column=5)
 
         # cliente selecionado
-        self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados,  font=('Verdanna', 10, 'italic', 'bold'),
+        self.label_cliente_pre_selecionado = tkinter.Label(self.frame_dados, font=('Verdanna', 10, 'italic', 'bold'),
                                                            text="Cliente Selecionado:", bg="white")
         self.label_cliente_pre_selecionado.grid(row=5, column=0)
 

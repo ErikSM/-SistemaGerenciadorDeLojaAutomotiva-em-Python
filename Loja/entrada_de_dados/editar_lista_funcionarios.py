@@ -5,18 +5,18 @@ from estrutura.Funcionario import Funcionario
 
 
 def salvar_funcionario_em_lista(funcionario: Funcionario, loja: Loja):
-    endereco_do_arquivo = "entrada_de_dados/lista_funcionarios"
 
+    endereco_do_arquivo = "entrada_de_dados/lista_funcionarios"
     formato = "py"
 
     linha_no_arquivo = contar_linhas_de_um_arquivo(endereco_do_arquivo, formato) + 2
 
     escrever = _escrever_objeto_funcionario(funcionario, loja, linha_no_arquivo)
-
     abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_funcionario(funcionario: Funcionario, loja: Loja, linha_no_arquivo):
+
     variavel_da_classe = f'funcionario_{funcionario.codigo}'
     classe = 'Funcionario(nome, cpf, telefone, email, codigo)'
 

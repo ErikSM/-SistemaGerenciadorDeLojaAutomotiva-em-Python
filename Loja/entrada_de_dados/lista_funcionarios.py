@@ -5,9 +5,9 @@ funcionarios_registrados = list()
 codigos_de_funcionarios_existentes = list()
 
 
-def add_funcionario_na_lista(funcionario: Funcionario, cnpj_loja_vinculada, linha_no_arquivo):
-    funcionario.cnpj_loja = cnpj_loja_vinculada
-    funcionario.linha_no_arquivo = linha_no_arquivo
+def add_funcionario_na_lista(funcionario: Funcionario, cnpj_loja, linha):
+    funcionario.cnpj_loja = cnpj_loja
+    funcionario.linha_no_arquivo = linha
     funcionario.preencher_cargos_e_salarios()
     funcionario.nome_da_variavel = f"funcionario_{funcionario.codigo}"
     funcionarios_registrados.append(funcionario)

@@ -5,18 +5,18 @@ from estrutura.Cliente import Cliente
 
 
 def salvar_cliente_em_lista(cliente: Cliente, loja: Loja):
-    endereco_do_arquivo = "entrada_de_dados/lista_clientes"
 
+    endereco_do_arquivo = "entrada_de_dados/lista_clientes"
     formato = "py"
 
     linha_no_arquivo = contar_linhas_de_um_arquivo(endereco_do_arquivo, formato) + 2
 
     escrever = _escrever_objeto_cliente(cliente, loja, linha_no_arquivo)
-
     abrir_modificar_e_salvar_arquivos_em_geral(endereco_do_arquivo, formato, escrever)
 
 
 def _escrever_objeto_cliente(cliente: Cliente, loja: Loja, linha_no_arquivo):
+
     variavel = f'cliente_{cliente.codigo}'
     classe = 'Cliente(nome, cpf, telefone, email, codigo)'
 

@@ -56,3 +56,12 @@ codigo = "417257"
 cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
 add_cliente_em_lista(cliente_417257, 124134100000, 51)
 
+
+nome = "Davi Jones"    
+cpf = "52998224725"    
+telefone = "1234543456789"    
+email = "haha@hotmail.com"    
+codigo = "181819"    
+cliente_181819 = Cliente(nome, cpf, telefone, email, codigo)
+add_cliente_em_lista(cliente_181819, 823765760000, 60)
+
