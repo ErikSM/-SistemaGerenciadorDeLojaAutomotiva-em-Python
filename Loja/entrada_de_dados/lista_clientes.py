@@ -10,12 +10,15 @@ def add_cliente_em_lista(cliente: Cliente, cnpj_loja_vinculada, linha_no_arquivo
     cliente.linha_no_arquivo = linha_no_arquivo
     cliente.nome_da_variavel = f"cliente_{cliente.codigo}"
     clientes_registrados.append(cliente)
+
     _atualizar_contador_da_lista()
     _add_novo_codigo_na_lista_de_codigos_ja_existentes(cliente.codigo)
 
 
 def _atualizar_contador_da_lista():
+
     variavel_contador_de_posicao_na_lista = 0
+
     for i in clientes_registrados:
         i.posicao_na_lista = ""
         i.posicao_na_lista = variavel_contador_de_posicao_na_lista
@@ -36,7 +39,7 @@ telefone = "7539579"
 email = "sjfojfo@com"
 codigo = "251752"
 cliente_251752 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_251752, 124134100000, 33)
+add_cliente_em_lista(cliente_251752, 124134100000, 36)
 
 
 nome = "Ayumi Mello"
@@ -45,7 +48,7 @@ telefone = "990834562345"
 email = "ayu@hotmail.com"
 codigo = "749240"
 cliente_749240 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_749240, 124134100000, 42)
+add_cliente_em_lista(cliente_749240, 124134100000, 45)
 
 
 nome = "Fernanda Lopez"
@@ -54,7 +57,7 @@ telefone = "990830582388"
 email = "ferlo@gmail.com"
 codigo = "417257"
 cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_417257, 124134100000, 51)
+add_cliente_em_lista(cliente_417257, 124134100000, 54)
 
 
 nome = "Davi Jones"    
@@ -63,5 +66,5 @@ telefone = "1234543456789"
 email = "haha@hotmail.com"    
 codigo = "181819"    
 cliente_181819 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_181819, 823765760000, 60)
+add_cliente_em_lista(cliente_181819, 823765760000, 63)
 

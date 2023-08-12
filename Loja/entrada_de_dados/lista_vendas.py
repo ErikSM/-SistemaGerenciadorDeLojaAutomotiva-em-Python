@@ -9,6 +9,7 @@ def add_venda_na_lista(venda: Venda):
     venda.funcionario.comissoes_recebidas.append(float(venda.comissao_sobre_a_venda))
     venda.funcionario.total_comissoes_recebidas += float(venda.comissao_sobre_a_venda)
     vendas_registradas.append(venda)
+
     _add_novo_codigo_na_lista_de_codigos_ja_existentes(venda.codigo)
 
 
@@ -27,8 +28,8 @@ data = "2023-01-03"
 codigo = "384399"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_379018
@@ -61,8 +62,8 @@ data = "2023-01-03"
 codigo = "387595"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_267707
@@ -95,8 +96,8 @@ data = "2023-03-19"
 codigo = "678358"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_379018
@@ -129,8 +130,8 @@ data = "2023-03-25"
 codigo = "33373"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_367715
@@ -163,8 +164,8 @@ data = "2023-03-25"
 codigo = "40082"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_367715
@@ -197,8 +198,8 @@ data = "2023-07-13"
 codigo = "92254"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_267707
@@ -231,8 +232,8 @@ data = "2023-07-22"
 codigo = "693294"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_379018
@@ -265,8 +266,8 @@ data = "2023-07-22"
 codigo = "375453"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_267707
@@ -299,8 +300,8 @@ data = "2023-07-29"
 codigo = "953711"
 
 # (loja)
-from entrada_de_dados.lista_lojas import loja_test_store
-loja = loja_test_store
+from entrada_de_dados.lista_lojas import loja_378796
+loja = loja_378796
 
 # (funcionario)
 from entrada_de_dados.lista_funcionarios import funcionario_267707

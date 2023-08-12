@@ -101,3 +101,15 @@ cnpj = "823765760000"
 linha = 95
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)    
 
+
+# loja criada    
+dicionario_de_cargos_da_loja["2342"] = dict()    
+
+
+# loja criada    
+dicionario_de_cargos_da_loja["2342"] = dict()    
+
+
+# loja criada    
+dicionario_de_cargos_da_loja["43217051000182"] = dict()    
+

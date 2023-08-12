@@ -113,6 +113,7 @@ class AppFuncionario(AppBase):
         cargo = dicionario_de_cargos[f"{self.entrada_do_cargo.get()}"]["cargo"]
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
+            self.criacao_de_funcionario_autorizada = False
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
 
         elif not verificar_documento(self.entrada_do_cpf.get()):
@@ -130,6 +131,7 @@ class AppFuncionario(AppBase):
             self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
         else:
             self.criacao_de_funcionario_autorizada = True
+            self.mensagem_do_relatorio = str()
 
         if self.criacao_de_funcionario_autorizada:
             funcionario = Funcionario(nome, cpf, telefone, email, codigo)

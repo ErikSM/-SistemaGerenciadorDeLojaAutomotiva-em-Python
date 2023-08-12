@@ -117,6 +117,7 @@ class AppCliente(AppBase):
             self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
         else:
             self.criacao_de_cliente_autorizada = True
+            self.mensagem_do_relatorio = str()
 
         if self.criacao_de_cliente_autorizada:
             cliente = Cliente(nome, cpf, telefone, email, codigo)
