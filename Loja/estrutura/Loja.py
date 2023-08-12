@@ -5,11 +5,13 @@ from entrada_de_dados.validar_telefone import Telefone
 
 class Loja:
 
-    def __init__(self, nome, cnpj, telefone):
+    def __init__(self, nome, cnpj, telefone, email, codigo):
 
         self.__nome = nome
         self.__cnpj = cnpj
         self.__telefone = telefone
+        self.__email = email
+        self.__codigo = codigo
 
         self.__senha = None
 
@@ -62,9 +64,22 @@ class Loja:
         self.__telefone = telefone
 
     @property
+    def email(self):
+        return self.__email
+
+    @email.setter
+    def email(self, email):
+        self.__email = email
+
+    @property
+    def codigo(self):
+        return self.__codigo
+
+    @property
     def senha(self):
         return self.__senha
 
     @senha.setter
     def senha(self, senha):
         self.__senha = senha
+
