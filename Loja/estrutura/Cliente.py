@@ -1,11 +1,10 @@
-from entrada_de_dados.validar_documento import mascarar_cpf
+from entrada_de_dados.validar_documento import mascarar_cpf, Documento
 from entrada_de_dados.validar_telefone import Telefone
 
 
 class Cliente:
 
     def __init__(self, nome, cpf, telefone, email, codigo):
-
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
@@ -28,7 +27,7 @@ class Cliente:
 
     def mostrar_dados(self):
         return f'\nnome = "{self.__nome}"    \n' \
-               f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
+               f'cpf = "{Documento(self.__cpf)}"    \n' \
                f'telefone = "{Telefone(self.__telefone)}"    \n' \
                f'email = "{self.__email}"    \n'
 

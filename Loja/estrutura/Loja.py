@@ -1,5 +1,5 @@
 
-from entrada_de_dados.validar_documento import mascarar_cnpj
+from entrada_de_dados.validar_documento import Documento
 from entrada_de_dados.validar_telefone import Telefone
 
 
@@ -32,7 +32,7 @@ class Loja:
 
     def mostrar_dados(self):
         return f'\nloja:{self.__nome}   \n' \
-               f'cnpj:{mascarar_cnpj(self.__cnpj)}   \n' \
+               f'cnpj:{Documento(self.__cnpj)}   \n' \
                f'contato:{Telefone(self.__telefone)}   \n'
 
     def adicionar_carro(self, carro):

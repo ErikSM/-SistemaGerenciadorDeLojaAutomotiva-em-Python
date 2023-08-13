@@ -1,19 +1,18 @@
-from entrada_de_dados import dicionario_cargos
-from entrada_de_dados.validar_documento import mascarar_cpf
+from entrada_de_dados.dicionario_cargos import dicionario_de_cargos_da_loja
+from entrada_de_dados.validar_documento import mascarar_cpf, Documento
 from entrada_de_dados.validar_telefone import Telefone
 
 
 class Funcionario:
 
     def __init__(self, nome, cpf, telefone, email, codigo):
-
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
         self.__email = email
         self.__codigo = codigo
 
-        self.__cargo: dict
+        self.__cargo = None
 
         self.__salario = None
         self.__bonus = None
@@ -34,11 +33,11 @@ class Funcionario:
                f'cpf = "{self.__cpf}"    \n' \
                f'telefone = "{self.__telefone}"    \n' \
                f'email = "{self.__email}"    \n' \
-               f'codigo = "{self.__codigo}"    \n' \
+               f'codigo = "{self.__codigo}"    \n'
 
     def mostrar_dados(self):
         return f'\nFuncionario = "{self.__nome}"    \n' \
-               f'cpf = "{mascarar_cpf(self.__cpf)}"    \n' \
+               f'cpf = "{Documento(self.__cpf)}"    \n' \
                f'telefone = "{Telefone(self.__telefone)}"    \n' \
                f'email = "{self.__email}"    \n' \
                f'cargo = "{self.__cargo["cargo"]}"    \n' \
@@ -48,7 +47,9 @@ class Funcionario:
 
     def preencher_cargos_e_salarios(self):
         cargo = self.__cargo
-        self.__cargo = dicionario_cargos.dicionario_de_cargos_da_loja[f'{self.__cnpj_loja}'][f'{cargo} {self.cnpj_loja}']
+        self.__cargo = None
+
+        self.__cargo = dicionario_de_cargos_da_loja[f'{self.__cnpj_loja}'][f'{cargo} {self.cnpj_loja}']
         self.__salario = self.__cargo["salario"]
         self.__bonus = self.__cargo["bonus"]
         self.__comissao = self.__cargo["comissao"]

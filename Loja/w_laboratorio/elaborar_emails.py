@@ -1,24 +1,5 @@
 
 
-def _tirar_espacos_string(string):
-    string_espalhado = string.split()
-    string_sem_espaco = "".join(string_espalhado)
-    string_sem_letra_maiuscula = string_sem_espaco.lower()
-
-    string_apos_teste = string_sem_letra_maiuscula
-    return string_apos_teste
-
-
-def _encontrar_posicao_do_caractere(string, caractere):
-    indice = 0
-    while indice < len(string):
-        if string[indice] == caractere:
-            return indice
-        indice = indice + 1
-
-    return -1
-
-
 def validador_de_emails(string):
     operadoras_aceitas = list()
     operadoras_aceitas.append("hotmail")
@@ -57,7 +38,28 @@ def validador_de_emails(string):
     else:
         print(mensagem_de_erro_de_formato)
 
+        
+def _tirar_espacos_string(string):
+    string_espalhado = string.split()
+    string_sem_espaco = "".join(string_espalhado)
+    string_sem_letra_maiuscula = string_sem_espaco.lower()
+
+    string_apos_teste = string_sem_letra_maiuscula
+    return string_apos_teste
+
+
+def _encontrar_posicao_do_caractere(string, caractere):
+    indice = 0
+    while indice < len(string):
+        if string[indice] == caractere:
+            return indice
+        indice = indice + 1
+
+    return -1
+
 
 string_para_testar = " Erik  @yahoo . c   om.br"
 
 validador_de_emails(string_para_testar)
+
+
