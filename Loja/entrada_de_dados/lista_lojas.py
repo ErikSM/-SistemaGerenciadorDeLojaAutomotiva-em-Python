@@ -73,7 +73,7 @@ add_loja_na_lista(loja_378796)
 
 
 nome = "Secound Test Store"
-cnpj = "43217051000182"
+cnpj = "83037728000115"
 telefone = "059988543421"
 email = "secound_test_store@hotmail.com"
 codigo = "157518"

@@ -5,7 +5,8 @@ from entrada_de_dados.editar_dicionario_cargos import criar_chave_da_loja_em_dic
 from entrada_de_dados.editar_lista_lojas import salvar_loja_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_lojas import codigos_de_lojas_existentes
-from entrada_de_dados.validar_documento import verificar_documento
+from entrada_de_dados.validar_documento import verificar_documento, Documento
+from entrada_de_dados.validar_telefone import Telefone
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 
@@ -100,15 +101,15 @@ class AppLoja(AppBase):
         email = self.entrada_do_email.get()
         codigo = criar_codigo_unico(codigos_de_lojas_existentes)
 
-        if len(nome) == 0 or len(cnpj) == 0 or len(telefone) == 0:
+        if len(nome) == 0 or len(cnpj) == 0 or len(telefone) == 0 or len(email) == 0:
             self.criacao_de_loja_autorizada = False
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
 
-        elif not verificar_documento(self.entrada_do_cnpj.get()):
+        elif not Documento(cnpj).validar():
             self.criacao_de_loja_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   CNPJ invalido"
 
-        elif not validar_telefone.Telefone(telefone).validar():
+        elif not Telefone(telefone).validar():
             self.criacao_de_loja_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   TELEFONE invalido"
 

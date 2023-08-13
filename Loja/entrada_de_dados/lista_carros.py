@@ -50,7 +50,7 @@ ano = "2020"
 valor_de_aquisicao = "45000"
 codigo_de_registro = "988526"
 carro_988526 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_988526, 124134100000, 47)
+add_carro_na_lista(carro_988526, 43217051000182, 47)
 
 
 montadora = "Toyota"
@@ -59,7 +59,7 @@ ano = "2015"
 valor_de_aquisicao = "50000"
 codigo_de_registro = "78502"
 carro_78502 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_78502, 124134100000, 56)
+add_carro_na_lista(carro_78502, 43217051000182, 56)
 
 
 montadora = "Wolkswagen"
@@ -68,7 +68,7 @@ ano = "2012"
 valor_de_aquisicao = "27000"
 codigo_de_registro = "942353"
 carro_942353 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_942353, 124134100000, 65)
+add_carro_na_lista(carro_942353, 43217051000182, 65)
 
 
 montadora = "Toyota"
@@ -77,7 +77,7 @@ ano = "2021"
 valor_de_aquisicao = "300000"
 codigo_de_registro = "679209"
 carro_679209 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_679209, 124134100000, 74)
+add_carro_na_lista(carro_679209, 43217051000182, 74)
 
 
 montadora = "WolksWagen"
@@ -86,7 +86,7 @@ ano = "2020"
 valor_de_aquisicao = "50000"
 codigo_de_registro = "827583"
 carro_827583 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_827583, 124134100000, 83)
+add_carro_na_lista(carro_827583, 43217051000182, 83)
 
 
 montadora = "Toyota "
@@ -95,7 +95,7 @@ ano = "2019"
 valor_de_aquisicao = "60000"
 codigo_de_registro = "873311"
 carro_873311 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_873311, 124134100000, 92)
+add_carro_na_lista(carro_873311, 43217051000182, 92)
 
 
 montadora = "WolksWagen"
@@ -104,7 +104,7 @@ ano = "2013"
 valor_de_aquisicao = "12000"
 codigo_de_registro = "492654"
 carro_492654 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_492654, 124134100000, 101)
+add_carro_na_lista(carro_492654, 43217051000182, 101)
 
 
 montadora = "Nissan"
@@ -113,7 +113,7 @@ ano = "2020"
 valor_de_aquisicao = "120000"
 codigo_de_registro = "719373"
 carro_719373 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_719373, 124134100000, 110)
+add_carro_na_lista(carro_719373, 43217051000182, 110)
 
 
 remover_carro_da_lista(carro_873311, "384399")
@@ -143,7 +143,7 @@ ano = "2019"
 valor_de_aquisicao = "30000"    
 codigo_de_registro = "561458"    
 carro_561458 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_561458, 124134100000, 140)
+add_carro_na_lista(carro_561458, 43217051000182, 140)
 
 
 remover_carro_da_lista(carro_561458, "375453")
@@ -155,7 +155,7 @@ ano = "2019"
 valor_de_aquisicao = "30000"    
 codigo_de_registro = "525054"    
 carro_525054 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_525054, 124134100000, 152)
+add_carro_na_lista(carro_525054, 43217051000182, 152)
 
 
 montadora = "Wolkswagen"    
@@ -164,7 +164,7 @@ ano = "2019"
 valor_de_aquisicao = "50000"    
 codigo_de_registro = "805403"    
 carro_805403 = Carro(montadora, nome, ano, valor_de_aquisicao, codigo_de_registro)
-add_carro_na_lista(carro_805403, 124134100000, 161)
+add_carro_na_lista(carro_805403, 43217051000182, 161)
 
 
 remover_carro_da_lista(carro_525054, "953711")

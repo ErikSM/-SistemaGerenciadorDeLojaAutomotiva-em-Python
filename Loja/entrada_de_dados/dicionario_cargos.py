@@ -25,7 +25,7 @@ def criar_profissao(cargo: Cargo, linha_no_arquivo):
 
 
 # loja criada
-dicionario_de_cargos_da_loja["124134100000"] = dict()
+dicionario_de_cargos_da_loja["43217051000182"] = dict()
 
 
 # gerente
@@ -33,7 +33,7 @@ nome = "gerente"
 salario = "5000"
 bonus = 0.25
 comissao = 0.07
-cnpj = "124134100000"
+cnpj = "43217051000182"
 linha = 31
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
@@ -43,7 +43,7 @@ nome = "vendedor"
 salario = "1200"
 bonus = 0.10
 comissao = 0.05
-cnpj = "124134100000"
+cnpj = "43217051000182"
 linha = 41
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
@@ -53,7 +53,7 @@ nome = "secretaria"
 salario = "1500"
 bonus = 0.10
 comissao = 0.0
-cnpj = "124134100000"
+cnpj = "43217051000182"
 linha = 51
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
@@ -63,7 +63,7 @@ nome = "zelador"
 salario = "1200"
 bonus = 0.0
 comissao = 0.0
-cnpj = "124134100000"
+cnpj = "43217051000182"
 linha = 61
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
@@ -73,13 +73,13 @@ nome = "advogado"
 salario = "6500"
 bonus = 0.01
 comissao = 0.0
-cnpj = "124134100000"
+cnpj = "43217051000182"
 linha = 71
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
 
 # loja criada
-dicionario_de_cargos_da_loja["823765760000"] = dict()
+dicionario_de_cargos_da_loja["83037728000115"] = dict()
 
 
 # gerente
@@ -87,7 +87,7 @@ nome = "gerente"
 salario = "8000"
 bonus = 0.08
 comissao = 0.01
-cnpj = "823765760000"
+cnpj = "83037728000115"
 linha = 85
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)
 
@@ -97,19 +97,7 @@ nome = "vendedor"
 salario = "1200"    
 bonus = 0.3    
 comissao = 1.2    
-cnpj = "823765760000"    
+cnpj = "83037728000115"
 linha = 95
 criar_profissao(Cargo(nome, salario, bonus, comissao, cnpj), linha)    
-
-
-# loja criada    
-dicionario_de_cargos_da_loja["2342"] = dict()    
-
-
-# loja criada    
-dicionario_de_cargos_da_loja["2342"] = dict()    
-
-
-# loja criada    
-dicionario_de_cargos_da_loja["43217051000182"] = dict()    
 

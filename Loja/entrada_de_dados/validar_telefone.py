@@ -4,32 +4,32 @@ class Telefone:
     def __init__(self, numero):
 
         self.telefone = numero
-
         self.telefone_valido = bool()
-        self.mensagem_de_erro = str()
 
     def __str__(self):
         if len(self.telefone) == 13:
             return self.mascarar_telefone_movel()
-        else:
+        elif len(self.telefone) == 12:
             return self.mascarar_telefone_fixo()
+        else:
+            return self.telefone
 
     def validar(self):
+
         numero = str(self.telefone)
 
         try:
             int(numero)
-        except Exception as ex:
-            self.mensagem_de_erro = ex
+        except ValueError:
             self.telefone_valido = False
-            return self.telefone_valido
-
-        if len(numero) == 13 or len(numero) == 12:
-            self.telefone_valido = True
             return self.telefone_valido
         else:
-            self.telefone_valido = False
-            return self.telefone_valido
+            if len(numero) == 13 or len(numero) == 12:
+                self.telefone_valido = True
+                return self.telefone_valido
+            else:
+                self.telefone_valido = False
+                return self.telefone_valido
 
     def mascarar_telefone_fixo(self):
         parte_um = "55"

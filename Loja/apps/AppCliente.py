@@ -1,10 +1,11 @@
 import tkinter
 
-from entrada_de_dados import validar_telefone, validar_email
+from entrada_de_dados import validar_email
 from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_clientes import codigos_de_clientes_existentes
-from entrada_de_dados.validar_documento import verificar_documento, mascarar_cnpj
+from entrada_de_dados.validar_documento import Documento
+from entrada_de_dados.validar_telefone import Telefone
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
@@ -102,11 +103,11 @@ class AppCliente(AppBase):
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
 
-        elif not verificar_documento(self.entrada_do_cpf.get()):
+        elif not Documento(cpf).validar():
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   CPF invalido"
 
-        elif not validar_telefone.Telefone(telefone).validar():
+        elif not Telefone(telefone).validar():
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   TELEFONE invalido"
 
@@ -124,6 +125,6 @@ class AppCliente(AppBase):
             salvar_cliente_em_lista(cliente, self.loja)
 
             self.cliente = cliente
-            self.cliente.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
+            self.cliente.cnpj_loja = Documento(self.loja.cnpj)
 
             self.mensagem_do_relatorio = self.cliente.mostrar_atributos_principais()

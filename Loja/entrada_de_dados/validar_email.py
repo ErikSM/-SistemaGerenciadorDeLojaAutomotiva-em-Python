@@ -1,20 +1,3 @@
-def _tirar_espacos_da_string(string):
-    string_espalhado = string.split()
-    string_sem_espaco = "".join(string_espalhado)
-    string_sem_letra_maiuscula = string_sem_espaco.lower()
-
-    string_apos_teste = string_sem_letra_maiuscula
-    return string_apos_teste
-
-
-def _encontrar_posicao_do_caractere(string, caractere):
-    indice = 0
-    while indice < len(string):
-        if string[indice] == caractere:
-            return indice
-        indice = indice + 1
-
-    return -1
 
 
 def checar_email(string):
@@ -52,3 +35,22 @@ def checar_email(string):
             return mensagem_de_erro_de_operadora
     else:
         return mensagem_de_erro_de_formato
+
+
+def _tirar_espacos_da_string(string):
+    string_espalhado = string.split()
+    string_sem_espaco = "".join(string_espalhado)
+    string_sem_letra_maiuscula = string_sem_espaco.lower()
+
+    string_apos_teste = string_sem_letra_maiuscula
+    return string_apos_teste
+
+
+def _encontrar_posicao_do_caractere(string, caractere):
+    indice = 0
+    while indice < len(string):
+        if string[indice] == caractere:
+            return indice
+        indice = indice + 1
+
+    return -1

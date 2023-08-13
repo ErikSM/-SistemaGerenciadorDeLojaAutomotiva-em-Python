@@ -34,37 +34,37 @@ def _add_novo_codigo_na_lista_de_codigos_ja_existentes(codigo):
 
 
 nome = "Erik Miyajima"
-cpf = "52998224725"
+cpf = "11247229041"
 telefone = "7539579"
 email = "sjfojfo@com"
 codigo = "251752"
 cliente_251752 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_251752, 124134100000, 36)
+add_cliente_em_lista(cliente_251752, 43217051000182, 36)
 
 
 nome = "Ayumi Mello"
-cpf = "52998224725"
+cpf = "75115194074"
 telefone = "990834562345"
 email = "ayu@hotmail.com"
 codigo = "749240"
 cliente_749240 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_749240, 124134100000, 45)
+add_cliente_em_lista(cliente_749240, 43217051000182, 45)
 
 
 nome = "Fernanda Lopez"
-cpf = "52998224725"
+cpf = "04906379060"
 telefone = "990830582388"
 email = "ferlo@gmail.com"
 codigo = "417257"
 cliente_417257 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_417257, 124134100000, 54)
+add_cliente_em_lista(cliente_417257, 43217051000182, 54)
 
 
 nome = "Davi Jones"    
-cpf = "52998224725"    
+cpf = "63441223071"
 telefone = "1234543456789"    
 email = "haha@hotmail.com"    
 codigo = "181819"    
 cliente_181819 = Cliente(nome, cpf, telefone, email, codigo)
-add_cliente_em_lista(cliente_181819, 823765760000, 63)
+add_cliente_em_lista(cliente_181819, 43217051000182, 63)
 

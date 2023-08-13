@@ -41,55 +41,55 @@ email = "jpere@gmail.com"
 codigo = "267707"
 funcionario_267707 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_267707.cargo = "gerente"
-add_funcionario_na_lista(funcionario_267707, 124134100000, 37)
+add_funcionario_na_lista(funcionario_267707, 43217051000182, 37)
 
 
 nome = "Armando Silveira"
-cpf = "52998224725"
+cpf = "46094627024"
 telefone = "998876673232"
 email = "arman@gmail.com"
 codigo = "379018"
 funcionario_379018 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_379018.cargo = "vendedor"
-add_funcionario_na_lista(funcionario_379018, 124134100000, 47)
+add_funcionario_na_lista(funcionario_379018, 43217051000182, 47)
 
 
 nome = "Ana Julia"
-cpf = "52998224725"
+cpf = "51974602028"
 telefone = "889923487634"
 email = "anaj@outlook.com"
 codigo = "984713"
 funcionario_984713 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_984713.cargo = "secretaria"
-add_funcionario_na_lista(funcionario_984713, 124134100000, 57)
+add_funcionario_na_lista(funcionario_984713, 43217051000182, 57)
 
 
 nome = "Edson Arantes"
-cpf = "52998224725"
+cpf = "93120811017"
 telefone = "888866663321"
 email = "edara@hotmail.com"
 codigo = "46643"
 funcionario_46643 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_46643.cargo = "zelador"
-add_funcionario_na_lista(funcionario_46643, 124134100000, 67)
+add_funcionario_na_lista(funcionario_46643, 43217051000182, 67)
 
 
 nome = "Fernanda Silva"
-cpf = "52998224725"
+cpf = "31619128020"
 telefone = "998866663445"
 email = "fesilva@hotmail.com"
 codigo = "367715"
 funcionario_367715 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_367715.cargo = "advogado"
-add_funcionario_na_lista(funcionario_367715, 124134100000, 77)
+add_funcionario_na_lista(funcionario_367715, 43217051000182, 77)
 
 
 nome = "Joao Batista"    
-cpf = "52998224725"    
+cpf = "60433627085"
 telefone = "978874673232"    
 email = "joaob@gmail.com"    
 codigo = "633018"    
 funcionario_633018 = Funcionario(nome, cpf, telefone, email, codigo)
 funcionario_633018.cargo = "vendedor"
-add_funcionario_na_lista(funcionario_633018, 124134100000, 87)
+add_funcionario_na_lista(funcionario_633018, 43217051000182, 87)
 
