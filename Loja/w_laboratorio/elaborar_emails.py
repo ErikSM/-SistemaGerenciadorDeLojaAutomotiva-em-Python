@@ -62,7 +62,7 @@ def _encontrar_posicao_do_caractere(string, caractere):
 # -----------  ---------------------------------  ---------------------
 
 
-class ValidarEmail:
+class ElaborarEmail:
 
     def __init__(self, endereco):
 
@@ -149,5 +149,5 @@ class ValidarEmail:
 string_1 = "haha@hotmail.hom"
 string_2 = "test@gmail.com"
 
-print(ValidarEmail(string_1).validar())
+print(ElaborarEmail(string_1).validar())
 validador_de_emails(string_2)
