@@ -3,6 +3,7 @@ from datetime import datetime
 
 from entrada_de_dados import validar_email
 from entrada_de_dados.funcoes_de_edicao import editar_arquivo_em_opcoes_avancadas
+from entrada_de_dados.validar_email import Email
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 
@@ -235,12 +236,14 @@ class AppEdicoes(AppBase):
                     self._executar_mensagem_de_erro("Ano do veiculo deve ser entre 1970 ate o ano atual")
 
         elif variavel_para_editar == "email":
-            checagem = validar_email.checar_email(novo_conteudo)
-            if checagem == "erro_final" or checagem == "erro_formato" or checagem == "erro_operadora":
+            email_teste = Email(novo_conteudo)
+            email_teste.validar()
+            if not email_teste.email_valido:
                 self.execucao_permitida = False
-                self._executar_mensagem_de_erro(checagem)
+                self._executar_mensagem_de_erro(email_teste.msg_erro)
             else:
                 self.execucao_permitida = True
+
         else:
             self.execucao_permitida = True
 

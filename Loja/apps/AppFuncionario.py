@@ -6,6 +6,7 @@ from entrada_de_dados.editar_lista_funcionarios import salvar_funcionario_em_lis
 from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_funcionarios import codigos_de_funcionarios_existentes
 from entrada_de_dados.validar_documento import Documento
+from entrada_de_dados.validar_email import Email
 from entrada_de_dados.validar_telefone import Telefone
 from estrutura import Loja
 from estrutura.AppBase import AppBase
@@ -115,7 +116,7 @@ class AppFuncionario(AppBase):
 
         if len(nome) == 0 or len(cpf) == 0 or len(telefone) == 0 or len(email) == 0:
             self.criacao_de_funcionario_autorizada = False
-            self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
+            self.mensagem_do_relatorio = " ERrOr\n\n  CAMPO vazio"
 
         elif not Documento(cpf).validar():
             self.criacao_de_cliente_autorizada = False
@@ -125,9 +126,7 @@ class AppFuncionario(AppBase):
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   TELEFONE invalido"
 
-        elif validar_email.checar_email(email) == "erro_final" \
-                or validar_email.checar_email(email) == "erro_formato" \
-                or validar_email.checar_email(email) == "erro_operadora":
+        elif not Email(email).validar():
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
         else:
