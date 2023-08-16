@@ -1,4 +1,3 @@
-
 class Email:
 
     def __init__(self, endereco):
@@ -19,6 +18,7 @@ class Email:
 
     def validar(self):
 
+        erro_caracter = "ErRor(Caracter Proibido)"
         erro_formato = "ErRor(Endereco Invalido)"
         erro_operadora = "ErRor(Operadora Invalida)"
         erro_final = "ErRor(Final Invalido)"
@@ -33,6 +33,10 @@ class Email:
 
         if " " in self.email:
             self.msg_erro = erro_formato
+            self.email_valido = False
+
+        elif self._verificar_caracteres_proibidos():
+            self.msg_erro = erro_caracter
             self.email_valido = False
 
         elif "@" in self.email and "." in self.email:
@@ -81,6 +85,27 @@ class Email:
                 indice += 1
 
         self.caracteres = (lista[0], lista[1])
+
+    def _verificar_caracteres_proibidos(self):
+        especiais = ("?", "!", "*", '"', "'", "$", "#", "%")
+        acentos = (",", ";", ":", "^", "~")
+        textos = ("(", ")", "[", "]", "{", "}", "/", "<", ">")
+
+        proibidos = set(especiais) | set(acentos) | set(textos)
+
+        encontrado = False
+
+        cont = 0
+        while cont < len(self.email):
+            for i in proibidos:
+                if i in self.email:
+                    encontrado = True
+                    break
+                else:
+                    continue
+            cont += 1
+
+        return encontrado
 
 
 def checar_email(string):
@@ -137,3 +162,9 @@ def _encontrar_posicao_do_caractere(string, caractere):
         indice = indice + 1
 
     return -1
+
+
+teste = Email('erik@gmail.com')
+
+teste.validar()
+print(teste.validar())
