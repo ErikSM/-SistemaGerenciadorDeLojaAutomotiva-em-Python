@@ -1,4 +1,4 @@
-from entrada_de_dados.mascarar_preco import mascarar_preco
+from ferramentas.Preco import Preco
 from relatorios.graficos import construir_grafico_barras
 from estrutura import Loja
 
@@ -29,6 +29,7 @@ def lucro_total_de_vendas(loja: Loja):
                           total_gasto,
                           total_comissao,
                           resultado_lucro)
+
 
     return _escrever_relatorio_de_lucro(tupla_do_relatorio)
 
@@ -97,11 +98,11 @@ def _escrever_relatorio_de_lucro(tupla_do_relatorio: tuple):
            f'{" " * 10}(( Relatorio de Lucro ))         \n' \
            f'\n' \
            f'\n' \
-           f'>> Valor bruto ganho em vendas:             +  {mascarar_preco(total_venda)}\n' \
-           f'>> Despesas com obtencao de veiculos:       -  {mascarar_preco(total_gasto)}\n' \
-           f'>> Valor pago em comissao de vendas:        -  {mascarar_preco(total_comissao)}\n'\
+           f'>> Valor bruto ganho em vendas:             +  {Preco(total_venda)}\n' \
+           f'>> Despesas com obtencao de veiculos:       -  {Preco(total_gasto)}\n' \
+           f'>> Valor pago em comissao de vendas:        -  {Preco(total_comissao)}\n'\
            f'\n                                              __________________\n' \
-           f'     ** Lucro Total com Vendas:                {mascarar_preco(resultado_lucro)}\n' \
+           f'     ** Lucro Total com Vendas:                {Preco(resultado_lucro)}\n' \
            f'\n' \
            f'{"-" * 98}' \
            f'\n'

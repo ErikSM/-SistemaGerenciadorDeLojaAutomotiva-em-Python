@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.mascarar_preco import mascarar_preco
+from ferramentas.Preco import Preco
 from relatorios.graficos import construir_grafico_linhas
 from estrutura import Loja
 
@@ -44,10 +44,10 @@ def _escrever_lucro_sobre_a_venda(codigo, data, tupla_de_valores: tuple):
            f'   >> Codigo de Venda:{codigo} <<\n' \
            f'\n' \
            f'data:{data}\n   ' \
-           f'valor de aquisicao: {mascarar_preco(valor_gasto)}   ' \
-           f'valor de venda: {mascarar_preco(valor_ganho)}   ' \
-           f'comissao: {mascarar_preco(comissao)}   ' \
-           f'\n**Lucro: {mascarar_preco(lucro)}**\n' \
+           f'valor de aquisicao: {Preco(valor_gasto)}   ' \
+           f'valor de venda: {Preco(valor_ganho)}   ' \
+           f'comissao: {Preco(comissao)}   ' \
+           f'\n**Lucro: {Preco(lucro)}**\n' \
            f'\n' \
            f'{"-" * 196}' \
            f'\n'

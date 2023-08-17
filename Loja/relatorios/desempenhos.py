@@ -1,6 +1,6 @@
 import tkinter
 
-from entrada_de_dados.mascarar_preco import mascarar_preco
+from ferramentas.Preco import Preco
 from relatorios.graficos import construir_grafico_barras
 from estrutura import Loja
 
@@ -18,8 +18,8 @@ def comissoes_pagas_por_cada_funcionario(loja: Loja):
 
         # j == cada_comissao
         for j in i.comissoes_recebidas:
-            texto_temporario.insert("end", f' + {mascarar_preco(j)}')
-        texto_temporario.insert("end", f'\ntotal:{mascarar_preco(i.total_comissoes_recebidas)}\n\n\n')
+            texto_temporario.insert("end", f' + {Preco(j)}')
+        texto_temporario.insert("end", f'\ntotal:{Preco(i.total_comissoes_recebidas)}\n\n\n')
 
         dicionario_do_grafico[f'{i.nome}\n({i.cargo["cargo"]})'] = float(i.total_comissoes_recebidas)
 
