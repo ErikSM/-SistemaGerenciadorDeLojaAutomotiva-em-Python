@@ -3,6 +3,9 @@ import tkinter
 import datetime
 
 from apps.AppAdmin import AppAdmin
+from entrada_de_dados.lista_carros import carros_registrados
+from entrada_de_dados.lista_clientes import clientes_registrados
+from entrada_de_dados.lista_funcionarios import funcionarios_registrados
 from estrutura.Carro import Carro
 from estrutura.Cliente import Cliente
 from estrutura.Funcionario import Funcionario
@@ -52,6 +55,18 @@ def abrir_configuracoes_de_administrador(loja: Loja):
 class AppPrincipal(AppBase):
 
     def __init__(self, loja: Loja):
+
+        for i in carros_registrados:
+            if i.cnpj_loja == int(loja.cnpj):
+                loja.adicionar_carro(i)
+
+        for i in clientes_registrados:
+            if i.cnpj_loja == int(loja.cnpj):
+                loja.adicionar_cliente(i)
+
+        for i in funcionarios_registrados:
+            if i.cnpj_loja == int(loja.cnpj):
+                loja.adicionar_funcionario(i)
 
         for i in vendas_registradas:
             if int(i.loja.cnpj) == int(loja.cnpj):

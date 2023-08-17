@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import END
 
+
 from entrada_de_dados.salvar_modificacoes import atualizar_informacoes
 
 
