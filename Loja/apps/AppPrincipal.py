@@ -8,12 +8,9 @@ from estrutura.Cliente import Cliente
 from estrutura.Funcionario import Funcionario
 from relatorios.desempenhos import comissoes_pagas_por_cada_funcionario
 from relatorios.ranking import ranking_de_vendas_e_compras
-from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from ferramentas.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.editar_lista_lojas import remover_loja_da_lista
 from entrada_de_dados.editar_lista_vendas import adicionar_venda_em_lista, remover_carro_vendido_da_lista_carros
-from entrada_de_dados.lista_carros import carros_registrados
-from entrada_de_dados.lista_clientes import clientes_registrados
-from entrada_de_dados.lista_funcionarios import funcionarios_registrados
 from entrada_de_dados.lista_vendas import codigos_de_vendas_existentes, vendas_registradas
 from estrutura import Loja
 from estrutura.AppBase import AppBase
@@ -56,6 +53,10 @@ class AppPrincipal(AppBase):
 
     def __init__(self, loja: Loja):
 
+        for i in vendas_registradas:
+            if int(i.loja.cnpj) == int(loja.cnpj):
+                loja.adicionar_venda(i)
+
         super().__init__(loja)
 
         self.loja_de_transacao = loja
@@ -66,7 +67,7 @@ class AppPrincipal(AppBase):
         self.cliente_comprador = None
         self.carro_escolhido = None
 
-        self.validar = None
+        self.venda_autorizada = None
 
         self.texto_temporario = None
 
@@ -333,7 +334,7 @@ class AppPrincipal(AppBase):
 
             self._apagar_relatorio()
             self._criar_venda()
-            if self.validar:
+            if self.venda_autorizada:
                 self.texto_relatorio.insert(1.0, self.venda.relatorio_de_venda())
             else:
                 self.texto_relatorio.insert(1.0, "ErRor\n valor digitado invalido!")
@@ -341,16 +342,17 @@ class AppPrincipal(AppBase):
             self.texto_relatorio.config(state=tkinter.DISABLED)
 
             self.venda = None
-            self.validar = None
+            self.venda_autorizada = None
 
     def _criar_venda(self):
         try:
             float(self.valor_de_venda_digitado.get())
-            self.validar = True
-        except ValueError:
-            self.validar = False
+            self.venda_autorizada = True
 
-        if self.validar:
+        except ValueError:
+            self.venda_autorizada = False
+
+        else:
             valor_negociado = self.valor_de_venda_digitado.get()
 
             loja = self.loja_de_transacao

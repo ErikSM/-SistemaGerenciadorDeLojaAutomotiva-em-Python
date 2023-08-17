@@ -1,9 +1,9 @@
 import tkinter
 from datetime import datetime
 
-from entrada_de_dados import validar_email
+from ferramentas import Email
 from entrada_de_dados.funcoes_de_edicao import editar_arquivo_em_opcoes_avancadas
-from entrada_de_dados.validar_email import Email
+from ferramentas.Email import Email
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 

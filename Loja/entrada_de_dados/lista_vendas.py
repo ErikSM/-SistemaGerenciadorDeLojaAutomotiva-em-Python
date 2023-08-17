@@ -324,5 +324,5 @@ venda_953711 = Venda(loja, funcionario, cliente, carro, info_de_registro)
 add_venda_na_lista(venda_953711)
 
 
-# -------------------------------------------------------
+# ---------------------------------
 

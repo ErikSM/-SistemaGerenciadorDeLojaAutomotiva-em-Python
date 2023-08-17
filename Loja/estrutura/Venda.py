@@ -1,6 +1,6 @@
-from entrada_de_dados.mascarar_preco import mascarar_preco
-from entrada_de_dados.validar_documento import mascarar_cnpj
-from entrada_de_dados.validar_telefone import Telefone
+from ferramentas.Preco import Preco
+from ferramentas.Documento import Documento
+from ferramentas.Telefone import Telefone
 from estrutura.Funcionario import Funcionario
 from estrutura.Cliente import Cliente
 from estrutura.Loja import Loja
@@ -9,7 +9,12 @@ from estrutura.Veiculo import Veiculo
 
 class Venda:
 
-    def __init__(self, loja: Loja, funcionario: Funcionario, cliente: Cliente, veiculo: Veiculo, informacoes: tuple):
+    def __init__(self,
+                 loja: Loja,
+                 funcionario: Funcionario,
+                 cliente: Cliente,
+                 veiculo: Veiculo,
+                 informacoes: tuple):
 
         self.data = informacoes[0]
         self.codigo = informacoes[1]
@@ -52,15 +57,15 @@ class Venda:
         return f'\ncodigo:{self.codigo}   data:{self.data}  \n' \
                f'\n' \
                f'((Dados da Venda)):\n' \
-               f'Loja:{self.__loja.nome}     cnpj:{mascarar_cnpj(self.__loja.cnpj)}  \n' \
+               f'Loja:{self.__loja.nome}     cnpj:{Documento(self.__loja.cnpj)}  \n' \
                f'Funcionario:{self.__funcionario.nome}     cargo:{self.__funcionario.cargo["cargo"]}  \n' \
                f'Cliente:{self.__cliente.nome}     contato:{Telefone(self.__cliente.telefone)}   \n\n' \
                f'((Veiculo)):{self.__veiculo.mostrar_dados()}\n' \
                f'\n' \
                f'((Valor Negociado)):\n' \
-               f'Preco: "{mascarar_preco(self.__preco)}"\n' \
+               f'Preco: "{Preco(self.__preco)}"\n' \
                f'\n' \
-               f'Comissao sobre a venda = {mascarar_preco(self.__comissao_sobre_a_venda)}\n' \
+               f'Comissao sobre a venda = {Preco(self.__comissao_sobre_a_venda)}\n' \
                f'\n'
 
     def relatorio_de_venda(self):
@@ -73,7 +78,7 @@ class Venda:
                f'\n' \
                f'Responsavel pela venda:{self.__funcionario.nome} cargo:{self.__funcionario.cargo["cargo"]}\n' \
                f'\n' \
-               f'Valor Negociado: {mascarar_preco(self.__preco)}'
+               f'Valor Negociado: {Preco(self.__preco)}'
 
     def relatorio_resumido(self):
         return f'(codigo:{self.codigo}): ' \

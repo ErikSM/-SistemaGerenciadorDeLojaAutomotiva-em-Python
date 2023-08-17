@@ -1,12 +1,12 @@
 import tkinter
 
-from entrada_de_dados import validar_email
+from ferramentas import Email
 from entrada_de_dados.editar_lista_clientes import salvar_cliente_em_lista
-from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from ferramentas.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_clientes import codigos_de_clientes_existentes
-from entrada_de_dados.validar_documento import Documento
-from entrada_de_dados.validar_email import Email
-from entrada_de_dados.validar_telefone import Telefone
+from ferramentas.Documento import Documento
+from ferramentas.Email import Email
+from ferramentas.Telefone import Telefone
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Cliente import Cliente
@@ -115,9 +115,16 @@ class AppCliente(AppBase):
         elif not Email(email).validar():
             self.criacao_de_cliente_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
+
         else:
-            self.criacao_de_cliente_autorizada = True
-            self.mensagem_do_relatorio = str()
+            try:
+                str(nome)
+            except Exception as ex:
+                self.criacao_de_cliente_autorizada = False
+                self.mensagem_do_relatorio = f"\n {ex}:ERrOr\n\n  NOME invalido"
+            else:
+                self.criacao_de_cliente_autorizada = True
+                self.mensagem_do_relatorio = str()
 
         if self.criacao_de_cliente_autorizada:
             cliente = Cliente(nome, cpf, telefone, email, codigo)

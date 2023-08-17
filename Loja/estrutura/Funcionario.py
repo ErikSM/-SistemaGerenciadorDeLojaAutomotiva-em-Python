@@ -1,6 +1,6 @@
 from entrada_de_dados.dicionario_cargos import dicionario_de_cargos_da_loja
-from entrada_de_dados.validar_documento import mascarar_cpf, Documento
-from entrada_de_dados.validar_telefone import Telefone
+from ferramentas.Documento import Documento
+from ferramentas.Telefone import Telefone
 
 
 class Funcionario:

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from entrada_de_dados.mascarar_preco import mascarar_preco
+from ferramentas.Preco import Preco
 
 
 class Veiculo(ABC):  # Classe Abstrata
@@ -32,7 +32,7 @@ class Veiculo(ABC):  # Classe Abstrata
         return f'\nmontadora = "{self.__montadora}"    \n' \
                f'nome = "{self.__nome}"    \n' \
                f'ano = "{self.__ano}"    \n' \
-               f'valor de aquisicao = "R$:{mascarar_preco(self.__valor_de_aquisicao)}"    \n' \
+               f'valor de aquisicao = "R$:{Preco(self.__valor_de_aquisicao)}"    \n' \
                f'codigo de registro = "{self.__codigo}"    \n' \
                f'loja = {self.__cnpj_loja}    \n'
 

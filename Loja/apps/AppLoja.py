@@ -1,13 +1,12 @@
 import tkinter
 
-from entrada_de_dados import validar_telefone, validar_email
 from entrada_de_dados.editar_dicionario_cargos import criar_chave_da_loja_em_dicionario_cargos
 from entrada_de_dados.editar_lista_lojas import salvar_loja_em_lista
-from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from ferramentas.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_lojas import codigos_de_lojas_existentes
-from entrada_de_dados.validar_documento import verificar_documento, Documento
-from entrada_de_dados.validar_email import Email
-from entrada_de_dados.validar_telefone import Telefone
+from ferramentas.Documento import Documento
+from ferramentas.Email import Email
+from ferramentas.Telefone import Telefone
 from estrutura.AppBase import AppBase
 from estrutura.Loja import Loja
 
@@ -117,7 +116,14 @@ class AppLoja(AppBase):
         elif not Email(email).validar():
             self.criacao_de_loja_autorizada = False
             self.mensagem_do_relatorio = "\n ERrOr\n\n   EMAIL invalido"
+
         else:
+            try:
+                str(nome)
+            except Exception as ex:
+                self.criacao_de_loja_autorizada = False
+                self.mensagem_do_relatorio = f"{ex}:ERrOr\n\n NOME invalido"
+
             self.criacao_de_loja_autorizada = True
             self.mensagem_do_relatorio = str()
 

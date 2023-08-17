@@ -2,9 +2,9 @@ import tkinter
 from datetime import datetime
 
 from entrada_de_dados.editar_lista_carros import salvar_carro_em_lista
-from entrada_de_dados.gerador_de_codigo import criar_codigo_unico
+from ferramentas.gerador_de_codigo import criar_codigo_unico
 from entrada_de_dados.lista_carros import codigos_de_carros_existentes
-from entrada_de_dados.validar_documento import mascarar_cnpj
+from ferramentas.Documento import Documento
 from estrutura import Loja
 from estrutura.AppBase import AppBase
 from estrutura.Carro import Carro
@@ -102,46 +102,46 @@ class AppCarro(AppBase):
 
         montadora = self.entrada_montadora.get().title().strip()
         nome = self.entrada_do_nome.get().title().strip()
+
         ano = self.entrada_ano.get()
+        ano_atual = datetime.today().year
+
         preco = self.entrada_preco.get()
         codigo = criar_codigo_unico(codigos_de_carros_existentes)
 
         montadoras_validas = ['Toyota', 'Volkswagen', 'Hyundai', 'Gm', 'Ford', 'Nissan',
                               'Daihatsu', 'Chevrolet', 'Fiat', 'Outros']
 
-        try:
-            int(ano)
-            float(preco)
-            contiuar_executado = True
-        except Exception as ex:
-            contiuar_executado = False
-            self.mensagem_do_relatorio = f"{ex}  Valor deve ser Numerio"
+        if len(montadora) == 0 or len(nome) == 0 or len(ano) == 0 or len(preco) == 0:
+            self.criacao_de_carro_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n  CAMPO vazio"
 
-        if contiuar_executado:
-            if len(montadora) == 0 or len(nome) == 0 or len(ano) == 0 or len(preco) == 0:
+        elif montadora not in montadoras_validas:
+            self.criacao_de_carro_autorizada = False
+            self.mensagem_do_relatorio = "\n ERrOr\n\n   MONTADORA invalida"
+
+        elif not 1970 <= int(ano) <= ano_atual:
+            self.criacao_de_carro_autorizada = False
+            self.mensagem_do_relatorio = f"\n ERrOr\n\n   ANO:({ano}) invalido"
+
+        else:
+            try:
+                str(nome)
+                str(montadora)
+                int(ano)
+                float(preco)
+            except Exception as ex:
                 self.criacao_de_carro_autorizada = False
-                self.mensagem_do_relatorio = "Nao registrado\n\n  preencha todos os campos e tente novamente..."
-            elif montadora not in montadoras_validas:
-                self.criacao_de_carro_autorizada = False
-                self.mensagem_do_relatorio = "\n ERrOr\n\n   MONTADORA invalida"
+                self.mensagem_do_relatorio = f"\n {ex}:ERrOr\n\n  Campo invalido"
             else:
                 self.criacao_de_carro_autorizada = True
+                self.mensagem_do_relatorio = str()
 
-            if not len(ano) == 0:
-                ano_atual = datetime.today().year
-                if not 1970 <= int(ano) <= ano_atual:
-                    self.criacao_de_carro_autorizada = False
-                    self.mensagem_do_relatorio = f"\n ERrOr\n\n   ANO({ano}) invalido"
-                else:
-                    self.criacao_de_carro_autorizada = True
-            else:
-                self.criacao_de_carro_autorizada = True
+        if self.criacao_de_carro_autorizada:
+            carro = Carro(montadora, nome, ano, preco, codigo)
+            salvar_carro_em_lista(carro, self.loja)
 
-            if self.criacao_de_carro_autorizada:
-                carro = Carro(montadora, nome, ano, preco, codigo)
-                salvar_carro_em_lista(carro, self.loja)
+            self.carro = carro
+            self.carro.cnpj_loja = Documento(self.loja.cnpj)
 
-                self.carro = carro
-                self.carro.cnpj_loja = mascarar_cnpj(self.loja.cnpj)
-
-                self.mensagem_do_relatorio = self.carro.mostrar_dados()
+            self.mensagem_do_relatorio = self.carro.mostrar_dados()

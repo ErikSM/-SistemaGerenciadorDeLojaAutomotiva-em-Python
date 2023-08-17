@@ -1,9 +1,6 @@
-from entrada_de_dados import validar_telefone
 from entrada_de_dados.lista_carros import carros_registrados
 from entrada_de_dados.lista_clientes import clientes_registrados
 from entrada_de_dados.lista_funcionarios import funcionarios_registrados
-from entrada_de_dados.lista_vendas import vendas_registradas
-from entrada_de_dados.validar_documento import verificar_documento
 from estrutura.Loja import Loja
 
 
@@ -33,10 +30,6 @@ def _preencher_listas_de_registros_da_loja(loja: Loja):
     for i in funcionarios_registrados:
         if i.cnpj_loja == int(loja.cnpj):
             loja.adicionar_funcionario(i)
-
-    for i in vendas_registradas:
-        if int(i.loja.cnpj) == int(loja.cnpj):
-            loja.adicionar_venda(i)
 
 
 def _atualizar_contador_da_lista():
